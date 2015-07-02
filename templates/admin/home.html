@@ -1,0 +1,35 @@
+{% include "inc/head.html" %}
+<!-- START: admin/home -->
+<div>
+    <p class="buttons"><a href="{% url 'admin:activity' %}">activity-log</a></p>
+    <br>
+</div>
+<div id="adm-log">
+    <h3>admin log</h3>
+    <p>
+        <table>
+            <tr>
+                <th class="left">Date</th>
+                <th class="left">Status</th>
+                <th>Run Time</th>
+                <th>User</th>
+                <th class="right">Site Env</th>
+                <th class="right">Command</th>
+                <th class="right">Full Info</th>
+            </tr>
+        {% for le in adm.log %}
+            <tr class="{{le.css_class}}">
+                <td class="left">[{{le.date}}]</td>
+                <td class="left">{{le.status}}</td>
+                <td>{{le.cmd_took}}</td>
+                <td>{{le.user_name}}</td>
+                <td class="right">{{le.site_name}}.{{le.env_name}}</td>
+                <td class="right"><a title="exit: {{le.cmd_exit}}">{{le.cmd_name}}</a></td>
+                <td class="right"><a title="full info" href="">{{le.id_slug}}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </p>
+</div>
+<!-- END: admin/home -->
+{% include "inc/tail.html" %}

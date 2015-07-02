@@ -1,0 +1,7 @@
+<!-- START: sites/navbar -->
+<li><a href="{% url 'site:dashboard' site.name site.env.name %}">dashboard</a></li>
+<li><a href="{% url 'git:home' site.name site.env.name %}">git</a></li>
+<li><a href="{% url 'rsync:home' site.name site.env.name %}">files</a></li>
+<li><a href="{% url 'mysql:home' site.name site.env.name %}">database</a></li>
+<li><a href="{% url 'help:site' site.name site.env.name %}">help</a></li>
+<!-- END: sites/navbar -->

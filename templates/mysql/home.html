@@ -1,0 +1,42 @@
+{% include "inc/head.html" %}
+<!-- START: mysql/home -->
+
+<!-- sync -->
+<p>You can sync this site's environment database to another environment's database. The destination database data will we wiped!!</p>
+<p>
+    <form action="{% url 'jobq:cmd_confirm' site.name site.env.name %}" method="post">
+        <p><label for="found-envs"><b>Dest environment:</b></label>
+        <select class="button" name='tsadm_dst_env' id="found-envs">
+        {% for oenv in site.envs_other %}
+            <option value="{{site.name}}.{{oenv.name}}">{{site.name}}.{{oenv.name}}</option>
+        {% endfor %}
+        </select></p>
+
+        <input type="hidden" name="tsadm_src_env" value="{{site.name}}.{{site.env.name}}">
+        <input type="hidden" name="tsadm_return_to" value="{% url 'mysql:home' site.name site.env.name %}">
+        <input class="button" type="submit" name="tsadm_cmd" value="mysql.sync">
+    </form>
+</p>
+
+<!-- DISABLE: export
+<p>Export database</p>
+<p>
+    <form action="{% url 'jobq:cmd_confirm' site.name site.env.name %}" method="post">
+        <input type="hidden" name="tsadm_return_to" value="{% url 'mysql:home' site.name site.env.name %}">
+        <input class="button" type="submit" name="tsadm_cmd" value="mysql.export">
+    </form>
+</p>
+-->
+
+<!-- DISABLE: import
+<p>Import database</p>
+<p>
+    <form action="{% url 'jobq:cmd_confirm' site.name site.env.name %}" method="post">
+        <input type="hidden" name="tsadm_return_to" value="{% url 'mysql:home' site.name site.env.name %}">
+        <input class="button" type="submit" name="tsadm_cmd" value="mysql.import">
+    </form>
+</p>
+-->
+
+<!-- END: mysql/home -->
+{% include "inc/tail.html" %}

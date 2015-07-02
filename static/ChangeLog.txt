@@ -1,0 +1,1280 @@
+2015-02-12 14:04  jrms
+
+	* [r12628] sbin/site-repo-create: TSAdm: script update
+
+2015-02-11 19:36  jrms
+
+	* [r12623] tsadm_tests/regression/tests/sites.py: TSAdm: regression
+	  tests updates
+
+2015-02-11 18:18  jrms
+
+	* [r12620] templates/site/admin.html: TSAdm: buttons l&f
+
+2015-02-11 17:48  jrms
+
+	* [r12617] static/css/tsadm.css: TSAdm: CSS update
+
+2015-02-11 14:00  jrms
+
+	* [r12606] static/css/tsadm.css: TSAdm: buttons CSS update
+
+2015-02-11 06:31  jrms
+
+	* [r12603] static/css/tsadm.css, templates/git/home.html,
+	  templates/inc/navbar.html, templates/mysql/home.html,
+	  templates/rsync/home.html, templates/site/dashboard.html,
+	  templates/site/navbar.info.html: TSAdm: HTML l&f changes
+
+2015-02-11 05:20  jrms
+
+	* [r12602] BUGS.txt: TSAdm: BUGS update
+
+2015-02-11 05:09  jrms
+
+	* [r12598] libexec/jobq/git/checkout-branch: TSAdm: fix bug in
+	  git.checkout-branch
+
+2015-02-11 05:02  jrms
+
+	* [r12597] tsadm/admin/views.py: TSAdm: fix db maint
+
+2015-02-11 04:59  jrms
+
+	* [r12596] tsadm/admin/urls.py, tsadm/admin/views.py,
+	  tsadm/db/__init__.py, tsadm/db/sql.py: TSAdm: db maint
+
+2015-02-11 04:03  jrms
+
+	* [r12595] templates/inc/admin_navbar.html,
+	  templates/user/admin.html, tsadm/db/__init__.py, tsadm/db/sql.py,
+	  tsadm/user/urls.py, tsadm/user/views.py: TSAdm: user admin - list
+	  all
+
+2015-02-11 01:11  jrms
+
+	* [r12594] tsadm/admin/urls.py, tsadm/admin/views.py: TSAdm:
+	  activity log limit in URL
+
+2015-02-11 00:59  jrms
+
+	* [r12593] templates/user/home.html, tsadm/db/__init__.py,
+	  tsadm/db/schema/tsadm.tbl.sql, tsadm/db/schema/user.tbl.sql,
+	  tsadm/db/sql.py, tsadm/db/upgrade/10000003.sql,
+	  tsadm/user/__init__.py, tsadm/wapp.py: TSAdm: user last seen
+
+2015-02-10 23:55  jrms
+
+	* [r12592] static/css/tsadm.css, templates/admin,
+	  templates/admin.html, templates/admin/activity.html,
+	  templates/admin/home.html, templates/inc/admin_navbar.html,
+	  tsadm/admin, tsadm/admin/__init__.py, tsadm/admin/urls.py,
+	  tsadm/admin/views.py, tsadm/db/__init__.py,
+	  tsadm/db/schema/activity_log.tbl.sql,
+	  tsadm/db/schema/tsadm.tbl.sql, tsadm/db/sql.py,
+	  tsadm/db/upgrade/10000002.bash, tsadm/db/upgrade/10000002.sql,
+	  tsadm/settings.py, tsadm/urls.py, tsadm/user/__init__.py,
+	  tsadm/views.py, tsadm/wapp.py: TSAdm: admin module and activity
+	  log
+
+2015-02-10 16:51  jrms
+
+	* [r12591] TODO.txt: TSAdm: TODO update
+
+2015-02-06 17:25  jrms
+
+	* [r12586] ., tsadm/settings.py: TSAdm: fix offline file path
+
+2015-02-06 17:14  jrms
+
+	* [r12585] templates/inc/head.html, tsadm/wapp.py: TSAdm: html base
+	  tag
+
+2015-02-06 17:13  jrms
+
+	* [r12584] templates/git/home.html,
+	  templates/site/navbar.info.html: TSAdm: fix links target
+	  attribute
+
+2015-02-06 16:53  jrms
+
+	* [r12583] static/css/tsadm.css, templates/inc/validator.html:
+	  TSAdm: small/obsesive minor HTML change in footer
+
+2015-02-06 14:20  jrms
+
+	* [r12582] BUGS.txt, TODO.txt: TSAdm: BUGS and TODO list updates
+
+2015-02-05 22:26  jrms
+
+	* [r12581] static/css/tsadm.css, templates/inc/head.html,
+	  templates/inc/validator.html, tsadm/settings.py, tsadm/wapp.py:
+	  TSAdm: CSS3 validator
+
+2015-02-05 20:04  jrms
+
+	* [r12580] Makefile, mk/django, mk/django/Makefile: TSAdm: split
+	  django Makefile
+
+2015-02-05 19:19  jrms
+
+	* [r12577] tsadm/settings.py, tsadm/wapp.py: TSAdm: offline path
+	  from settings.py
+
+2015-02-05 19:16  jrms
+
+	* [r12576] templates/error/offline.html, tsadm/wapp.py: TSAdm:
+	  offline mode
+
+2015-02-05 17:46  jrms
+
+	* [r12570] static/css/tsadm.css: TSAdm: HTML monospace font-family
+
+2015-02-05 17:42  jrms
+
+	* [r12569] tsadm/site/__init__.py: TSAdm: fix bug when site.env is
+	  not found
+
+2015-02-05 17:42  jrms
+
+	* [r12568] tsadm_tests/regression/__init__.py: TSAdm: use new fixed
+	  address
+
+2015-02-05 17:34  jrms
+
+	* [r12567] tsadm/site/__init__.py, tsadm/wapp.py: TSAdm: fix bug
+	  when site.env is not found
+
+2015-02-05 17:32  jrms
+
+	* [r12566] Makefile: TSAdm: django listen fixed address
+
+2015-01-23 16:23  jrms
+
+	* [r12469] templates/inc/head.html: TSAdm: HTML5 charset definition
+
+2015-01-16 18:04  jrms
+
+	* [r12417] sbin/site-repo-create: TSAdm: improve sbin script
+
+2015-01-16 18:02  jrms
+
+	* [r12416] sbin/site-repo-create: TSAdm: improve sbin script
+
+2015-01-16 17:58  jrms
+
+	* [r12415] sbin/slave-setup: TSAdm: fix script
+
+2015-01-16 17:26  jrms
+
+	* [r12414] sbin/site-repo-create: TSAdm: update sbin script
+
+2015-01-16 17:23  jrms
+
+	* [r12413] sbin/site-repo-create: TSAdm: update sbin script
+
+2015-01-15 18:47  jrms
+
+	* [r12409] sbin/slave-setup: TSAdm: improve scripts
+
+2015-01-15 17:59  jrms
+
+	* [r12402] sbin/slave-setup: TSAdm: bug fixes
+
+2015-01-15 17:55  jrms
+
+	* [r12401] sbin/slave-setup: TSAdm: bug fix
+
+2015-01-15 17:24  jrms
+
+	* [r12399] mk/_utils/merge.py: TSAdm: improve mk script
+
+2015-01-15 05:18  jrms
+
+	* [r12397] tsadm/git/views.py: TSAdm: improve code
+
+2015-01-15 04:57  jrms
+
+	* [r12393] tsadm/wapp.py: TSAdm: set start timestamp when start is
+	  called
+
+2015-01-15 04:54  jrms
+
+	* [r12392] templates/git/home.html: TSAdm: improve commands objects
+	  build and their UI
+
+2015-01-15 04:52  jrms
+
+	* [r12391] tsadm/git/jobq.py, tsadm/git/views.py,
+	  tsadm/jobq/cmd.py, tsadm/wapp.py: TSAdm: set start timestamp at
+	  __init__ time
+
+2015-01-15 03:38  jrms
+
+	* [r12390] templates/git/home.html: TSAdm: typo fix
+
+2015-01-15 03:37  jrms
+
+	* [r12389] templates/git/home.html, tsadm/git/jobq.py: TSAdm:
+	  git.fetch frontend command
+
+2015-01-15 03:14  jrms
+
+	* [r12387] libexec/jobq/git/fetch, tsadm/git/views.py: TSAdm: git
+	  post-receive fetch metadata
+
+2015-01-15 02:32  jrms
+
+	* [r12385] libexec/jobq/git/fetch-tags, tsadm/git/views.py: TSAdm:
+	  git post-receive fetch tags
+
+2015-01-15 02:32  jrms
+
+	* [r12384] libexec/git/post-receive: TSAdm: do not use SSL if in
+	  devmode
+
+2015-01-15 02:30  jrms
+
+	* [r12383] tsadm/wapp.py: TSAdm: set devmode if running via
+	  manager.py
+
+2015-01-15 02:30  jrms
+
+	* [r12382] tsadm/log.py: TSAdm: send log to stderr if in devmode
+
+2015-01-15 00:54  jrms
+
+	* [r12381] Makefile: TSAdm: make django-runserver
+
+2015-01-15 00:25  jrms
+
+	* [r12379] mk/_utils/get_last_merge_rev, mk/merge/Makefile: TSAdm:
+	  make files cleanup
+
+2015-01-15 00:22  jrms
+
+	* [r12377] mk/_utils/merge.py: TSAdm: improve merge script
+
+2015-01-15 00:19  jrms
+
+	* [r12375] mk/_utils/merge.py: TSAdm: improve merge script
+
+2015-01-15 00:15  jrms
+
+	* [r12374] mk/_utils/merge.py: TSAdm: improve merge script
+
+2015-01-15 00:07  jrms
+
+	* [r12372] mk/_utils/merge.py: TSAdm: improve merge script
+
+2015-01-14 23:59  jrms
+
+	* [r12370] Makefile, mk, mk/_utils, mk/_utils/get_last_merge_rev,
+	  mk/_utils/merge.py, mk/compile, mk/compile/Makefile, mk/merge,
+	  mk/merge/Makefile, mk/test, mk/test/Makefile: TSAdm: Makefile
+	  improve and merge tools
+
+2015-01-13 04:17  jrms
+
+	* [r12365] templates/cmd_confirm.html, templates/error/501.html,
+	  templates/site/admin.html, templates/slave/admin.html,
+	  tsadm/db/__init__.py, tsadm/db/sql.py, tsadm/jobq/views.py,
+	  tsadm/site/__init__.py, tsadm/site/urls.py, tsadm/site/views.py,
+	  tsadm/urls.py, tsadm/user/__init__.py, tsadm/views.py: TSAdm:
+	  sites admin commands
+
+2015-01-13 04:16  jrms
+
+	* [r12364] tsadm/settings.py: TSAdm: stop using django language
+	  features
+
+2015-01-13 04:13  jrms
+
+	* [r12363] libexec/git/post-receive: TSAdm: improve debug loging
+
+2015-01-13 04:12  jrms
+
+	* [r12362] templates/inc/admin_navbar.html,
+	  templates/inc/validator.html: TSAdm: html validator improve
+
+2015-01-13 04:11  jrms
+
+	* [r12361] BUGS.txt: TSAdm: BUGS update
+
+2015-01-08 21:23  jrms
+
+	* [r12353] sbin: TSAdm: copy trunk sbin to dev
+
+2015-01-05 22:17  jrms
+
+	* [r12338] BUGS.txt: TSAdm: BUGS update
+
+2014-12-12 01:54  jrms
+
+	* [r12302] static/css/tsadm.css, templates/inc/head.html,
+	  tsadm/wapp.py: TSAdm: css versioned
+
+2014-12-12 01:04  jrms
+
+	* [r12300] tsadm/db/config.py, tsadm/settings.py: TSAdm: dbconfig
+	  from tsadm.settings
+
+2014-12-11 14:47  jrms
+
+	* [r12295] templates/slave/admin.html, tsadm/db/__init__.py,
+	  tsadm/db/sql.py, tsadm/slave/__init__.py, tsadm/slave/views.py,
+	  tsadm_tests/regression/tests/mysql.py,
+	  tsadm_tests/regression/tests/rsync.py: TSAdm: slave servers admin
+
+2014-12-11 04:16  jrms
+
+	* [r12294] templates/adm, templates/admin.html,
+	  templates/inc/admin_navbar.html, templates/inc/navbar.html,
+	  templates/slave/admin.html, tsadm/adm, tsadm/settings.py,
+	  tsadm/slave/urls.py, tsadm/slave/views.py, tsadm/urls.py,
+	  tsadm/views.py, tsadm/wapp.py: TSAdm: remove obsolete tsadm.adm
+	  module
+
+2014-12-10 21:19  jrms
+
+	* [r12293] templates/site/dashboard.html, templates/site/log.html:
+	  TSAdm: valid HTML5
+
+2014-12-10 19:10  jrms
+
+	* [r12289] templates/help/site.html, templates/jobq/info.html,
+	  templates/rsync/home.html, templates/site/index.html: TSAdm:
+	  valid HTML5
+
+2014-12-10 18:43  jrms
+
+	* [r12288] static/css/tsadm.css, templates/adm/navbar.html,
+	  templates/site/index.html, tsadm/wapp.py: TSAdm: valid HTML5 on
+	  site index
+
+2014-12-10 01:50  jrms
+
+	* [r12284] etc/xinetd/jobqd.conf: TSAdm: xinetd config update
+
+2014-12-09 20:35  jrms
+
+	* [r12275] tsadm/site/views.py, tsadm/wapp.py,
+	  tsadm_tests/regression/tests/rsync.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: regr tests improve
+	  check_digest
+
+2014-12-09 20:10  jrms
+
+	* [r12272] Makefile, static/ChangeLog.txt: TSAdm: generate a
+	  ChangeLog
+
+2014-12-09 19:54  jrms
+
+	* [r12271] Makefile, etc/certs/regrtest.pem,
+	  libexec/jobq/slave/hostinfo, libexec/jobq/slave/softinfo,
+	  templates/slave/dashboard.html, tsadm/slave/__init__.py,
+	  tsadm/slave/jobq.py, tsadm/wapp.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/mysql.py,
+	  tsadm_tests/regression/tests/rsync.py,
+	  tsadm_tests/regression/tests/sites.py,
+	  tsadm_tests/regression/tests/user.py: TSAdm: regrtests user and
+	  mysql.sync, slave info and graphs
+
+2014-12-07 00:46  jrms
+
+	* [r12258] tsadm_tests/regression/tests/slave.py: TSAdm: update
+	  regr test
+
+2014-12-06 08:19  jrms
+
+	* [r12257] etc/apache/master.conf, static/css/tsadm.css,
+	  templates/slave/dashboard.html, tsadm/settings.py,
+	  tsadm/slave/__init__.py: TSAdm: show server graphs
+
+2014-12-06 07:30  jrms
+
+	* [r12256] libexec/jobq/slave/hostinfo,
+	  templates/slave/dashboard.html, tsadm/slave/__init__.py,
+	  tsadm/slave/jobq.py: TSAdm: improve slave hostinfo
+
+2014-12-06 06:44  jrms
+
+	* [r12255] tsadm/wapp.py: TSAdm: improve HTML validator form
+
+2014-12-06 06:42  jrms
+
+	* [r12254] templates/inc/tail.html, templates/inc/validator.html,
+	  tsadm/wapp.py: TSAdm: HTML validator form
+
+2014-12-06 06:15  jrms
+
+	* [r12253] templates/inc/head.html, tsadm/wapp.py: TSAdm: document
+	  charset
+
+2014-12-04 18:07  jrms
+
+	* [r12244] Makefile, tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py,
+	  tsadm_tests/regression/tests/jobq.py,
+	  tsadm_tests/regression/tests/rsync.py,
+	  tsadm_tests/regression/tests/slave.py: TSAdm: regr tests
+	  fail_reload
+
+2014-12-04 16:53  jrms
+
+	* [r12243] Makefile, static/css/tsadm.css,
+	  templates/inc/navbar.html, templates/inc/tail.html,
+	  templates/site/dashboard.html, templates/site/navbar.info.html,
+	  tsadm/settings.py, tsadm/wapp.py: TSAdm: print clean HTML
+
+2014-12-02 06:23  jrms
+
+	* [r12230] tsadm_tests/regression/__init__.py: TSAdm: regr tests
+	  sleep a bit between each run
+
+2014-12-02 06:17  jrms
+
+	* [r12229] libexec/jobq/mysql/sync: TSAdm: mysql sync improve
+
+2014-12-02 05:54  jrms
+
+	* [r12228] templates/jobq/info.html, tsadm/wapp.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py,
+	  tsadm_tests/regression/tests/jobq.py,
+	  tsadm_tests/regression/tests/rsync.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: regr test rsync
+	  dirs
+
+2014-12-02 05:15  jrms
+
+	* [r12227] templates/jobq/info.html,
+	  tsadm_tests/regression/__init__.py: TSAdm: improve output
+
+2014-12-02 04:55  jrms
+
+	* [r12226] tsadm/git/views.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py: TSAdm: regr test git
+	  post-receive hook
+
+2014-12-02 04:21  jrms
+
+	* [r12225] tsadm/jobq/views.py, tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py: TSAdm: regr test git pull
+	  confirm and bug fix
+
+2014-12-02 04:05  jrms
+
+	* [r12224] static/css/tsadm.css, templates/inc/debug.html,
+	  templates/inc/tail.html, tsadm/jobq/views.py,
+	  tsadm/rsync/views.py, tsadm/wapp.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/rsync.py: TSAdm: tmpl_data debug and
+	  rsync regr test
+
+2014-12-01 21:11  jrms
+
+	* [r12223] tsadm/jobq/req.py, tsadm/rsync/jobq.py,
+	  tsadm/rsync/views.py: TSAdm: rsync commands moved to TSAdmJobQCmd
+	  interface
+
+2014-12-01 20:53  jrms
+
+	* [r12222] tsadm/site/views.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: regr tests env
+	  check update
+
+2014-12-01 19:14  jrms
+
+	* [r12221] tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py: TSAdm: regr test git cleanup
+
+2014-12-01 19:11  jrms
+
+	* [r12220] Makefile, tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py: TSAdm: regr test git
+	  checkout tag/branch
+
+2014-12-01 18:34  jrms
+
+	* [r12219] tsadm_tests/regression/__init__.py: TSAdm: regr tests
+	  improve output
+
+2014-12-01 17:34  jrms
+
+	* [r12213] tsadm_tests/regression/__init__.py: TSAdm: test improve
+	  info
+
+2014-12-01 17:11  jrms
+
+	* [r12212] tsadm_tests/regression/__init__.py: TSAdm: fix bug
+
+2014-12-01 17:06  jrms
+
+	* [r12211] tsadm_tests/regression/__init__.py: TSAdm: show regr
+	  test server
+
+2014-12-01 16:41  jrms
+
+	* [r12207] Makefile, etc/certs/regrtest.pem,
+	  tsadm_tests/regression/__init__.py: TSAdm: regression tests over
+	  SSL
+
+2014-12-01 15:52  jrms
+
+	* [r12206] templates/inc/regr_tests.html, templates/inc/tail.html,
+	  tsadm/settings.py, tsadm/site/views.py, tsadm/wapp.py,
+	  tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: regr tests check
+	  digest
+
+2014-12-01 14:36  jrms
+
+	* [r12205] etc/apache/master.conf,
+	  tsadm_tests/regression/tests/git.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: improve regression
+	  tests environment
+
+2014-12-01 07:11  jrms
+
+	* [r12204] tsadm_tests/regression/__init__.py: TSAdm: test improve
+	  report
+
+2014-12-01 07:00  jrms
+
+	* [r12203] tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py: TSAdm: tests git status,
+	  pull and pull log
+
+2014-12-01 06:47  jrms
+
+	* [r12202] tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py: TSAdm: test git.log
+
+2014-12-01 06:29  jrms
+
+	* [r12201] tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/git.py: TSAdm: test git url and
+	  branch
+
+2014-12-01 06:21  jrms
+
+	* [r12200] tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: test site log
+
+2014-12-01 06:05  jrms
+
+	* [r12199] tsadm_tests/regression/__init__.py: TSAdm: test improve
+
+2014-12-01 05:58  jrms
+
+	* [r12198] tsadm_tests/regression/tests/sites.py: TSAdm: tests set
+	  fail_abort
+
+2014-12-01 05:56  jrms
+
+	* [r12197] Makefile, tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/sites.py,
+	  tsadm_tests/regression/tests/slave.py,
+	  tsadm_tests/regression/tests/user.py: TSAdm: test fail_abort and
+	  check slave
+
+2014-12-01 05:33  jrms
+
+	* [r12196] Makefile, tsadm/jobq/views.py,
+	  tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/__main__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: test parse sys.argv
+	  and site lock/unlock - live set/unset
+
+2014-12-01 04:28  jrms
+
+	* [r12195] tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: test site.env
+	  claim/release
+
+2014-12-01 03:59  jrms
+
+	* [r12194] tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/user.py: TSAdm: improve fail test
+	  report
+
+2014-12-01 03:29  jrms
+
+	* [r12193] Makefile: TSAdm: Makefile update
+
+2014-12-01 03:28  jrms
+
+	* [r12192] Makefile: TSAdm: make update
+
+2014-12-01 03:27  jrms
+
+	* [r12191] tsadm_tests/regression/__init__.py: TSAdm: test improve
+	  report info
+
+2014-12-01 03:21  jrms
+
+	* [r12190] tsadm_tests/regression/tests/sites.py: TSAdm: test
+	  improve report info
+
+2014-12-01 03:20  jrms
+
+	* [r12189] tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/tests/sites.py: TSAdm: test improve report
+	  info
+
+2014-12-01 02:33  jrms
+
+	* [r12188] tsadm_tests/regression,
+	  tsadm_tests/regression/__init__.py,
+	  tsadm_tests/regression/__main__.py, tsadm_tests/regression/tests,
+	  tsadm_tests/regression/tests/__init__.py,
+	  tsadm_tests/regression/tests/config.py,
+	  tsadm_tests/regression/tests/sites.py,
+	  tsadm_tests/regression/tests/user.py: TSAdm: regression tests
+
+2014-11-30 18:43  jrms
+
+	* [r12187] Makefile: TSAdm: make test-all
+
+2014-11-30 18:38  jrms
+
+	* [r12186] Makefile, tsadm_tests/gen_urls_digest.py: TSAdm:
+	  test-urls-digest using Makefile
+
+2014-11-30 18:30  jrms
+
+	* [r12185] tsadm_tests/__init__.py, tsadm_tests/gen_urls_digest.py:
+	  TSAdm: moved useful functions to main package
+
+2014-11-30 18:23  jrms
+
+	* [r12184] Makefile, tsadm_tests, tsadm_tests/gen_urls_digest.py:
+	  TSAdm: test gen_urls_digest
+
+2014-11-30 17:57  jrms
+
+	* [r12183] tsadm_tests, tsadm_tests/__init__.py,
+	  tsadm_tests/get_urls.py: TSAdm: tsadm_tests created
+
+2014-11-30 17:56  jrms
+
+	* [r12182] tsadm/jobq/views.py: TSAdm: improve output
+
+2014-11-29 06:36  jrms
+
+	* [r12181] tsadm/git/jobq.py, tsadm/git/views.py,
+	  tsadm/jobq/cmd.py, tsadm/jobq/req.py, tsadm/jobq/views.py,
+	  tsadm/slave/__init__.py, tsadm/slave/jobq.py: TSAdm: migrate git
+	  commands to TSAdmJobQReq interface
+
+2014-11-29 06:09  jrms
+
+	* [r12180] templates/mysql/home.html, templates/rsync/home.html,
+	  tsadm/_mysql/jobq.py, tsadm/jobq/urls.py, tsadm/jobq/views.py,
+	  tsadm/rsync/jobq.py: TSAdm: migrate rsync and mysql commands to
+	  new interface
+
+2014-11-29 05:55  jrms
+
+	* [r12179] libexec/jobq.runbg.py, libexec/jobq.xinetd.py,
+	  templates/git/home.html, templates/jobq/cmd_confirm.html,
+	  tsadm/git/jobq.py, tsadm/jobq/__init__.py, tsadm/jobq/cmd.py,
+	  tsadm/jobq/intcmd.py, tsadm/jobq/urls.py, tsadm/jobq/views.py,
+	  tsadm/site/jobq.py, tsadm/slave/__init__.py, tsadm/slave/jobq.py,
+	  tsadm/views.py: TSAdm: migrate git commands to TSAdmJobQCmd
+	  interface
+
+2014-11-29 02:21  jrms
+
+	* [r12178] libexec/jobq/slave, libexec/jobq/slave/loadavg,
+	  libexec/runner.py, templates/jobq/info.html,
+	  templates/slave/dashboard.html, tsadm/jobq/__init__.py,
+	  tsadm/jobq/cmd.py, tsadm/jobq/intcmd.py, tsadm/jobq/req.py,
+	  tsadm/jobq/views.py, tsadm/slave/__init__.py,
+	  tsadm/slave/jobq.py: TSAdm: show slave loadavg info using new
+	  TSAdmJobQReq interface
+
+2014-11-29 00:56  jrms
+
+	* [r12177] tsadm/jobq/cmd.py, tsadm/jobq/intcmd.py,
+	  tsadm/jobq/views.py: TSAdm: clean code
+
+2014-11-29 00:38  jrms
+
+	* [r12176] TODO.txt: TSAdm: TODO update
+
+2014-11-29 00:35  jrms
+
+	* [r12175] TODO.txt: TSAdm: TODO update
+
+2014-11-29 00:33  jrms
+
+	* [r12174] tsadm/git/views.py: TSAdm: do not run git.post-receive
+	  hook if env is live
+
+2014-11-29 00:12  jrms
+
+	* [r12173] templates/site/claim_confirm.html,
+	  templates/site/dashboard.html,
+	  templates/site/release_confirm.html, tsadm/db/__init__.py,
+	  tsadm/db/sql.py, tsadm/jobq/intcmd.py, tsadm/site/urls.py,
+	  tsadm/site/views.py: TSAdm: revert commit 12172
+
+2014-11-28 23:55  jrms
+
+	* [r12172] templates/site/claim_confirm.html,
+	  templates/site/dashboard.html,
+	  templates/site/release_confirm.html, tsadm/db/__init__.py,
+	  tsadm/db/sql.py, tsadm/jobq/intcmd.py, tsadm/site/urls.py,
+	  tsadm/site/views.py: TSAdm: env claim/release moved to new IntCmd
+	  classes
+
+2014-11-28 23:36  jrms
+
+	* [r12171] TODO.txt: TSAdm: TODO update - env.live implemented
+
+2014-11-28 23:34  jrms
+
+	* [r12170] templates/site/index.html, tsadm/db/__init__.py,
+	  tsadm/db/sql.py, tsadm/site/views.py: TSAdm: show live tag if set
+	  on sites index
+
+2014-11-28 23:20  jrms
+
+	* [r12169] templates/inc/head.html,
+	  templates/jobq/intcmd_confirm.html,
+	  templates/site/dashboard.html, tsadm/db/__init__.py,
+	  tsadm/db/schema/siteenv.tbl.sql, tsadm/db/schema/tsadm.tbl.sql,
+	  tsadm/db/sql.py, tsadm/jobq/__init__.py, tsadm/jobq/cmd.py,
+	  tsadm/jobq/intcmd.py, tsadm/jobq/urls.py, tsadm/jobq/views.py,
+	  tsadm/site/__init__.py, tsadm/site/views.py, tsadm/wapp.py:
+	  TSAdm: env live set/unset implemented using new IntCmd classes
+
+2014-11-27 21:01  jrms
+
+	* [r12167] TODO.txt, templates/inc/head.html: TSAdm: TODO update
+
+2014-11-27 20:52  jrms
+
+	* [r12166] templates/inc/head.html, templates/jobq/info.html,
+	  tsadm/wapp.py: TSAdm: improve some HTML
+
+2014-11-27 20:24  jrms
+
+	* [r12165] libexec/jobq.runbg.py, libexec/jobq.xinetd.py,
+	  libexec/runner.py, tsadm/settings.py: TSAdm: use tsadm.settings
+	  for config
+
+2014-11-27 20:02  jrms
+
+	* [r12164] etc/xinetd/jobqd.conf: TSAdm: xinetd config update
+
+2014-11-22 02:43  jrms
+
+	* [r12148] templates/soft-info.html, tsadm/views.py: TSAdm: show
+	  tsadm settings in soft-info
+
+2014-11-21 23:59  jrms
+
+	* [r12146] VERSION.txt, templates/inc/tail.html, tsadm/wapp.py:
+	  TSAdm: show software version
+
+2014-11-21 23:46  jrms
+
+	* [r12144] templates/help/site.html: TSAdm: fix typo in site doc
+
+2014-11-21 23:44  jrms
+
+	* [r12143] etc/uwsgi/tsadm.ini, etc/xinetd/jobqd.conf,
+	  libexec/jobq.runbg.py, libexec/jobq.xinetd.py, libexec/runner.py,
+	  tsadm/settings.py: TSAdm: improve dev environment
+
+2014-11-19 18:04  jrms
+
+	* [r12122] tsadm/wapp.py: TSAdm: bug fix
+
+2014-11-19 16:19  jrms
+
+	* [r12119] tsadm/settings.py, tsadm/wapp.py: TSAdm: improve
+	  nsresolve and SYSLOG_TAG from settings
+
+2014-11-19 15:51  jrms
+
+	* [r12116] tsadm/_mysql/views.py, tsadm/adm/views.py,
+	  tsadm/db/__init__.py, tsadm/db/sql.py,
+	  tsadm/db/upgrade/10000001.sql, tsadm/git/views.py,
+	  tsadm/help/views.py, tsadm/jobq/views.py, tsadm/rsync/views.py,
+	  tsadm/site/__init__.py, tsadm/site/views.py, tsadm/user/views.py,
+	  tsadm/views.py, tsadm/wapp.py: TSAdm: site.env can be set as live
+	  and improve wapp.end
+
+2014-11-19 15:49  jrms
+
+	* [r12115] static/css/tsadm.css: TSAdm: improve site help page
+
+2014-11-19 15:47  jrms
+
+	* [r12114] BUGS.txt, TODO.txt: TSAdm: bugs and todos update
+
+2014-11-19 15:46  jrms
+
+	* [r12113] templates/help/site.html: TSAdm: improve site help page
+
+2014-10-31 23:39  jrms
+
+	* [r12002] templates/site/dashboard.html, templates/slave,
+	  templates/slave/dashboard.html, tsadm/db/__init__.py,
+	  tsadm/db/sql.py, tsadm/settings.py, tsadm/site/__init__.py,
+	  tsadm/slave, tsadm/slave/__init__.py, tsadm/slave/urls.py,
+	  tsadm/slave/views.py, tsadm/urls.py, tsadm/wapp.py: TSAdm: slave
+	  server page
+
+2014-10-23 22:59  jrms
+
+	* [r11966] TODO.txt, manage.py, templates/help/site.html: TSAdm:
+	  improve help
+
+2014-10-06 17:48  jrms
+
+	* [r11893] TODO.txt: TSAdm: TODO update
+
+2014-09-30 19:02  jrms
+
+	* [r11877] templates/site/log.html: TSAdm: fix site log full info
+	  link
+
+2014-09-30 16:34  jrms
+
+	* [r11873] tsadm/db/db-data.sql, tsadm/db/sql.py,
+	  tsadm/site/__init__.py: TSAdm: bug setting envs_other fixed
+
+2014-09-30 16:16  jrms
+
+	* [r11872] libexec/jobq.xinetd.py, libexec/runner.py,
+	  tsadm/jobq/__init__.py: TSAdm: bugs managing cmd output from jobq
+	  fixed
+
+2014-09-29 16:42  jrms
+
+	* [r11860] TODO.txt: TSAdm: TODO update
+
+2014-09-18 19:26  jrms
+
+	* [r11815] templates/adm/navbar.html, tsadm/adm/views.py,
+	  tsadm/jobq/views.py, tsadm/settings.py, tsadm/wapp.py: TSAdm:
+	  logs date format configurable
+
+2014-09-18 18:57  jrms
+
+	* [r11814] tsadm/adm/views.py, tsadm/settings.py,
+	  tsadm/site/views.py: TSAdm: logs date format configurable
+
+2014-09-18 17:59  jrms
+
+	* [r11812] BUGS.txt, Makefile, etc/xinetd/jobqd.conf,
+	  libexec/jobq.runbg.py, libexec/jobq.xinetd.py, libexec/runner.py,
+	  templates/soft-info.html, tsadm/db/__init__.py,
+	  tsadm/db/schema/jobq.tbl.sql, tsadm/db/schema/site.tbl.sql,
+	  tsadm/db/schema/tsadm.tbl.sql, tsadm/git/views.py,
+	  tsadm/jobq/__init__.py, tsadm/jobq/views.py, tsadm/settings.py,
+	  tsadm/views.py, tsadm/wapp.py: TSAdm: explicit utf-8 encoding
+	  when possible
+
+2014-09-18 04:47  jrms
+
+	* [r11810] static/css/tsadm.css, templates/adm/navbar.html,
+	  templates/adm/sites.html, templates/inc/umesg.html,
+	  templates/site/dashboard.html, templates/site/log.html,
+	  tsadm/adm/views.py, tsadm/db/__init__.py, tsadm/db/sql.py,
+	  tsadm/site/urls.py, tsadm/site/views.py: TSAdm: site log and
+	  improve umesg
+
+2014-09-18 02:08  jrms
+
+	* [r11809] static/css/tsadm.css, templates/adm/home.html,
+	  templates/adm/navbar.html, templates/inc/navbar.html,
+	  templates/site/navbar.html: TSAdm: admin log look&feel update
+
+2014-09-18 01:39  jrms
+
+	* [r11808] Makefile, VERSION.txt, templates/soft-info.html,
+	  tsadm/views.py, tsadm/wapp.py: TSAdm: soft version
+
+2014-09-18 01:28  jrms
+
+	* [r11807] templates/inc/navbar.html, tsadm/db/__init__.py,
+	  tsadm/db/sql.py, tsadm/db/upgrade,
+	  tsadm/db/upgrade/10000000.bash, tsadm/db/upgrade/10000000.sql,
+	  tsadm/wapp.py: TSAdm: check dbversion - db upgrade scripts
+
+2014-09-18 00:48  jrms
+
+	* [r11806] templates/adm/cmd_confirm.html, templates/adm/home.html,
+	  templates/adm/navbar.html, templates/adm/sites.html,
+	  templates/site/navbar.html, tsadm/adm/drush.py,
+	  tsadm/adm/urls.py, tsadm/adm/views.py, tsadm/db/__init__.py,
+	  tsadm/db/procedures/JobQStart.sql, tsadm/db/sql.py,
+	  tsadm/jobq/__init__.py, tsadm/urls.py: TSAdm: improve running
+	  admin commands and its interface
+
+2014-09-18 00:43  jrms
+
+	* [r11805] libexec/git/post-receive: TSAdm: curl --silent
+
+2014-09-18 00:42  jrms
+
+	* [r11804] TODO.txt: TSAdm: TODO update
+
+2014-09-12 18:09  jrms
+
+	* [r11776] libexec/git/post-receive: TSAdm: fix bug on
+	  git.post-receive
+
+2014-09-12 17:25  jrms
+
+	* [r11773] BUGS.txt, Makefile, TODO.txt, etc/certs,
+	  etc/certs/gitbot.pem, etc/certs/slave-auth.pem,
+	  etc/certs/tsadmca.pem, etc/slave-auth.pem, etc/tsadmca.pem,
+	  libexec/git, libexec/git/post-receive, libexec/jobq.runbg.py,
+	  libexec/jobq/git/branch, libexec/jobq/rsync/dirs,
+	  static/css/tsadm.css, tsadm/db/__init__.py, tsadm/db/db-data.sql,
+	  tsadm/db/sql.py, tsadm/git/urls.py, tsadm/git/views.py,
+	  tsadm/jobq/__init__.py, tsadm/jobq/views.py, tsadm/settings.py,
+	  tsadm/site/__init__.py, tsadm/site/views.py,
+	  tsadm/user/__init__.py, tsadm/wapp.py: TSAdm: make config-grep,
+	  gitbot post-receive hook, user acclvl improvements and others
+
+2014-09-11 06:59  jrms
+
+	* [r11763] Makefile: TSAdm: config-grep make command
+
+2014-09-09 19:00  jrms
+
+	* [r11741] TODO.txt, static/css/tsadm.css,
+	  templates/adm/cmd_confirm.html, templates/adm/home.html,
+	  templates/inc/head.html, templates/inc/umesg.html,
+	  templates/site/dashboard.html, tsadm/adm/views.py,
+	  tsadm/db/__init__.py, tsadm/db/db-data.sql, tsadm/db/db-init.sh,
+	  tsadm/db/dev-data.sql, tsadm/db/dev-init.sh,
+	  tsadm/db/procedures/JobQStart.sql, tsadm/db/schema/jobq.tbl.sql,
+	  tsadm/db/sql.py, tsadm/jobq/__init__.py, tsadm/jobq/views.py,
+	  tsadm/user/__init__.py, tsadm/wapp.py: TSAdm: implement umesg
+	  system, run adm command progress, preserve db tables ids under
+	  100 for internal use and HOST acclvl
+
+2014-09-08 18:22  jrms
+
+	* [r11734] templates/adm/home.html, templates/adm/navbar.html,
+	  templates/inc/navbar.html, templates/site/navbar.html: TSAdm:
+	  start admin section and improve navbars loading
+
+2014-09-08 14:07  jrms
+
+	* [r11732] templates/adm/home.html, templates/git/home.html,
+	  templates/help/site.html, templates/jobq/run.html,
+	  templates/jobq/run_confirm.html, templates/mysql/home.html,
+	  templates/rsync/home.html, templates/site/cant_unlock.html,
+	  templates/site/claim_confirm.html, templates/site/claimed.html,
+	  templates/site/dashboard.html, templates/site/lock_confirm.html,
+	  templates/site/locked.html, templates/site/navbar.html,
+	  templates/site/navbar.info.html,
+	  templates/site/release_confirm.html,
+	  templates/site/unlock_confirm.html, tsadm/jobq/views.py,
+	  tsadm/site/__init__.py, tsadm/site/views.py, tsadm/wapp.py:
+	  TSAdm: TSAdmSite and TSAdmSiteEnv object classes
+
+2014-09-08 02:46  jrms
+
+	* [r11730] ., libexec/runner.py, templates/site/dashboard.html,
+	  tsadm/db/__init__.py, tsadm/db/sql.py, tsadm/site/views.py:
+	  TSAdm: improve activity log and show senv host name
+
+2014-09-08 00:46  jrms
+
+	* [r11728] libexec/jobq/git/branch: TSAdm: fix bug listing current
+	  branch
+
+2014-09-08 00:31  jrms
+
+	* [r11726] tsadm/site/views.py, tsadm/user/__init__.py,
+	  tsadm/wapp.py: TSAdm: TSAdmUser class to have the user as an
+	  object
+
+2014-09-07 23:08  jrms
+
+	* [r11725] BUGS.txt, libexec/jobq.runbg.py, templates/adm,
+	  templates/adm/home.html, templates/inc/navbar.html,
+	  templates/site/dashboard.html, templates/site/navbar-form.html,
+	  templates/site/navbar.html, templates/site/navbar.info.html,
+	  templates/user/home.html, tsadm/adm, tsadm/adm/__init__.py,
+	  tsadm/adm/urls.py, tsadm/adm/views.py, tsadm/db/__init__.py,
+	  tsadm/db/sql.py, tsadm/git/views.py, tsadm/jobq/__init__.py,
+	  tsadm/jobq/urls.py, tsadm/jobq/views.py, tsadm/rsync/views.py,
+	  tsadm/settings.py, tsadm/site/urls.py, tsadm/site/views.py,
+	  tsadm/urls.py, tsadm/wapp.py: TSAdm: put jobs in RUN state and
+	  start admin interface
+
+2014-09-06 01:59  jrms
+
+	* [r11723] templates/soft-info.html, tsadm/views.py, tsadm/wapp.py:
+	  TSAdm: improve soft-info
+
+2014-09-06 01:43  jrms
+
+	* [r11721] templates/soft-info.html, tsadm/views.py: TSAdm: fix bug
+	  on soft-info
+
+2014-09-06 01:25  jrms
+
+	* [r11719] tsadm/db/__init__.py, tsadm/db/sql.py: TSAdm: do not
+	  show other envs claimed by other user
+
+2014-09-06 01:09  jrms
+
+	* [r11717] templates/site/claimed.html, tsadm/site/views.py,
+	  tsadm/wapp.py: TSAdm: claimed env l&f improves
+
+2014-09-06 00:20  jrms
+
+	* [r11716] TODO.txt, templates/site/claim_confirm.html,
+	  templates/site/dashboard.html, templates/site/index.html,
+	  templates/site/release_confirm.html, templates/user/home.html,
+	  tsadm/db/__init__.py, tsadm/db/schema/siteenv.tbl.sql,
+	  tsadm/db/sql.py, tsadm/site/urls.py, tsadm/site/views.py,
+	  tsadm/wapp.py: TSAdm: site env claiming implemented
+
+2014-09-05 20:58  jrms
+
+	* [r11715] templates/inc/tail.html, tsadm/wapp.py: TSAdm: show
+	  soft-info link only to admins
+
+2014-09-05 20:53  jrms
+
+	* [r11714] tsadm/db/__init__.py, tsadm/db/dev-data.sql,
+	  tsadm/db/schema/user.tbl.sql, tsadm/db/sql.py, tsadm/views.py,
+	  tsadm/wapp.py: TSAdm: users and views have an access level check
+	  now
+
+2014-09-05 19:57  jrms
+
+	* [r11713] templates/soft-info.html, tsadm/views.py: TSAdm: add OS
+	  user info to soft-info page
+
+2014-09-05 18:27  jrms
+
+	* [r11711] templates/soft-info.html, tsadm/db/__init__.py,
+	  tsadm/views.py: TSAdm: improve showing soft info
+
+2014-09-05 16:50  jrms
+
+	* [r11709] ., Makefile, TODO.txt, static/css/tsadm.css,
+	  templates/inc/tail.html, templates/soft-info.html,
+	  tsadm/settings.py, tsadm/urls.py, tsadm/views.py, tsadm/wapp.py:
+	  TSAdm: improve showing soft info
+
+2014-09-05 15:36  jrms
+
+	* [r11708] libexec/jobq/mysql/sync, libexec/runner.py: TSAdm: lib
+	  runner child proc stderr must be same as stdout
+
+2014-09-05 15:08  jrms
+
+	* [r11707] Makefile, static/css/tsadm.css, templates/git/home.html,
+	  templates/inc/tail.html, templates/site/dashboard.html,
+	  tsadm/settings.py, tsadm/wapp.py: TSAdm: show some software info
+	  and versions
+
+2014-09-05 02:46  jrms
+
+	* [r11704] TODO.txt, libexec/jobq/git/branch,
+	  libexec/jobq/git/tags, libexec/runner.py: TSAdm: add TODO, fix
+	  git bugs and improve lib runner
+
+2014-09-05 02:45  jrms
+
+	* [r11703] static/css/tsadm.css, templates/jobq/run.html,
+	  templates/mysql/home.html, templates/rsync/home.html,
+	  templates/site/dashboard.html, templates/site/index.html,
+	  templates/site/navbar.html, tsadm/site/views.py, tsadm/urls.py,
+	  tsadm/wapp.py: TSAdm: HTML improves, URL schema change
+
+2014-09-03 22:55  jrms
+
+	* [r11698] tsadm/db/procedures/JobQEnd.sql,
+	  tsadm/db/schema/jobq.tbl.sql, tsadm/jobq/__init__.py: TSAdm: fix
+	  bugs saving commands output
+
+2014-09-03 05:28  jrms
+
+	* [r11692] ., Makefile, libexec/jobq.runbg.py,
+	  templates/jobq/run.html, templates/site/index.html,
+	  tsadm/jobq/__init__.py, tsadm/jobq/views.py, tsadm/site/views.py:
+	  TSAdm: compress cmd_output
+
+2014-09-02 22:53  jrms
+
+	* [r11689] static/css/tsadm.css, templates/site/index.html,
+	  tsadm/db/dev-data.sql: TSAdm: sites index html improved
+
+2014-09-02 20:22  jrms
+
+	* [r11685] libexec/jobq/mysql/sync, tsadm/jobq/views.py: TSAdm: fix
+	  jobq.end and mysql.sync bugs
+
+2014-09-02 19:39  jrms
+
+	* [r11682] libexec/jobq.runbg.py: TSAdm: replace
+	  ssl.create_default_context
+
+2014-09-02 03:04  jrms
+
+	* [r11678] templates/site/locked.html, tsadm/jobq/views.py: TSAdm:
+	  jobq info bug fix
+
+2014-09-02 02:39  jrms
+
+	* [r11676] libexec/runner.py, tsadm/wapp.py: TSAdm: improve log and
+	  remove subprocess.call timeout arg
+
+2014-08-26 02:25  jrms
+
+	* [r11639] etc/apache/master-dev.conf, etc/apache/master.conf:
+	  TSAdm: apache conf file rename
+
+2014-08-26 01:48  jrms
+
+	* [r11636] etc/slave-auth.pem, etc/tsadmca.pem,
+	  etc/xinetd/jobqd.conf, libexec/jobq.runbg.py,
+	  libexec/jobq.xinetd.py, libexec/runner.py, tsadm/__init__.py,
+	  tsadm/db/dev-data.sql, tsadm/settings.py: TSAdm: all fixed paths
+	  relative to rundir
+
+2014-08-25 18:19  jrms
+
+	* [r11634] libexec/jobq.runbg.py, libexec/jobq.xinetd.py,
+	  tsadm/jobq/__init__.py, tsadm/settings.py: TSAdm: master server
+	  is configurable now
+
+2014-08-22 20:01  jrms
+
+	* [r11633] etc/xinetd/jobqd.conf, libexec/jobq/git/cleanup,
+	  libexec/jobq/mysql, libexec/jobq/mysql/sync, libexec/runner.py,
+	  templates/mysql/home.html: TSAdm: mysql.sync job works
+
+2014-08-22 19:09  jrms
+
+	* [r11632] libexec/jobq.runbg.py, templates/git/home.html,
+	  templates/jobq/info.html, templates/mysql/home.html: TSAdm:
+	  improve jobq.runbg
+
+2014-08-22 15:05  jrms
+
+	* [r11631] etc/apache, etc/apache/master-dev.conf, etc/rsync,
+	  etc/rsync/rsyncd.conf, etc/uwsgi, etc/uwsgi/tsadm.ini,
+	  libexec/jobq.xinetd.py, libexec/jobq/rsync/dirs,
+	  libexec/runner.py, static/css/tsadm.css,
+	  templates/jobq/info.html, templates/rsync/home.html,
+	  templates/site/navbar.html, tsadm/jobq/__init__.py,
+	  tsadm/jobq/views.py, tsadm/rsync/views.py, tsadm/settings.py,
+	  tsadm/wapp.py: TSAdm: 3rd party configs, look&feel and rsync.dirs
+	  works now
+
+2014-08-21 01:54  jrms
+
+	* [r11629] templates/site/navbar.html: TSAdm: HTML improvements
+
+2014-08-21 01:50  jrms
+
+	* [r11628] libexec/jobq/git/checkout-branch, static/css/tsadm.css,
+	  templates/help/site.html, templates/inc/navbar.html,
+	  templates/jobq/info.html, templates/jobq/run.html,
+	  templates/site/dashboard.html, templates/site/navbar.html,
+	  tsadm/jobq/__init__.py, tsadm/jobq/views.py, tsadm/settings.py,
+	  tsadm/site/views.py, tsadm/wapp.py: TSAdm: HTML improvements
+
+2014-08-19 23:35  jrms
+
+	* [r11624] ., Makefile, libexec/jobq.runbg.py,
+	  libexec/jobq.xinetd.py, libexec/jobq/git/pull,
+	  libexec/jobq/git/update-repo, libexec/runner.py,
+	  static/css/tsadm.css, templates/error/404.html,
+	  templates/git/home.html, templates/help/site.html,
+	  templates/inc/navbar.html, templates/jobq/info.html,
+	  templates/jobq/run_confirm.html, templates/site/dashboard.html,
+	  templates/site/navbar-form.html, tsadm/db/__init__.py,
+	  tsadm/db/dev-data.sql, tsadm/db/procedures/JobQEnd.sql,
+	  tsadm/db/procedures/JobQStart.sql, tsadm/db/schema/jobq.tbl.sql,
+	  tsadm/db/sql.py, tsadm/git/views.py, tsadm/jobq/__init__.py,
+	  tsadm/jobq/urls.py, tsadm/jobq/views.py, tsadm/log.py,
+	  tsadm/rsync/views.py, tsadm/settings.py, tsadm/site/views.py,
+	  tsadm/wapp.py: TSAdm: run commands on slave using at tool and
+	  jobq pages
+
+2014-07-31 03:17  jrms
+
+	* [r11586] tsadm/jobq/server.py: remove unused file
+
+2014-07-31 03:12  jrms
+
+	* [r11585] ., Makefile, etc, etc/xinetd, etc/xinetd/jobqd.conf,
+	  libexec, libexec/jobq, libexec/jobq.runbg.py,
+	  libexec/jobq.xinetd.py, libexec/jobq/git,
+	  libexec/jobq/git/branch, libexec/jobq/git/branches,
+	  libexec/jobq/git/checkout-branch, libexec/jobq/git/checkout-tag,
+	  libexec/jobq/git/log, libexec/jobq/git/status,
+	  libexec/jobq/git/tags, libexec/jobq/git/update-repo,
+	  libexec/jobq/git/url, libexec/jobq/rsync,
+	  libexec/jobq/rsync/dirs, libexec/jobq/rsync/sources, manage.py,
+	  static, static/css, static/css/tsadm.css, static/favicon.png,
+	  templates, templates/error, templates/error/400.html,
+	  templates/error/401.html, templates/error/500.html,
+	  templates/git, templates/git/home.html, templates/help,
+	  templates/help/site.html, templates/inc, templates/inc/head.html,
+	  templates/inc/navbar.html, templates/inc/tail.html,
+	  templates/jobq, templates/jobq/run.html,
+	  templates/jobq/run_confirm.html, templates/mysql,
+	  templates/mysql/home.html, templates/rsync,
+	  templates/rsync/home.html, templates/site,
+	  templates/site/cant_unlock.html, templates/site/dashboard.html,
+	  templates/site/index.html, templates/site/lock_confirm.html,
+	  templates/site/locked.html, templates/site/navbar.html,
+	  templates/site/unlock_confirm.html, templates/user,
+	  templates/user/home.html, tsadm, tsadm/__init__.py, tsadm/_mysql,
+	  tsadm/_mysql/__init__.py, tsadm/_mysql/urls.py,
+	  tsadm/_mysql/views.py, tsadm/db, tsadm/db/__init__.py,
+	  tsadm/db/config.py, tsadm/db/dev-data.sql, tsadm/db/dev-init.sh,
+	  tsadm/db/procedures, tsadm/db/procedures/JobQEnd.sql,
+	  tsadm/db/procedures/JobQStart.sql,
+	  tsadm/db/procedures/SiteEnvGetId.sql,
+	  tsadm/db/procedures/SiteEnvLock.sql,
+	  tsadm/db/procedures/SiteEnvLockGet.sql,
+	  tsadm/db/procedures/SiteEnvLockReq.sql,
+	  tsadm/db/procedures/SiteEnvUnlock.sql,
+	  tsadm/db/procedures/SiteEnvUnlockReq.sql,
+	  tsadm/db/procedures/UserExists.sql, tsadm/db/schema,
+	  tsadm/db/schema/host.tbl.sql, tsadm/db/schema/jobq.tbl.sql,
+	  tsadm/db/schema/site.tbl.sql, tsadm/db/schema/siteenv.tbl.sql,
+	  tsadm/db/schema/tsadm.tbl.sql, tsadm/db/schema/user.tbl.sql,
+	  tsadm/db/schema/user_siteenv_acl.tbl.sql, tsadm/db/sql.py,
+	  tsadm/git, tsadm/git/__init__.py, tsadm/git/urls.py,
+	  tsadm/git/views.py, tsadm/help, tsadm/help/__init__.py,
+	  tsadm/help/urls.py, tsadm/help/views.py, tsadm/jobq,
+	  tsadm/jobq/__init__.py, tsadm/jobq/server.py, tsadm/jobq/urls.py,
+	  tsadm/jobq/views.py, tsadm/log.py, tsadm/rsync,
+	  tsadm/rsync/__init__.py, tsadm/rsync/urls.py,
+	  tsadm/rsync/views.py, tsadm/settings.py, tsadm/site,
+	  tsadm/site/__init__.py, tsadm/site/urls.py, tsadm/site/views.py,
+	  tsadm/urls.py, tsadm/user, tsadm/user/__init__.py,
+	  tsadm/user/urls.py, tsadm/user/views.py, tsadm/wapp.py,
+	  tsadm/wsgi.py: TSAdm new dev django/python3 version
+

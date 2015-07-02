@@ -1,0 +1,25 @@
+{% include "inc/head.html" %}
+<!-- START: jobq/info -->
+
+<p><a href="{% url 'site:log' site.name site.env.name %}">site log</a> - <a href="{{page.uri}}">refresh</a></p>
+
+<ul>
+    <li>{{tstamp_start}}</li>
+    <li>{{cmd_name}}
+    {% if cmd_args != '' %}
+        <ul><li>{{cmd_args}}</li></ul>
+    {% endif %}
+    </li>
+    <li>{{user_name}}</li>
+    <li>{{sname}}.{{senv}}</li>
+    <li>{{status}}:{{cmd_rtrn}}</li>
+    <li>{{tstamp_end}}</li>
+</ul>
+
+<pre class="cmd-output-{{css_class}}">
+{{cmd_output}}
+</pre>
+
+<!-- CMD_STATUS={{cmd_name}}:{{cmd_rtrn}} -->
+<!-- END: jobq/info -->
+{% include "inc/tail.html" %}

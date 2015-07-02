@@ -1,0 +1,10 @@
+{% include "inc/head.html" %}
+<!-- START: user/home -->
+<p>
+    <b>Valid until:</b> {{user.cert.until}}
+    <br><b>Access level:</b> {{user.acclvl}}
+    <br><b>Fingerprint:</b> {{user.cert.fingerprint}}
+    {# <br><b>Last seen:</b> {{user.last_seen}} #}
+</p>
+<!-- END: user/home -->
+{% include "inc/tail.html" %}

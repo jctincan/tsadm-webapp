@@ -1,0 +1,43 @@
+$Id: TODO.txt 12591 2015-02-10 16:51:23Z jrms $
+
+* Drupal multi-site installation support
+** https://mantis.tincan.co.uk/view.php?id=33822
+
+
+* Importar/Exportar un sitio
+** usando drush archive-dumps
+
+
+* Hacer que los usuarios con 'site admin' level access puedan crear/borrar/editar/clonar entornos dentro de cada sitio.
+
+
+* El usuario admin tiene que poder crear/borrar/editar sitios desde cero.
+
+
+* Manage Apache config
+** Control robots allow/disallow
+** Diff vhost for internal and live domains
+
+
+* Manage siteenv cron's
+** Not sure howto yet...
+
+
+* User upload/manage SSH keys
+
+
+* Si estoy en devmode tirar un log con los EXPLAIN de cada query que tira tsadm.db.__exec (capaz que se puede para __callsp también), así se mejoran las queries si hace falta.
+** Creo que deberia llevar un "dirlog" con un archivo dentro por cada query, el nombre del archivo es un checksum de la query (sin parametros formateados aun) y el contenido del archivo es el output del EXPLAIN... De esta manera supongo que los archivos no se van a hacer tan grandes y evito el EXPLAIN para las queries que ya se hizo...
+
+
+* Implementar para admin:
+** git.fsck
+** git.gc
+** git.reflog
+** siteenv.snapshot ?
+
+
+* Implementar ForeingKeys en el schema de la base de datos!
+
+
+* Los comandos/jobs que se corren via JobQ sólo se registran en la base para el site.env que generó la tarea, debería registrarse para el destino también (en el caso que aplique claro).

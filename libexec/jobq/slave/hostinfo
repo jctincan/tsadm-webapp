@@ -1,0 +1,8 @@
+#!/bin/bash
+# $Id: hostinfo 12271 2014-12-09 19:54:54Z jrms $
+PATH=/usr/bin:/bin:/sbin
+set -e
+fgrep 'PRETTY_NAME=' /etc/os-release | cut -d '=' -f 2- | sed 's/"//g'
+uname -s -r -m
+uptime | cut -d ' ' -f 3-
+exit 0

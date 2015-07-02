@@ -1,0 +1,31 @@
+{% include "inc/head.html" %}
+<!-- START: site/log -->
+<div id="jobq-log">
+    <p>
+        <h3>{{site.name}} activity log</h3>
+        <table>
+            <tr>
+                <th class="left">Date</th>
+                <th class="left">Status</th>
+                <th>Run Time</th>
+                <th>User</th>
+                <th class="right">Env</th>
+                <th class="right">Command</th>
+                <th class="right">Full Info</th>
+            </tr>
+        {% for le in site.log %}
+            <tr class="{{le.css_class}}">
+                <td class="left">[{{le.date}}]</td>
+                <td class="left">{{le.status}}</td>
+                <td>{{le.cmd_took}}</td>
+                <td>{{le.user_name}}</td>
+                <td class="right">{{le.env_name}}</td>
+                <td class="right"><a title="exit: {{le.cmd_exit}}">{{le.cmd_name}}</a></td>
+                <td class="right"><a title="full info" href="{% url 'jobq:info' site.name le.env_name le.id %}">{{le.id_slug}}</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </p>
+</div>
+<!-- END: site/log -->
+{% include "inc/tail.html" %}

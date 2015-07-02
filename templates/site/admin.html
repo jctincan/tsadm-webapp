@@ -1,0 +1,21 @@
+{# $Id: admin.html 12620 2015-02-11 18:18:47Z jrms $ #}
+{% include "inc/head.html" %}
+<!-- START: site/admin -->
+<div id="site-admin">
+    <form action="{% url 'cmd_confirm' %}" method="POST">
+        <select class="button" name="tsadm_site_env">
+        {% for senv in envs_all %}
+            <option value="{{senv.id}}">{{senv.slug}}</option>
+        {% endfor %}
+        </select>
+        <select class="button" name="tsadm_cmd">
+        {% for cmd in admin.cmds %}
+            <option value="{{cmd}}">{{cmd}}</option>
+        {% endfor %}
+        </select>
+        <input type="hidden" name="tsadm_return_to" value="{% url 'site:admin' %}">
+        <input class="button" type="submit" value="run">
+    </form>
+</div>
+<!-- END: site/admin -->
+{% include "inc/tail.html" %}

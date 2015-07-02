@@ -1,0 +1,22 @@
+#!/bin/bash
+# $Id: site-env-create 11607 2014-08-14 20:46:33Z jrms $
+
+create_uname=${1:?'user name?'}
+env_name=${2:?'env name?'}
+
+site_home=/home/tsadm/sites/${create_uname}
+
+set -e
+
+old_umask=`umask`
+umask 0027
+
+clone_uri="ssh://${create_uname}@tsadm.tincan.co.uk:28128/~/${create_uname}.git"
+
+su -l -c "git clone ${clone_uri} /tmp/.${$}-git-clone" tsadm
+rsync -ax /tmp/.${$}-git-clone/ ${site_home}/${env_name}/
+
+rm -rf /tmp/.${$}-git-clone
+
+umask ${old_umask}
+exit 0

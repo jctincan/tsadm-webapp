@@ -1,0 +1,5 @@
+{% include "inc/head.html" %}
+<!-- START: site/unlock_confirm -->
+<p>Confirm unlocking <b>{{site.name}}.{{site.env.name}}</b> environment: <a href="{% url 'site:unlock' site.name site.env.name unlock.jobr_id %}">unlock.confirm</a></p>
+<!-- END: site/unlock_confirm -->
+{% include "inc/tail.html" %}

@@ -1,0 +1,24 @@
+{% include "inc/head.html" %}
+<!-- START: admin/activity -->
+<div id="adm-log">
+    <p>
+        <table>
+            <tr>
+                <th class="left">Date</th>
+                <th class="left">Took</th>
+                <th class="left">User</th>
+                <th class="left">URI</th>
+            </tr>
+        {% for le in actlog %}
+            <tr>
+                <td class="left">[{{le.date}}]</td>
+                <td class="left">{{le.took}}</td>
+                <td class="left">{{le.user_name}}</td>
+                <td class="left">{{le.page_uri}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </p>
+</div>
+<!-- END: admin/activity -->
+{% include "inc/tail.html" %}

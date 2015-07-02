@@ -1,0 +1,31 @@
+#!/bin/bash
+# $Id: slave-setup 12415 2015-01-16 17:58:33Z jrms $
+
+set -e
+
+www_gid=`getent group nobody | cut -d ':' -f 3`
+
+adduser --home /home/tsadm --shell /bin/bash --uid 61000 --gid $www_gid --disabled-password --disabled-login --gecos 'TSAdm' tsadm
+
+adduser tsadm authcmds
+
+old_umask=`umask`
+umask 0027
+
+chmod 0751 /home/tsadm
+
+mkdir /home/tsadm/.ssh
+cp /opt/tsadm/etc/ssh/git-server-known_hosts /home/tsadm/.ssh/known_hosts
+
+mkdir /home/tsadm/sites
+chmod 0751 /home/tsadm/sites
+
+echo 'umask 0027' >>/home/tsadm/.bashrc
+
+ssh-keygen -C "tsadm@$(hostname -s)" -f /home/tsadm/.ssh/id_rsa
+cat /home/tsadm/.ssh/id_rsa.pub
+
+chown -R tsadm:nobody /home/tsadm
+
+umask ${old_umask}
+exit 0

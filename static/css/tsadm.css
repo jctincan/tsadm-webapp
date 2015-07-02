@@ -1,0 +1,399 @@
+/* $Id: tsadm.css 12651 2015-03-03 22:55:57Z jrms $ */
+html, div, li, pre, a, p, h1, h2, h3, h4, h5, h6
+{
+    margin:0;
+    padding:0;
+    font-family:monospace;
+}
+
+body
+{
+    text-align:center;
+    color:#222222;
+    background-color:black;
+    font-size:105%;
+    line-height:105%;
+}
+
+#container
+{
+    margin:18px auto;
+    width:85%;
+    background-color:white;
+    word-wrap:break-word;
+}
+
+#navbar
+{
+    color:gray;
+    padding:0.5em;
+}
+
+#navbar ul
+{
+    margin:0;
+    padding:0;
+    text-align:left;
+}
+
+#navbar li
+{
+    display:inline;
+    float:left;
+}
+
+#navbar li.appname a
+{
+    font-size:300%;
+    line-height:105%;
+    text-decoration:none;
+    color:gray;
+}
+
+#navbar li.appname a:hover
+{
+    text-decoration:none;
+    color:gray;
+}
+
+#navbar li.info
+{
+    padding:8px 0 0 24px;
+    font-size:90%;
+}
+
+#navbar li.info a.user-name
+{
+    color:gray;
+}
+
+#navbar li.info a:hover.user-name
+{
+    color:gray;
+}
+
+#navbar li.curpath p
+{
+    padding:8px 0 0 24px;
+    color:#222222;
+    font-size:95%;
+}
+
+#navbar div.site-buttons
+{
+    text-align:left;
+}
+
+.button, .buttons a
+{
+    border:solid 1px black;
+    padding:0.2em 1.7em;
+    margin-right:0.2em;
+    margin-bottom:0;
+    text-decoration:none;
+    color:black;
+    background-color:white;
+}
+
+select.button
+{
+    padding:0.1em 1em;
+}
+
+#navbar div.site-info
+{
+    text-align:left;
+    margin-top:1.5em;
+    margin-bottom:-0.5em;
+}
+
+#navbar div.site-info .site-env-name
+{
+    font-size:180%;
+    color:black;
+}
+
+#content
+{
+    text-align:justify;
+    padding:0 0.5em;
+    line-height:150%;
+}
+
+#content p
+{
+    margin:1% 0;
+    text-align:justify;
+}
+
+#content h2
+{
+    margin:1% 0;
+    display:inline;
+}
+
+#content h3
+{
+    margin:1% 0;
+    display:inline;
+}
+
+#content ul.site-index
+{
+    padding:0;
+    list-style:none;
+}
+
+#content ul.site-index ul
+{
+    margin-left:2%;
+    margin-bottom:2%;
+    padding:0;
+    list-style:none;
+}
+
+#content span.site-name
+{
+    font-size:130%;
+    font-weight:bold;
+}
+
+#content span.env-name
+{
+    font-size:110%;
+    font-weight:bold;
+}
+
+#content ul.rsync-sources
+{
+    list-style:none;
+    padding:0;
+    margin:8px;
+}
+
+.inline
+{
+    display:inline;
+}
+
+#content span.git-url
+{
+    color:green;
+}
+
+#content dl.help
+{
+    font-size:120%;
+    line-height:120%;
+}
+
+#content dl.help code
+{
+    margin:4px 0;
+    padding:2px;
+    background-color:lightgray;
+    text-align:left;
+}
+
+#content dl.help pre.code
+{
+    margin:4px 0;
+    padding:8px;
+    background-color:lightgray;
+    text-align:left;
+}
+
+#content pre.cmd-output-ok
+{
+    padding:8px;
+    background-color:lightgreen;
+}
+
+#content pre.cmd-output-error
+{
+    padding:8px;
+    background-color:tomato;
+}
+
+#content pre.cmd-output-start
+{
+    padding:8px;
+    background-color:orange;
+}
+
+#content pre.cmd-output-run
+{
+    padding:8px;
+    background-color:green;
+}
+
+hr.sep
+{
+    margin-top:1.5em;
+    margin-bottom:1.5em;
+}
+
+#footer
+{
+    padding:18px 9px 9px;
+    color:gray;
+    font-size:70%;
+    line-height:90%;
+}
+
+#footer a.soft-info
+{
+    text-decoration:none;
+    color:gray;
+}
+
+#footer a:hover.soft-info
+{
+    text-decoration:none;
+    color:gray;
+}
+
+div.sep
+{
+    clear:both;
+    margin:0;
+    padding:0;
+}
+
+#jobq-log table
+{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+}
+
+#jobq-log table tr
+{
+    border-bottom:dashed 1px gray;
+}
+
+#jobq-log table tr th
+{
+    text-align:center;
+}
+
+#jobq-log table tr td
+{
+    padding:4px 0;
+    vertical-align:middle;
+}
+
+#jobq-log table .left
+{
+    text-align:left;
+}
+
+#jobq-log table .right
+{
+    text-align:right;
+}
+
+#jobq-log table tr.error
+{
+    color:red;
+}
+
+#jobq-log table tr.start
+{
+    color:orange;
+}
+
+#jobq-log table tr.run
+{
+    color:green;
+}
+
+#umesg
+{
+    background-color:black;
+    color:green;
+    line-height:110%;
+    font-size:90%;
+    margin:0;
+    margin-bottom:2%;
+    padding:0.3% 1.3%;
+}
+
+#umesg span.warn
+{
+    color:orange;
+}
+
+#umesg span.err
+{
+    color:red;
+}
+
+#adm-log table
+{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+    background-color:black;
+    color:green;
+}
+
+#adm-log table tr th
+{
+    padding:1px 4px;
+    text-align:center;
+}
+
+#adm-log table tr td
+{
+    padding:1px 4px;
+    vertical-align:middle;
+}
+
+#adm-log table .left
+{
+    text-align:left;
+}
+
+#adm-log table .right
+{
+    text-align:right;
+}
+
+#adm-log table tr.error
+{
+    color:red;
+}
+
+#adm-log table tr.start
+{
+    color:orange;
+}
+
+#adm-log table tr.run
+{
+    color:green;
+}
+
+#debug
+{
+    background:#333333;
+    color:#aaaaaa;
+    text-align:left;
+}
+
+#server-graphs
+{
+    text-align:center;
+}
+
+#w3-validator
+{
+    margin-top:2em;
+    font-size:1em;
+}
+
+#w3-validator input
+{
+    font-size:1em;
+}

@@ -1,0 +1,17 @@
+{# $Id: head.html 12684 2015-03-16 21:49:15Z jrms $ #}
+<!-- START: head -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="{{charset}}">
+        <base href="{{base_href}}" target="_self">
+        <link rel="stylesheet" type="text/css" href="{{css_relpath}}?v={{css_version}}">
+        <link type="image/x-icon" href="/static/favicon.ico" rel="shortcut icon">
+        <title>tsadm - {{page.title}}</title>
+    </head>
+    <body>
+        <div id="container">
+            {% include "inc/navbar.html" %}
+            <div id="content">
+                {% include "inc/umesg.html" %}
+<!-- END: head -->

@@ -1,0 +1,7 @@
+<!-- START: sites/navbar.info -->
+{% if site.load_navbar %}
+<div class="site-info">
+    <p><span class="site-env-name">{{site.name}}.{{site.env.name}}</span> - <a href="http://{{site.name}}{{site.env.name}}.{{site.env.domain}}/" target="_blank">view site</a> for this environment</p>
+</div>
+{% endif %}
+<!-- END: sites/navbar.info -->

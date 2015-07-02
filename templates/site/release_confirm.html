@@ -1,0 +1,5 @@
+{% include "inc/head.html" %}
+<!-- START: site/release_confirm -->
+<p>Confirm releasing <b>{{site.name}}.{{site.env.name}}</b> environment: <a href="{% url 'site:release' site.name site.env.name jobr_id %}">release.confirm</a></p>
+<!-- END: site/release_confirm -->
+{% include "inc/tail.html" %}

@@ -1,0 +1,32 @@
+{% include "inc/head.html" %}
+<!-- START: rsync/home -->
+
+<p>Sync directories content from current site's environment to another environment</p>
+
+<form action="{% url 'jobq:cmd_confirm' site.name site.env.name %}" method="post">
+    <label for="found-envs"><b>Dest Environment:</b></label>
+    <select class="button" name='tsadm_rsync_dest_env' id="found-envs">
+    {% for oenv in site.envs_other %}
+        <option value="{{oenv.host}}::{{site.name}}::{{oenv.name}}">{{site.name}}.{{oenv.name}}</option>
+    {% endfor %}
+    </select>
+
+    <p>Choose all or some of the found directories to sync to the destination environment.</p>
+    <b>Sources:</b>
+    <div class="indent">
+        <ul class="rsync-sources">
+        {% for src_name in rsync.sources %}
+            <li>
+                <input checked='checked' type='checkbox' name='tsadm_rsync_sources' value="{{src_name}}">{{src_name}}
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <input type="hidden" name="tsadm_host_orig" value="{{site.env.host}}">
+    <input type="hidden" name="tsadm_return_to" value="{% url 'rsync:home' site.name site.env.name %}">
+    <input class="button" type="submit" name="tsadm_cmd" value="rsync.dirs">
+</form>
+
+<!-- END: rsync/home -->
+{% include "inc/tail.html" %}

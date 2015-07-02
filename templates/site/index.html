@@ -1,0 +1,26 @@
+{% include "inc/head.html" %}
+<!-- START: index -->
+<p>{{sites_no}} sites - {{envs_no}} environments</p>
+<ul class="site-index">
+{% for s in se_all %}
+    <li><span class="site-name">{{ s.name }}</span>
+        <ul>
+        {% for e in s.envs %}
+            <li>
+                <span class="env-name">{{e.name}}:</span> <a href="{% url 'site:dashboard' s.name e.name %}">{{s.name}}.{{e.name}}</a>
+                {% if e.live %}
+                    <b>[live] </b>
+                {% endif %}
+                {% if e.locked %}
+                    <span>--- </span><i>locked</i> by {{e.locked_by}}
+                {% elif e.claimed %}
+                    <span>--- </span><i>claimed</i> by {{e.claimed_by}}
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>
+<!-- END: index -->
+{% include "inc/tail.html" %}

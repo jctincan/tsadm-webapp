@@ -1,0 +1,118 @@
+{% include "inc/head.html" %}
+<!-- START: help/site -->
+
+<dl id="index" class="help">
+    <dt><a>Index</a></dt>
+    <dd><br></dd>
+    <dd><a href="{{page.uri}}#drupal-settings">Drupal settings</a></dd>
+    <dd><a href="{{page.uri}}#drush">Drush access</a></dd>
+    <dd><a href="{{page.uri}}#files-upload">Files upload/download</a></dd>
+    <dd><a href="{{page.uri}}#database-import">Database import/export</a></dd>
+</dl>
+
+<dl class="help">
+
+    <!-- Drupal settings -->
+    <dt><br><hr><br></dt>
+    <dt id="drupal-settings"><a href="{{page.uri}}#index">^</a> <a>Drupal settings</a></dt>
+    <dd>To integrate a Drupal site with TSAdm tool you will have to add the following lines to the site's <code>settings.php</code> file:<br />
+    <br />
+    <pre class="code">if (is_readable('/home/tsadm/drupal.settings.php'))
+{
+    $tsadm_referrer = __FILE__;
+    require('/home/tsadm/drupal.settings.php');
+}</pre>
+    <br />
+    That will tell Drupal which database to use, its user and password. Among other things.<br />
+    Note that because of the gitignore file, settings.php will be ignored, so you will have to force it using add -f /path/to/file/settings.php
+    </dd>
+
+    <!-- Drush -->
+    <dt><br><hr><br></dt>
+    <dt id="drush"><a href="{{page.uri}}#index">^</a> <a>Drush</a></dt>
+    <dd>To run Drush commands you have first to login to TSAdm server via SSH:
+    <br />
+    <br />
+    <code>you@yourpc$ ssh -A -l {{user.name}} -p 28128 tsadm.tincan.co.uk</code>
+    <br />
+    <br />
+    Once there you can just run drush commands using drush aliases feature to reference each site's environment:
+    <br />
+    <br />
+    <code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} &lt;drush-command&gt;</code>
+    <br />
+    <br />
+    Drush commands are ran remotely on the server where the site is hosted. So created files, like those from drush archive-dump in example, are created in the live server. If you need to access the live server, you can do the following:
+    <br />
+    <br />
+    <code>{{user.name}}@tsadm$ ssh {{site.name}}.{{site.env.name}}</code>
+    <br />
+    <br />
+    You can run drush commands using the aliases like the example above too. But <b>be careful</b> please, you are in the live server, so try to prefer working from tsadm server instead of from it.
+    </dd>
+
+    <!-- Files download/upload -->
+    <dt><br><hr><br></dt>
+    <dt id="files-upload"><a href="{{page.uri}}#index">^</a> <a>Files upload/download</a></dt>
+    <dd>
+    Upload files to TSAdm server:
+    <br />
+    <br />
+    <code>you@yourpc$ rsync -axv -e 'ssh -l {{user.name}} -p 28128' /local/path/source/dir/ tsadm.tincan.co.uk:upload-path/</code>
+    <br />
+    <br />
+    Now login to TSAdm server:
+    <br />
+    <br />
+    <code>you@yourpc$ ssh -A -l {{user.name}} -p 28128 tsadm.tincan.co.uk</code>
+    <br />
+    <br />
+    And then you can sync to the site's environment:
+    <br />
+    <br />
+    <code>{{user.name}}@tsadm$ rsync -axv ~/upload-path/files/ {{site.env.host}}::tsadm.sites/{{site.name}}/{{site.env.name}}/docroot/sites/default/files/</code>
+    </dd>
+
+    <!-- DB import -->
+    <dt><br><hr><br></dt>
+    <dt id="database-import"><a href="{{page.uri}}#index">^</a> <a>Database import/export</a></dt>
+    <dd>
+    Create the database dump locally:
+    <br />
+    <br />
+    <code>you@yourpc$ drush sql-dump >/local/path/dump.sql</code>
+    <br />
+    <br />
+    Upload the database dump to the TSAdm server:
+    <br />
+    <br />
+    <code>you@yourpc$ rsync -axv -e 'ssh -l {{user.name}} -p 28128' /local/path/dump.sql tsadm.tincan.co.uk:dump.sql</code>
+    <br />
+    <br />
+    Now login to TSAdm server:
+    <br />
+    <br />
+    <code>you@yourpc$ ssh -A -l {{user.name}} -p 28128 tsadm.tincan.co.uk</code>
+    <br />
+    <br />
+    And once there you can use drush to import the database. First check you are running commands against correct site/env:
+    <br />
+    <br />
+    <code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} st</code>
+    <br />
+    <br />
+    Import database dump:
+    <br />
+    <br />
+    <code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} sql-cli &lt;~/dump.sql</code>
+    <br />
+    <br />
+    Check site's status after database import:
+    <br />
+    <br />
+    <code>{{user.name}}@tsadm$ drush @{{site.name}}.{{site.env.name}} st</code>
+    </dd>
+</dl>
+
+<!-- END: help/site -->
+{% include "inc/tail.html" %}

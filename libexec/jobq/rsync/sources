@@ -1,0 +1,3 @@
+#!/bin/bash
+# $Id: sources 12760 2015-04-07 20:28:41Z jrms $
+exec /usr/bin/find docroot/sites/ -maxdepth 2 -type d -name 'files' 2>/dev/null

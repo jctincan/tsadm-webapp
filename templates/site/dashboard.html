@@ -1,0 +1,56 @@
+{% include "inc/head.html" %}
+<!-- START: site/dashboard -->
+<!-- actions -->
+<p class="buttons">
+    <!-- senv.claim -->
+    {% if site.env.claimed %}
+    <a href="{% url 'site:release_confirm' site.name site.env.name %}">env.release</a>
+    {% else %}
+    <a href="{% url 'site:claim_confirm' site.name site.env.name %}" title="So you are the only one who can work on it.">env.claim</a>
+    {% endif %}
+
+    <!-- senv.lock -->
+    <a href="{% url 'site:lock_confirm' site.name site.env.name %}" title="So nobody can work on it.">env.lock</a>
+
+    {% if site.env.live %}
+        <a href="{% url 'jobq:intcmd_confirm' site.name site.env.name 'env.live-unset' %}" title="So its special protection is removed.">env.live-unset</a>
+    {% else %}
+        <a href="{% url 'jobq:intcmd_confirm' site.name site.env.name 'env.live-set' %}" title="So it's protected a bit more.">env.live-set</a>
+    {% endif %}
+</p>
+
+<!-- info -->
+<p>
+    <br>
+    <b>Server:</b> <a href="{% url 'slave:dashboard' site.env.host_slug %}">{{site.env.host}}</a>
+</p>
+<hr>
+
+<!-- jobq log -->
+<div id="jobq-log">
+    <p>
+        <h3><a name="activity-log">Env Log</a></h3> - <a href="{% url 'site:log' site.name site.env.name %}#jobq-log">site log</a>
+    </p>
+    <table>
+        <tr>
+            <th class="left">Date</th>
+            <th class="left">Status</th>
+            <th>Run Time</th>
+            <th>User</th>
+            <th class="right">Command</th>
+            <th class="right">Full Info</th>
+        </tr>
+        {% for le in jobq.log %}
+        <tr class="{{le.css_class}}">
+            <td class="left">[{{le.date}}]</td>
+            <td class="left">{{le.status}}</td>
+            <td>{{le.cmd_took}}</td>
+            <td>{{le.user}}</td>
+            <td class="right"><a title="exit: {{le.cmd_exit}}">{{le.cmd_name}}</a></td>
+            <td class="right"><a title="full info" href="{% url 'jobq:info' site.name site.env.name le.id %}">{{le.id_slug}}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<!-- END: site/dashboard -->
+{% include "inc/tail.html" %}

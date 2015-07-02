@@ -1,0 +1,25 @@
+{# $Id: dashboard.html 12271 2014-12-09 19:54:54Z jrms $ #}
+{% include "inc/head.html" %}
+<!-- START: slave/dashboard -->
+<h3>{{server.fqdn}}</h3>
+<pre>
+IP address: {{server.ipaddr}}
+
+{{server.hostinfo}}
+
+{{server.softinfo}}
+</pre>
+<hr>
+<div id="server-graphs">
+    <img alt="loadavg" src="{{server.graphs_base_url}}/{{server.fqdn}}/load-day.png"><br>
+    <img alt="cpu" src="{{server.graphs_base_url}}/{{server.fqdn}}/cpu-day.png"><br>
+    <img alt="memory" src="{{server.graphs_base_url}}/{{server.fqdn}}/memory-day.png"><br>
+    <img alt="apache accesses" src="{{server.graphs_base_url}}/{{server.fqdn}}/apache_accesses-day.png"><br>
+    <img alt="mysql queries" src="{{server.graphs_base_url}}/{{server.fqdn}}/mysql_queries-day.png"><br>
+    <img alt="varnish stats" src="{{server.graphs_base_url}}/{{server.fqdn}}/varnish_stats-day.png"><br>
+    <img alt="mail stats" src="{{server.graphs_base_url}}/{{server.fqdn}}/postfix_mailstats-day.png"><br>
+    <img alt="network stats" src="{{server.graphs_base_url}}/{{server.fqdn}}/netstat-day.png"><br>
+    <img alt="bups size" src="{{server.graphs_base_url}}/{{server.fqdn}}/bups_size-day.png"><br>
+</div>
+<!-- END: slave/dashboard -->
+{% include "inc/tail.html" %}

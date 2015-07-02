@@ -1,0 +1,78 @@
+#!/bin/bash
+# $Id: post-receive 12384 2015-01-15 02:32:01Z jrms $
+
+PATH=/usr/bin:/bin
+DEBUG_LOG=true
+DEVMODE=true
+CA_CERT=/home/jrms/svn/admin/dev/webapps/tsadm/etc/certs/tsadmca.pem
+BOT_CERT=/home/jrms/svn/admin/dev/webapps/tsadm/etc/certs/gitbot.pem
+SSL_ARGS="--cacert $CA_CERT --cert $BOT_CERT"
+MASTER_URI='https://tsadm.local/git/hook/post-receive/'
+
+if $DEVMODE
+then
+    MASTER_URI='http://127.0.0.1:8000/git/hook/post-receive/'
+    SSL_ARGS=''
+fi
+
+
+log_dbg()
+{
+    if $DEBUG_LOG
+    then
+        msg="$@"
+        echo "[DEBUG] $msg" >&2
+    fi
+}
+
+
+$DEBUG_LOG &&
+{
+    echo "[DEBUG] *** ENV START" >&2
+    env >&2
+    echo "[DEBUG] *** ENV END" >&2
+}
+
+log_dbg "PWD: `pwd`"
+
+git_user=`id -un`
+log_dbg "USER: $git_user"
+
+repo_name=`basename $(pwd) .git`
+log_dbg "REPO: $repo_name"
+
+while read line
+do
+    log_dbg "LINE: $line"
+
+    old_obj=`echo $line | cut -d ' ' -f 1`
+    $DEBUG_LOG &&
+    {
+        log_dbg "OLD OBJ: $old_obj"
+        log_dbg "OLD NAME REV: $(git name-rev $old_obj 2>/dev/null)"
+    }
+
+    new_obj=`echo $line | cut -d ' ' -f 2`
+    $DEBUG_LOG &&
+    {
+        log_dbg "NEW OBJ: $new_obj"
+        log_dbg "NEW NAME REV: $(git name-rev $new_obj 2>/dev/null)"
+    }
+
+    branch_ref=`echo $line | cut -d ' ' -f 3`
+    log_dbg "BRANCH REF: $branch_ref"
+
+    branch=`echo $line | cut -d ' ' -f 3 | sed 's/^refs\/heads\///'`
+    log_dbg "BRANCH: $branch"
+
+    post_data=`echo -e "${new_obj}\n${repo_name}\n${branch}" | base64 -w0`
+    log_dbg "POST: $post_data"
+
+    $DEBUG_LOG && set -x
+
+    curl ${SSL_ARGS} -s -d "tsadm_post_data=${post_data}" ${MASTER_URI}
+
+    $DEBUG_LOG && set +x
+done
+
+exit 0

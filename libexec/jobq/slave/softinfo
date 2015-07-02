@@ -1,0 +1,24 @@
+#!/bin/bash
+# $Id: softinfo 12271 2014-12-09 19:54:54Z jrms $
+PATH=/usr/bin:/bin
+sinfo=/usr/local/admin/tools/reports/scripts/soft-info
+
+echo -n 'Apache: '
+${sinfo}/apache
+
+echo -n 'PHP Apache mod: '
+${sinfo}/php_apache_mod
+
+echo -n 'PHP CLI: '
+${sinfo}/php_cli
+
+echo -n 'MySQL: '
+${sinfo}/mysqld
+
+echo -n 'Varnish: '
+${sinfo}/varnish
+
+echo -n 'Memcache: '
+${sinfo}/memcache
+
+exit 0

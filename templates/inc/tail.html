@@ -1,0 +1,19 @@
+<!-- START: tail -->
+        </div><!-- div: content -->
+        <div id="footer">
+            <p>
+                v{{version}}:{{took}}<br />
+                {% if user.is_admin %}
+                <a class="soft-info" href="{% url 'soft-info' %}"><img src="/static/favicon.png" alt="-_-" style="width:16px;height:16px"></a>
+                {% else %}
+                <img src="/static/favicon.png" alt="-_-" style="width:16px;height:16px">
+                {% endif %}
+                {% include "inc/validator.html" %}
+            </p>
+        </div>
+{% include "inc/regr_tests.html" %}
+        </div><!-- div: container -->
+        {% include "inc/debug.html" %}
+    </body>
+</html>
+<!-- END: tail -->

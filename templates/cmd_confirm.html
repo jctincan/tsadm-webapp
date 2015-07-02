@@ -1,0 +1,25 @@
+{# $Id: cmd_confirm.html 12365 2015-01-13 04:17:17Z jrms $ #}
+{% include "inc/head.html" %}
+<!-- START: cmd_confirm -->
+<p>
+    Confirm running command: <b>{{cmd.name}}</b>
+    <br />
+    Args:
+    <ul>
+    {% for ak, av in cmd.args.items %}
+        <li>{{ak}}={{av}}</li>
+    {% endfor %}
+    </ul>
+</p>
+<p>
+    <form class="inline" action="{% url 'cmd_exec' %}" method="post">
+        <input type="hidden" name="tsadm_cmd_args_encode" value="{{cmd.args_encode}}">
+        <input type="hidden" name="tsadm_cmd" value="{{cmd.name}}">
+        <input class="button" type="submit" value="confirm">
+    </form>
+    <form class="inline" action="{{return_to}}" method="post">
+        <input class="button" type="submit" value="cancel">
+    </form>
+</p>
+<!-- END: cmd_confirm -->
+{% include "inc/tail.html" %}

@@ -1,0 +1,4 @@
+#!/bin/bash
+# $Id: loadavg 12178 2014-11-29 02:21:52Z jrms $
+PATH=/usr/bin:/bin
+exec cat /proc/loadavg

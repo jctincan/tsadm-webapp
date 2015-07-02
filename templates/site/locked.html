@@ -1,0 +1,6 @@
+{% include "inc/head.html" %}
+<!-- START: site/locked -->
+<p><b>{{site.name}}.{{site.env.name}}</b> is LOCKED</p>
+<p><a href="{% url 'site:unlock_confirm' site.name site.env.name %}">env.unlock</a></p>
+<!-- END: site/locked -->
+{% include "inc/tail.html" %}

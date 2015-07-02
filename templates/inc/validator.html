@@ -1,0 +1,19 @@
+{# $Id: validator.html 12583 2015-02-06 16:53:21Z jrms $ #}
+<!-- START: inc/validator -->
+{% if devmode %}
+<div id="w3-validator">
+    <p class="inline">Validate:</p>
+    <form class="inline" method="POST" enctype="multipart/form-data" action="http://validator.w3.org/check" target="tsadm-html-validator">
+        <textarea hidden="hidden" name="fragment">[[TSADM_HTML_VALIDATE_CONTENT]]</textarea>
+        <input type="hidden" name="charset" value="{{charset}}">
+        <input type="hidden" name="doctype" value="HTML5">
+        <input class="button" type="submit" value="HTML5">
+    </form>
+    <form class="inline" method="POST" enctype="multipart/form-data" action="http://jigsaw.w3.org/css-validator/validator" target="tsadm-css-validator">
+        <textarea hidden="hidden" name="text">[[TSADM_CSS_VALIDATE_CONTENT]]</textarea>
+        <input type="hidden" name="profile" value="css3">
+        <input class="button" type="submit" value="CSS3">
+    </form>
+</div>
+{% endif %}
+<!-- END: inc/validator -->

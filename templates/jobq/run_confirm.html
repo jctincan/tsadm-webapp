@@ -1,0 +1,18 @@
+{% include "inc/head.html" %}
+<!-- START: jobq/run_confirm -->
+<p>Confirm running command: <b>{{cmd.name}}</b></p>
+<p>
+    <form class="inline" action="{% url 'jobq:run' site.name site.env.name %}" method="post">
+    {% for ak, av in cmd.args.items %}
+        <input type="hidden" name="{{ak}}" value="{{av}}">
+    {% endfor %}
+        <input type="hidden" name="tsadm_cmd_runbg" value="TRUE">
+        <input type="hidden" name="tsadm_cmd" value="{{cmd.name}}">
+        <input class="button" type="submit" value="confirm">
+    </form>
+    <form class="inline" action="{{jobq_return_to}}" method="post">
+        <input class="button" type="submit" value="cancel">
+    </form>
+</p>
+<!-- END: jobq/run_confirm -->
+{% include "inc/tail.html" %}

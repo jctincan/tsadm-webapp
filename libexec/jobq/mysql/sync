@@ -1,0 +1,32 @@
+#!/bin/sh
+# $Id: sync 12229 2014-12-02 06:17:52Z jrms $
+
+export HOME=/home/tsadm
+
+test -z "$SRC_ENV" &&
+{
+    echo "no source env"
+    exit 1
+}
+test -z "$DST_ENV" &&
+{
+    echo "no dest env"
+    exit 2
+}
+
+drush_out=/tmp/$$.tsadm-drush-sql-sync.out
+drush sql-sync -y @${SRC_ENV} @${DST_ENV} 2>$drush_out >$drush_out
+drush_rtrn=$?
+
+if fgrep '[error]' $drush_out >/dev/null 2>/dev/null || test $drush_rtrn -ne 0
+then
+    echo "[${drush_rtrn}] sync $SRC_ENV -> $DST_ENV failed!"
+    echo
+    cat $drush_out
+    rm -f $drush_out
+    exit 1
+else
+    echo "sync $SRC_ENV -> $DST_ENV done!"
+    rm -f $drush_out
+    exit 0
+fi

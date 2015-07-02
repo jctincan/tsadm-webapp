@@ -1,0 +1,3 @@
+#!/bin/bash
+# $Id: tags 11704 2014-09-05 02:46:50Z jrms $
+exec /usr/bin/git tag -l

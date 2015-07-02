@@ -1,0 +1,19 @@
+{# $Id: cmd_confirm.html 12179 2014-11-29 05:55:57Z jrms $ #}
+{% include "inc/head.html" %}
+<!-- START: jobq/cmd_confirm -->
+<p>
+    Confirm running command against <b>{{site.name}}.{{site.env.name}}</b> environment.<br />
+    <b>{{cmd.name}} {{cmd.args}}</b><br />
+</p>
+<p>
+    <form class="inline" action="{% url 'jobq:cmd_exec' site.name site.env.name %}" method="post">
+        <input type="hidden" name="tsadm_cmd_args_encode" value="{{cmd.args_encode}}">
+        <input type="hidden" name="tsadm_cmd" value="{{cmd.name}}">
+        <input class="button" type="submit" value="confirm">
+    </form>
+    <form class="inline" action="{{return_to}}" method="post">
+        <input class="button" type="submit" value="cancel">
+    </form>
+</p>
+<!-- END: jobq/cmd_confirm -->
+{% include "inc/tail.html" %}

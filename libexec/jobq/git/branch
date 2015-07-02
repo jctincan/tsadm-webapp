@@ -1,0 +1,14 @@
+#!/bin/bash
+# $Id: branch 11773 2014-09-12 17:25:09Z jrms $
+PATH=/usr/bin:/bin
+set -e
+curr=`git status --porcelain -b | cut -d ' ' -f 2`
+if test "$curr" == 'HEAD'
+then
+    curr=`git describe --all HEAD | head -n 1`
+else
+    # XXX: git show-branch ?
+    curr=`git branch --list | egrep '^\*' | cut -d' ' -f2-`
+fi
+echo $curr
+exit 0

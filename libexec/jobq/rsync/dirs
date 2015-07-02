@@ -1,0 +1,33 @@
+#!/bin/bash
+# $Id: dirs 11773 2014-09-12 17:25:09Z jrms $
+
+dest_host=`echo $RSYNC_DEST_ENV | cut -d':' -f1`
+dest_sname=`echo $RSYNC_DEST_ENV | cut -d':' -f3`
+dest_senv=`echo $RSYNC_DEST_ENV | cut -d':' -f5`
+
+set -e
+
+dest_uri_prefix=''
+if test "$dest_host" == "$HOST_ORIG"
+then
+    dest_uri_prefix=/home/tsadm/sites
+else
+    dest_uri_prefix="${dest_host}::tsadm.sites"
+fi
+
+for sdir in `echo $RSYNC_SOURCES | sed 's/,/ /g'`
+do
+    echo "-- src: ${sdir}"
+    if test -d ${sdir}
+    then
+        ddir=${dest_sname}/${dest_senv}/${sdir}/
+        dest_uri=${dest_uri_prefix}/${ddir}
+        echo "-- dst: $dest_uri"
+        rsync -ax --stats --delete-before ${sdir}/ ${dest_uri} | grep -E '^Number of '
+    else
+        echo "${sdir}: source not found"
+    fi
+    echo
+done
+
+exit 0

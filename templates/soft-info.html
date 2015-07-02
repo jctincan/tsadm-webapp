@@ -1,0 +1,36 @@
+{# $Id: soft-info.html 12689 2015-03-16 22:56:11Z jrms $ #}
+{% include "inc/head.html" %}
+<!-- START: soft-info -->
+<ul>
+    <li>Version: {{version}}</li>
+    <li>Settings:
+        <ul>
+        {% for sk, sv in settings.items %}
+            <li>{{sk}}={{sv}}</li>
+        {% endfor %}
+        </ul>
+    </li>
+    <li>SVN Info:
+        <ul>
+        {% for line in code_info %}
+            <li>{{line}}</li>
+        {% endfor %}
+        </ul>
+    </li>
+    <li>Django: {{django_version}}</li>
+    <li>Python: {{python_version}}</li>
+    <li>MySQL Server: {{mysql_server_version}}
+        <ul>
+            <li>Charset: {{mysql_server_charset}}</li>
+            <li>Connector: {{mysql_conn_version}}</li>
+        </ul>
+    </li>
+    <li>uwsgi: {{uwsgi_version}}
+        <ul>
+            <li>UID: {{os_user_uid}}</li>
+            <li>GID: {{os_user_gid}}</li>
+        </ul>
+    </li>
+</ul>
+<!-- END: soft-info -->
+{% include "inc/tail.html" %}

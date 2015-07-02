@@ -1,0 +1,34 @@
+<!-- START: navbar -->
+<div id="navbar">
+    <ul>
+        <li class="appname">
+            <b><a href="{% url 'index' %}">tsadm</a></b>
+        </li>
+        <li class="info">
+            <p>
+                {{date_time}}<br />
+                {% if user %}
+                <a class="user-name" href="{% url 'user:home' %}"><i>{{user.name}}</i></a>
+                {% endif %}
+            </p>
+        </li>
+        <li class="curpath">
+            <p>
+                {{page.title}}
+            </p>
+        </li>
+    </ul>
+    <div class="sep"></div>
+    <br>
+    <ul class="buttons">
+    {% if site.load_navbar %}
+        {% include "site/navbar.html" %}
+    {% else %}
+        {% include "inc/admin_navbar.html" %}
+    {% endif %}
+    </ul>
+    <div class="sep"></div>
+    {% include "site/navbar.info.html" %}
+</div><!-- div: navbar -->
+<hr class="sep">
+<!-- END: navbar -->

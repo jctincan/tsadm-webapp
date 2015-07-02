@@ -1,0 +1,12 @@
+{% include "inc/head.html" %}
+<!-- START: jobq/run -->
+
+<!-- show command status and output -->
+<p><h2>{{cmd.name}}:{{cmd.rtrn}}</h2> - <a href="{% url 'site:dashboard' site.name site.env.name %}#activity-log">view activity log</a></p>
+
+<pre class="cmd-output-{{css_class}}">
+{{cmd.output}}
+</pre>
+
+<!-- END: jobq/run -->
+{% include "inc/tail.html" %}

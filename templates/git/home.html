@@ -1,0 +1,48 @@
+{# $Id: home.html 12651 2015-03-03 22:55:57Z jrms $ #}
+{% include "inc/head.html" %}
+<!-- START: git/home -->
+
+{% url 'git:home' site.name site.env.name as rtrn_url %}
+{% url 'jobq:cmd_exec' site.name site.env.name as cmd_exec_url %}
+{% url 'jobq:cmd_confirm' site.name site.env.name as cmd_confirm_url %}
+
+<!-- repo info -->
+<p>
+    URL: <span class="git-url">{{git.url}}</span><br>
+    Server running: <b>{{git.branch}}</b>
+</p>
+
+{% for cmd in git.commands %}
+<p>{{cmd.meta.desc}}:</p>
+<form action="{{cmd_confirm_url}}" method="post">
+    <input type="hidden" name="tsadm_return_to" value="{{rtrn_url}}">
+    <input class="button" type="submit" name="tsadm_cmd" value="{{cmd.name}}">
+</form>
+{% endfor %}
+
+<!-- git-checkout-tag -->
+<p>Checkout a tag so the site's environment starts to run from it:</p>
+<form action="{{cmd_confirm_url}}" method="post">
+    <input type="hidden" name="tsadm_return_to" value="{{rtrn_url}}">
+    <input class="button" type="submit" name="tsadm_cmd" value="git.checkout-tag">&nbsp;
+    <select class="button" name="tsadm_git_tag">
+    {% for tname in git.tags %}
+        <option value="{{tname}}">{{tname}}</option>
+    {% endfor %}
+    </select>
+</form>
+
+<!-- git-checkout-branch -->
+<p>Checkout a branch so the site's environment starts to run from it:</p>
+<form action="{{cmd_confirm_url}}" method="post">
+    <input type="hidden" name="tsadm_return_to" value="{{rtrn_url}}">
+    <input class="button" type="submit" name="tsadm_cmd" value="git.checkout-branch">&nbsp;
+    <select class="button" name="tsadm_git_branch">
+    {% for bname in git.branches %}
+        <option value="{{bname}}">{{bname}}</option>
+    {% endfor %}
+    </select>@HEAD
+</form>
+
+<!-- END: git/home -->
+{% include "inc/tail.html" %}

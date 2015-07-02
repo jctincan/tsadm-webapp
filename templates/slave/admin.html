@@ -1,0 +1,14 @@
+{% include "inc/head.html" %}
+<!-- START: slave/admin -->
+<div id="slave-admin">
+{% for slave in admin.slaves_all %}
+    <div id="slave-{{slave.id}}">
+        <p><a href="{% url 'slave:dashboard' slave.server.slug %}"><h3>{{slave.fqdn}}</h3></a></p>
+        <pre>{{slave.server.ipaddr}}
+{{slave.server.hostinfo}}</pre>
+    <hr class="sep">
+    </div>
+{% endfor %}
+</div>
+<!-- END: slave/admin -->
+{% include "inc/tail.html" %}

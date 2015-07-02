@@ -1,0 +1,9 @@
+<!-- START: inc/umesg -->
+{% if umesg %}
+<div id="umesg">
+    <p>
+        {% for line in umesg %}<span class="{{line.prio}}">[{{line.prio}}] {{line.mesg}}<br /></span>{% endfor %}
+    </p>
+</div>
+{% endif %}
+<!-- END: inc/umesg -->

@@ -1,0 +1,10 @@
+<!-- START: adm/navbar -->
+{% if user.is_site_admin %}
+<li><a href="{% url 'admin:home' %}">admin</a></li>
+<li><a href="{% url 'site:admin' %}">sites</a></li>
+{% endif %}
+{% if user.is_admin %}
+<li><a href="{% url 'slave:admin' %}">servers</a></li>
+<li><a href="{% url 'user:admin' %}">users</a></li>
+{% endif %}
+<!-- END: adm/navbar -->
