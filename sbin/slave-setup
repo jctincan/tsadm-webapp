@@ -15,7 +15,7 @@ umask 0027
 chmod 0751 /home/tsadm
 
 mkdir /home/tsadm/.ssh
-cp /opt/tsadm/etc/ssh/git-server-known_hosts /home/tsadm/.ssh/known_hosts
+cp /opt/dev/tsadm/etc/ssh/git-server-known_hosts /home/tsadm/.ssh/known_hosts
 
 mkdir /home/tsadm/sites
 chmod 0751 /home/tsadm/sites

@@ -20,7 +20,7 @@ old_umask=`umask`
 umask 0027
 
 mkdir ${site_home}/.ssh
-cp /opt/tsadm/etc/ssh/authorized_keys ${site_home}/.ssh/
+cp /opt/dev/tsadm/etc/ssh/authorized_keys ${site_home}/.ssh/
 chown -R ${create_uname}:nobody ${site_home}/.ssh
 
 `dirname $0`/site-env-create ${create_uname} dev

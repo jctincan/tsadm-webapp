@@ -1,5 +1,5 @@
-tsadm.local.pem
 dev-client-cert.crt
 dev-client-cert.key
+
 __pycache__
 *.py[co]

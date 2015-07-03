@@ -47,11 +47,11 @@ echo "${create_uname} site" >${repo_path}/description
 # --- SSH
 mkdir ${repo_home}/.ssh
 chmod 0750 ${repo_home}/.ssh
-cat /opt/tsadm/etc/ssh/authorized_keys >${repo_home}/.ssh/authorized_keys
+cat /opt/dev/tsadm/etc/ssh/authorized_keys >${repo_home}/.ssh/authorized_keys
 chmod 0640 ${repo_home}/.ssh/authorized_keys
 
 # --- Git
-ln -s /opt/tsadm/libexec/git/post-receive ${repo_path}/hooks/
+ln -s /opt/dev/tsadm/libexec/git/post-receive ${repo_path}/hooks/
 
 chown -R ${create_uname}:nobody ${repo_home}
 umask ${old_umask}

@@ -105,7 +105,7 @@ STATICFILES_DIRS = ('/'.join([BASE_DIR, 'static']),)
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/var/tmp/tsadm_cache',
+        'LOCATION': '/var/tmp/tsadmdev_cache',
         'TIMEOUT': 60*2,
         'KEY_PREFIX': 'tsadm:'
     }
