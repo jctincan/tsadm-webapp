@@ -1,4 +1,3 @@
-{# $Id: soft-info.html 12689 2015-03-16 22:56:11Z jrms $ #}
 {% include "inc/head.html" %}
 <!-- START: soft-info -->
 <ul>
@@ -7,13 +6,6 @@
         <ul>
         {% for sk, sv in settings.items %}
             <li>{{sk}}={{sv}}</li>
-        {% endfor %}
-        </ul>
-    </li>
-    <li>SVN Info:
-        <ul>
-        {% for line in code_info %}
-            <li>{{line}}</li>
         {% endfor %}
         </ul>
     </li>

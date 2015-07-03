@@ -1,5 +1,3 @@
-# $Id: Makefile 12978 2015-07-01 21:19:24Z jrms $
-
 SHELL = /bin/bash
 SRC_DIR = $(shell pwd)
 UTILS_DIR = $(SRC_DIR)/mk/_utils
@@ -11,7 +9,6 @@ default:
 
 
 include mk/test/Makefile
-include mk/merge/Makefile
 include mk/compile/Makefile
 include mk/django/Makefile
 
@@ -86,13 +83,9 @@ enc-check:
 	@grep -rnF --exclude=Makefile 'content_type=' .
 
 
-changelog:
-	svn2cl -i -o static/ChangeLog.txt --ignore-message-starting='TSAdm: changelog update'
-
-
 install-deps:
 	apt-get install python3-django
 	apt-get install python3-mysql.connector
 	apt-get install python3-lxml
 
-.PHONY: default clean uwsgi-reload config-grep enc-check changelog install-deps $(DJANGO_PHONY) $(COMPILE_PHONY) $(TEST_PHONY) $(MERGE_PHONY)
+.PHONY: default clean uwsgi-reload config-grep enc-check install-deps $(DJANGO_PHONY) $(COMPILE_PHONY) $(TEST_PHONY)

@@ -1,5 +1,3 @@
-# $Id: views.py 12592 2015-02-10 23:55:54Z jrms $
-
 import sys
 import os
 import os.path
@@ -17,24 +15,8 @@ from tsadm.jobq.cmd import TSAdmJobQCmdInvoke, TSAdmJobQCmdNotFound
 from tsadm.git.jobq import GIT_CMD_MAP
 from tsadm.rsync.jobq import RSYNC_CMD_MAP
 from tsadm._mysql.jobq import MYSQL_CMD_MAP
-
 from tsadm.wapp import TSAdmWApp
 wapp = TSAdmWApp()
-
-
-def _code_info():
-    code_dir = os.path.realpath(wapp.conf.get('BASE_DIR'))
-    os.chdir(code_dir)
-    svn_info = tempfile.TemporaryFile()
-    svn_rtrn = subprocess.call(['/usr/bin/svn', 'info'], stdout=svn_info)
-    svn_info.seek(0, 0)
-    cinfo = list()
-    for l in svn_info.readlines():
-        l = l.decode('utf-8', 'replace').strip()
-        if l.startswith('Last ') or l.startswith('Re'):
-            cinfo.append(l)
-    svn_info.close()
-    return cinfo
 
 
 def soft_info(req):
@@ -42,7 +24,6 @@ def soft_info(req):
         return wapp.error_page()
     tmpl_data = wapp.tmpl_data()
 
-    tmpl_data['code_info'] = _code_info()
     tmpl_data['version'] = wapp.version
     tmpl_data['settings'] = wapp.conf
 
