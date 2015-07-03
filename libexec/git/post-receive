@@ -4,8 +4,8 @@
 PATH=/usr/bin:/bin
 DEBUG_LOG=true
 DEVMODE=true
-CA_CERT=/home/jrms/svn/admin/dev/webapps/tsadm/etc/certs/tsadmca.pem
-BOT_CERT=/home/jrms/svn/admin/dev/webapps/tsadm/etc/certs/gitbot.pem
+CA_CERT=/opt/dev/tsadm/etc/certs/tsadmca.pem
+BOT_CERT=/opt/dev/tsadm/etc/certs/gitbot.pem
 SSL_ARGS="--cacert $CA_CERT --cert $BOT_CERT"
 MASTER_URI='https://tsadm.local/git/hook/post-receive/'
 
