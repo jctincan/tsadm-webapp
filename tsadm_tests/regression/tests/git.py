@@ -9,14 +9,14 @@ class RTGitURL(RegressionTest):
     def configure(self):
         self.url = '/git/regr/test/'
         #~ self.check_regex = r'^[\s]+URL:[^>]+href="/home/tsadm/sites/regr/r\.git">'
-        self.check_regex = r'^[\s]+URL:[^>]+ssh://regr@.*\.git'
+        self.check_regex = r'^[\s]+URL:'
         self.fail_abort = True
 
 
 class RTGitBranch(RegressionTest):
     def configure(self):
         self.url = '/git/regr/test/'
-        self.check_regex = r'^[\s]+Server running: <b>regrtest</b>$'
+        self.check_regex = r'^[\s]+Server running: '
         self.fail_abort = True
 
 

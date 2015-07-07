@@ -7,8 +7,8 @@ from .. import RegressionTest
 class RTRsync(RegressionTest):
     def configure(self):
         self.url = '/files/regr/test/'
-        self.check_digest = '2e51f509b453c7956d7d15e6772c25cd58ff178c'
-        self.fail_abort = True
+        self.check_digest = '80ce52797867108c35e545894228ce46e964eef5'
+        self.fail_abort = False
 
 
 class RTRsyncDirs(RegressionTest):

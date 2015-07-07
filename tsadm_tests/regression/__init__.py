@@ -9,6 +9,9 @@ import ssl
 import os
 
 
+TSADM_MASTER = 'tincandev.local'
+TSADM_MASTER_PORT = 8000
+
 LOCATION_REDIRECT_MAX = 10
 FAIL_RELOAD_MAX = 10
 
@@ -42,7 +45,7 @@ class RegressionTestManager:
         self.run_wait = 0
 
     def __server_connect(self):
-        conn = http.client.HTTPConnection('127.127.0.1', 8000)
+        conn = http.client.HTTPConnection(TSADM_MASTER, TSADM_MASTER_PORT)
         return conn
 
     def __server_ssl_connect(self):
@@ -51,7 +54,7 @@ class RegressionTestManager:
         key_file = cert_file
         cntxt = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
         cntxt.load_verify_locations(cafile=cafile)
-        conn = http.client.HTTPSConnection('tsadm.local', 443, key_file=key_file, cert_file=cert_file, context=cntxt)
+        conn = http.client.HTTPSConnection(TSADM_MASTER, 443, key_file=key_file, cert_file=cert_file, context=cntxt)
         return conn
 
     def __list_tests(self):
@@ -183,7 +186,7 @@ class RegressionTest:
             raise RuntimeError('location redirect limit reached:', self._location_redirect)
         for hk, hv in headers:
             if hk == 'Location':
-                nl = hv.replace('http://127.127.0.1:8000', '', 1)
+                nl = hv.replace('http://'+TSADM_MASTER+':'+str(TSADM_MASTER_PORT), '', 1)
                 self._locations_hist.append('{}:{}'.format(self._location_redirect, cur_loc))
                 self._location_redirect += 1
                 if self.verbose >= 3:
