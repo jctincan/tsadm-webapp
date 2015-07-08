@@ -1,5 +1,3 @@
-# $Id: wapp.py 12791 2015-04-17 01:04:31Z jrms $
-
 import os
 import os.path
 import subprocess
