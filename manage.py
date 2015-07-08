@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# $Id: manage.py 11966 2014-10-23 22:59:19Z jrms $
 
 import os
 import sys
