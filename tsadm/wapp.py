@@ -84,6 +84,9 @@ class TSAdmWApp:
         if os.getenv('TSADM_DEV', 'false') == 'true':
             self.debug = True
             self.devmode = True
+            self.conf.update({
+                'DEV_CLIENT_CERT': self.conf.get('BASE_DIR')+'/dev-client-cert.crt'
+            })
         # clean HTML conf
         TSAdmWAppMiddleWare.debug = self.debug
         TSAdmWAppMiddleWare.encoding = self.encoding
