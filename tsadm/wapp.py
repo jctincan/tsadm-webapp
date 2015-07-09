@@ -78,7 +78,7 @@ class TSAdmWApp:
             self.version = fh.readline().strip()
             fh.close()
         except:
-            pass
+            self.version = 'ERR'
         # -- dev mode
         if self.conf.get('RUN_MODE', '') == 'dev':
             self.debug = True
