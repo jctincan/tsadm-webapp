@@ -10,8 +10,9 @@ if __env_mode == 'test' or __env_mode == 'dev':
 if __env_mode == 'dev':
     __DEBUG = True
 
-__BASE_DIR = os.path.join('/opt', 'tsadm'+__RUN_MODE, 'webapp')
-__CONFIG_PATH = os.path.join('/opt', 'tsadm'+__RUN_MODE, 'etc', 'config.json')
+__PATH_PREFIX = '/opt'
+__BASE_DIR = os.path.join(__PATH_PREFIX, 'tsadm'+__RUN_MODE, 'webapp')
+__CONFIG_PATH = os.path.join(__PATH_PREFIX, 'tsadm'+__RUN_MODE, 'etc', 'config.json')
 __MASTER_FQDN = 'dev.tsadm.local'
 
 __TSADM = {
@@ -23,7 +24,7 @@ __TSADM = {
     'LANG_CODE': 'en-gb',
     'TIME_ZONE': 'Europe/London',
     'DJANGO_SECRET_KEY': '0GQMw7F*Fy(G_+{(K)fop06CH*mR+!,*\Q]S&Mg4|y(l;?}4|~',
-    'DJANGO_CACHE_PATH': os.path.join(['var', 'tmp', 'tsadm'+__RUN_MODE+'_cache']),
+    'DJANGO_CACHE_PATH': os.path.join(__PATH_PREFIX, 'tsadm'+__RUN_MODE, 'django_cache'),
     'DJANGO_CACHE_TIMEOUT': 3600,
     'DJANGO_CACHE_KEY_PREFIX': 'tsadm'+__RUN_MODE+':',
     'OPENSSL': '/usr/bin/openssl',
@@ -34,7 +35,7 @@ __TSADM = {
     'MASTER_SERVER_PORT': 8000,
     'MASTER_SERVER_SSL': False,
     'SITE_ENV_DOMAIN': __MASTER_FQDN,
-    'SITE_HOME_BASE': os.path.join(['home', 'tsadm'+__RUN_MODE, 'sites']),
+    'SITE_HOME_BASE': os.path.join(__PATH_PREFIX, 'tsadm'+__RUN_MODE, 'sites'),
     'LOG_DATE_FMT': '%b%d %H:%M:%S',
     'CUR_TIME_FMT': '%a %b %d %H:%M %Y %Z',
     'JOB_DATE_FMT': '%c %Z',
