@@ -39,12 +39,12 @@ __TSADM = {
     'CUR_TIME_FMT': '%a %b %d %H:%M %Y %Z',
     'JOB_DATE_FMT': '%c %Z',
     'SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.wapp',
-    'REGR_TESTS_ENABLE': True,
+    'REGR_TESTS_ENABLE': False,
     'CLEAN_HTML_ENABLE': True,
     'SLAVE_GRAPHS_BASE_URL': 'http://'+__MASTER_FQDN+'/server-graphs',
     'DB_NAME': 'tsadm'+__RUN_MODE+'db',
     'DB_USER': 'tsadm'+__RUN_MODE,
-    'DB_PASS': 'M34iKsymcyHL3hsU',
+    'DB_PASS': '__NOT_SET__',
     'CSS_RELPATH': 'static/css/tsadm.css',
     'OFFLINE_FILE': os.path.join(__BASE_DIR, 'OFFLINE'),
 }
@@ -86,7 +86,6 @@ def __load_config():
         fh.close()
     except Exception as e:
         print("tsadm config load:", __CONFIG_PATH, e, file=sys.stderr)
-    if __DEBUG: print("tsadm config loaded:", cfg, file=sys.stderr)
     for k, v in cfg.items():
         if k in __TSADM.keys():
             __TSADM[k] = v
