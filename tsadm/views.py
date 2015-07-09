@@ -25,7 +25,12 @@ def soft_info(req):
     tmpl_data = wapp.tmpl_data()
 
     tmpl_data['version'] = wapp.version
-    tmpl_data['settings'] = wapp.conf
+    tmpl_data['settings'] = dict()
+    for sk in sorted(wapp.conf.keys()):
+        if sk.lower().find("pass") > 0 or sk.lower().find("secret") > 0:
+            tmpl_data['settings'][sk] = '__HIDDEN__'
+        else:
+            tmpl_data['settings'][sk] = wapp.conf.get(sk)
 
     tmpl_data['django_version'] = django.get_version()
     tmpl_data['python_version'] = '{}.{}.{}'.format(sys.version_info.major, sys.version_info.minor, sys.version_info.micro)
