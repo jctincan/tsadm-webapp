@@ -4,8 +4,8 @@
     <li>Version: {{version}}</li>
     <li>Settings:
         <ul>
-        {% for sk, sv in settings.items %}
-            <li>{{sk}}={{sv}}</li>
+        {% for k, v in settings %}
+            <li>{{k}}: {{v}}</li>
         {% endfor %}
         </ul>
     </li>
