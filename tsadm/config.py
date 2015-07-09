@@ -65,7 +65,8 @@ def export():
 
 def setdefault(k, v):
     if k in __TSADM.keys():
-        __TSADM[k] = v
+        if k != 'RUN_MODE' and k != 'BASE_DIR':
+            __TSADM[k] = v
 
 if __DEBUG:
     CACHES = {
