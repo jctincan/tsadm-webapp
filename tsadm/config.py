@@ -1,4 +1,5 @@
 import os
+import sys
 import os.path
 
 __RUN_MODE = ''
@@ -7,6 +8,7 @@ if __env_mode == 'test' or __env_mode == 'dev':
     __RUN_MODE = __env_mode
 
 __BASE_DIR = '/opt/tsadm'+__RUN_MODE
+__CONFIG_PATH = '/etc/opt/tsadm'+__RUN_MODE+'/config.json'
 
 __TSADM = {
     'RUN_MODE': __RUN_MODE,
@@ -86,3 +88,23 @@ if debug():
             'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         }
     }
+
+def __load_config():
+    import json
+    cfg = dict()
+    try:
+        fh = open(__CONFIG_PATH, 'r')
+        cfg = json.load(fh)
+        fh.close()
+    except Exception as e:
+        print("tsadm config load:", __CONFIG_PATH, e, file=sys.stderr)
+    print("LOAD:", cfg, file=sys.stderr)
+    for k, v in cfg.items():
+        if __TSADM.__contains__(k):
+            __TSADM[k] = v
+        else:
+            print("tsadm config load: unknown key ", k, file=sys.stderr)
+
+if debug(): print('CONFIG_PATH:', __CONFIG_PATH, file=sys.stderr)
+if os.path.exists(__CONFIG_PATH):
+    __load_config()
