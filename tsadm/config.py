@@ -1,9 +1,15 @@
+import os
 import os.path
 
-__RUN_MODE = 'dev'
+__RUN_MODE = ''
+__env_mode = os.getenv('TSADM_MODE')
+if __env_mode == 'test' or __env_mode == 'dev':
+    __RUN_MODE = __env_mode
+
 __BASE_DIR = '/opt/tsadm'+__RUN_MODE
 
 __TSADM = {
+    'RUN_MODE': __RUN_MODE,
     'BASE_DIR': __BASE_DIR,
     'DEBUG': True,
     'CHARSET': 'utf-8',

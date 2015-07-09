@@ -113,6 +113,7 @@ class TSAdmWApp:
         self.umesg = TSAdmUMesg()
         # -- log
         self.__start_log(req)
+        self.log.dbg('RUN_MODE: ', self.conf.get('RUN_MODE'))
         # -- offline mode
         if self.__offline_mode():
             self._err_code = 904
