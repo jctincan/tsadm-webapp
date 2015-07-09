@@ -1,19 +1,18 @@
 # $Id: config.py 12300 2014-12-12 01:04:23Z jrms $
 
+import tsadm.config
 from mysql.connector.constants import ClientFlag
 
-from tsadm.settings import TSADM as tsadm_conf
-
 class Config(object):
-    HOST = tsadm_conf.get('DB_HOST', 'localhost')
-    DATABASE = tsadm_conf.get('DB_NAME', 'tsadmdb')
-    USER = tsadm_conf.get('DB_USER', 'tsadm')
-    PASSWORD = tsadm_conf.get('DB_PASS', None)
-    PORT = tsadm_conf.get('DB_HOST_PORT', 3306)
-    CHARSET = tsadm_conf.get('DB_CHARSET', 'utf8')
+    HOST = tsadm.config.get('DB_HOST', 'localhost')
+    DATABASE = tsadm.config.get('DB_NAME', 'tsadmdb')
+    USER = tsadm.config.get('DB_USER', 'tsadm')
+    PASSWORD = tsadm.config.get('DB_PASS', None)
+    PORT = tsadm.config.get('DB_HOST_PORT', 3306)
+    CHARSET = tsadm.config.get('DB_CHARSET', 'utf8')
     UNICODE = True
     WARNINGS = True
-    TIMEOUT = tsadm_conf.get('DB_HOST_TIMEOUT', 7)
+    TIMEOUT = tsadm.config.get('DB_HOST_TIMEOUT', 7)
 
     @classmethod
     def dbinfo(self):

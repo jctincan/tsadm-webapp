@@ -44,8 +44,20 @@ __TSADM = {
     'OFFLINE_FILE': os.path.join(__BASE_DIR, 'OFFLINE'),
 }
 
-def get_settings():
-    return __TSADM
+def get(arg, default=None):
+    return __TSADM.get(arg, default)
+
+def update(d):
+    return __TSADM.update(d)
+
+def export():
+    r = list()
+    for sk in sorted(__TSADM.keys()):
+        if sk.lower().find("pass") > 0 or sk.lower().find("secret") > 0:
+            r.append((sk, '__HIDDEN__'))
+        else:
+            r.append((sk, __TSADM.get(sk)))
+    return r
 
 def __set_get(arg_name, arg=None):
     if arg is not None:
@@ -100,7 +112,7 @@ def __load_config():
         print("tsadm config load:", __CONFIG_PATH, e, file=sys.stderr)
     print("LOAD:", cfg, file=sys.stderr)
     for k, v in cfg.items():
-        if __TSADM.__contains__(k):
+        if k in __TSADM.keys():
             __TSADM[k] = v
         else:
             print("tsadm config load: unknown key ", k, file=sys.stderr)

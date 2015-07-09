@@ -10,11 +10,11 @@ import html
 
 
 from django.shortcuts import render
-from django.conf import settings
 from django.core.cache import cache
 from django.http import JsonResponse
 
 import tsadm.log
+import tsadm.config
 from tsadm.db import TSAdmDB
 from tsadm.db import TSAdmDBVersionError
 from tsadm.jobq import TSAdmJobQ
@@ -69,7 +69,7 @@ class TSAdmWApp:
 
     def __load_conf(self):
         # -- load settings
-        self.conf = settings.TSADM.copy()
+        self.conf = tsadm.config
         self.encoding = self.conf.get('CHARSET', 'utf-8')
         self.regr_tests = self.conf.get('REGR_TESTS_ENABLE', False)
         vfile = os.path.join(self.conf.get('BASE_DIR'), 'VERSION.txt')
@@ -452,7 +452,7 @@ class TSAdmWAppMiddleWare:
 class TSAdmWAppCleanHTML(TSAdmWAppMiddleWare):
 
     def __css_validate(self, content):
-        css_fpath = os.path.join(settings.TSADM.get('BASE_DIR'), settings.TSADM.get('CSS_RELPATH'))
+        css_fpath = os.path.join(tsadm.config.get('BASE_DIR'), tsadm.config.get('CSS_RELPATH'))
         fh = open(css_fpath, 'rb')
         css_content = fh.read()
         fh.close()

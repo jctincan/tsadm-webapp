@@ -111,6 +111,3 @@ CACHES = {
         'KEY_PREFIX': tsadm.config.django_cache_key_prefix()
     }
 }
-
-# TSAdm settings
-TSADM = tsadm.config.get_settings()

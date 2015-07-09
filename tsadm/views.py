@@ -25,22 +25,14 @@ def soft_info(req):
     tmpl_data = wapp.tmpl_data()
 
     tmpl_data['version'] = wapp.version
-    tmpl_data['settings'] = list()
-    for sk in sorted(wapp.conf.keys()):
-        if sk.lower().find("pass") > 0 or sk.lower().find("secret") > 0:
-            tmpl_data['settings'].append((sk, '__HIDDEN__'))
-        else:
-            tmpl_data['settings'].append((sk, wapp.conf.get(sk)))
-
+    tmpl_data['settings'] = wapp.conf.export()
     tmpl_data['django_version'] = django.get_version()
     tmpl_data['python_version'] = '{}.{}.{}'.format(sys.version_info.major, sys.version_info.minor, sys.version_info.micro)
     tmpl_data['mysql_server_version'] = wapp.db.server_version()
     tmpl_data['mysql_server_charset'] = wapp.db.server_charset()
     tmpl_data['mysql_conn_version'] = wapp.db.conn_version()
-
     tmpl_data['os_user_uid'] = os.getresuid()
     tmpl_data['os_user_gid'] = os.getresgid()
-
     tmpl_data['uwsgi_version'] = req.META.get('uwsgi.version', None)
 
     return render(req, 'soft-info.html', wapp.end(tmpl_data))
