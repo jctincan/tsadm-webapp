@@ -13,20 +13,20 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import tsadm.config
-tsadm.config.base_dir(BASE_DIR)
+tsadm.config.setdefault('BASE_DIR', BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = tsadm.config.django_secret_key()
+SECRET_KEY = tsadm.config.get('DJANGO_SECRET_KEY', 'pUV1i7uH58cMQaQv')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = tsadm.config.debug()
-ALLOWED_HOSTS = [tsadm.config.master_fqdn()]
+DEBUG = tsadm.config.get('DEBUG', False)
+ALLOWED_HOSTS = [tsadm.config.get('MASTER_SERVER', 'dev.tsadm.local')]
 DEBUG_PROPAGATE_EXCEPTIONS = False
 
-TEMPLATE_DEBUG = tsadm.config.debug()
+TEMPLATE_DEBUG = DEBUG
 TEMPLATE_DIRS = ('/'.join([BASE_DIR, 'templates']),)
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',)
 TEMPLATE_STRING_IF_INVALID = 'TMPL_MISS:%s'
@@ -89,12 +89,12 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = tsadm.config.lang_code()
-TIME_ZONE = tsadm.config.time_zone()
+LANGUAGE_CODE = tsadm.config.get('LANG_CODE', 'en-gb')
+TIME_ZONE = tsadm.config.get('TIME_ZONE', 'Europe/London')
 USE_I18N = False
 USE_L10N = False
 USE_TZ = True
-DEFAULT_CHARSET = tsadm.config.charset()
+DEFAULT_CHARSET = tsadm.config.get('CHARSET', 'utf-8')
 FILE_CHARSET = DEFAULT_CHARSET
 
 # Static files (CSS, JavaScript, Images)
@@ -106,8 +106,8 @@ STATICFILES_DIRS = ('/'.join([BASE_DIR, 'static']),)
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': tsadm.config.django_cache_path(),
-        'TIMEOUT': tsadm.config.django_cache_timeout(),
-        'KEY_PREFIX': tsadm.config.django_cache_key_prefix()
+        'LOCATION': tsadm.config.get('DJANGO_CACHE_PATH', '/var/tmp/tsadmdev_cache'),
+        'TIMEOUT': tsadm.config.get('DJANGO_CACHE_TIMEOUT', 15),
+        'KEY_PREFIX': tsadm.config.get('DJANGO_CACHE_KEY_PREFIX', 'tsadmdev:')
     }
 }

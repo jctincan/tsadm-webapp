@@ -452,7 +452,9 @@ class TSAdmWAppMiddleWare:
 class TSAdmWAppCleanHTML(TSAdmWAppMiddleWare):
 
     def __css_validate(self, content):
+        tsadm.log.dbg('BASE_DIR: ', tsadm.config.get('BASE_DIR'))
         css_fpath = os.path.join(tsadm.config.get('BASE_DIR'), tsadm.config.get('CSS_RELPATH'))
+        tsadm.log.dbg('css_fpath: ', css_fpath)
         fh = open(css_fpath, 'rb')
         css_content = fh.read()
         fh.close()
