@@ -10,8 +10,9 @@ if __env_mode == 'test' or __env_mode == 'dev':
 if __env_mode == 'dev':
     __DEBUG = True
 
-__BASE_DIR = '/opt/tsadm'+__RUN_MODE
-__CONFIG_PATH = '/etc/opt/tsadm'+__RUN_MODE+'/config.json'
+__BASE_DIR = os.path.join('/opt', 'tsadm'+__RUN_MODE, 'webapp')
+__CONFIG_PATH = os.path.join('/opt', 'tsadm'+__RUN_MODE, 'etc', 'config.json')
+__MASTER_FQDN = 'dev.tsadm.local'
 
 __TSADM = {
     'RUN_MODE': __RUN_MODE,
@@ -22,25 +23,25 @@ __TSADM = {
     'LANG_CODE': 'en-gb',
     'TIME_ZONE': 'Europe/London',
     'DJANGO_SECRET_KEY': '0GQMw7F*Fy(G_+{(K)fop06CH*mR+!,*\Q]S&Mg4|y(l;?}4|~',
-    'DJANGO_CACHE_PATH': '/var/tmp/tsadm'+__RUN_MODE+'_cache',
+    'DJANGO_CACHE_PATH': os.path.join(['var', 'tmp', 'tsadm'+__RUN_MODE+'_cache']),
     'DJANGO_CACHE_TIMEOUT': 3600,
     'DJANGO_CACHE_KEY_PREFIX': 'tsadm'+__RUN_MODE+':',
     'OPENSSL': '/usr/bin/openssl',
     'JOBQ_SERVER_PORT': 6100,
     'JOBQ_SERVER_TIMEOUT': 15,
     'JOBQ_SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.jobq',
-    'MASTER_SERVER': 'dev.tsadm.local',
+    'MASTER_SERVER': __MASTER_FQDN,
     'MASTER_SERVER_PORT': 8000,
     'MASTER_SERVER_SSL': False,
-    'SITE_ENV_DOMAIN': 'dev.tsadm.local',
-    'SITE_HOME_BASE': '/home/tsadm'+__RUN_MODE+'/sites',
+    'SITE_ENV_DOMAIN': __MASTER_FQDN,
+    'SITE_HOME_BASE': os.path.join(['home', 'tsadm'+__RUN_MODE, 'sites']),
     'LOG_DATE_FMT': '%b%d %H:%M:%S',
     'CUR_TIME_FMT': '%a %b %d %H:%M %Y %Z',
     'JOB_DATE_FMT': '%c %Z',
     'SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.wapp',
     'REGR_TESTS_ENABLE': True,
     'CLEAN_HTML_ENABLE': True,
-    'SLAVE_GRAPHS_BASE_URL': 'http://dev.tsadm.local/server-graphs',
+    'SLAVE_GRAPHS_BASE_URL': 'http://'+__MASTER_FQDN+'/server-graphs',
     'DB_NAME': 'tsadm'+__RUN_MODE+'db',
     'DB_USER': 'tsadm'+__RUN_MODE,
     'DB_PASS': 'M34iKsymcyHL3hsU',
