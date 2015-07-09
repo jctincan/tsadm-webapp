@@ -79,9 +79,8 @@ class TSAdmWApp:
             fh.close()
         except:
             pass
-        # TSADM_DEV env is set on manage.py so it's present only when
-        # developing
-        if os.getenv('TSADM_DEV', 'false') == 'true':
+        # -- dev mode
+        if self.conf.get('RUN_MODE', '') == 'dev':
             self.debug = True
             self.devmode = True
             self.conf.update({

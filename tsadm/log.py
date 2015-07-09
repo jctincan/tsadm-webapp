@@ -4,11 +4,13 @@ import os
 import sys
 import syslog as sl
 
+from . import config
+
 
 class __G:
     devmode = False
 
-if os.getenv('TSADM_DEV', None) is not None:
+if config.get('RUN_MODE', '') == 'dev':
     __G.devmode = True
 
 
