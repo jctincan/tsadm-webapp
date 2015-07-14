@@ -1,14 +1,14 @@
 -- $Id: db-data.sql 12828 2015-05-05 23:38:31Z jrms $
 
 -- slave hosts
-INSERT INTO `host` (`id`, `fqdn`, `ssh_key`) VALUES (101, 'node0.tsadm', 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDtFXopCrY2qMfDQeFkKDS5jaktvvPYXWkiAT+dDCRgyuVf8PF22CxDHwi0DqvgC8hwSnIUbROKI5/GZ8LDPTtKxDwGpGCQMDSZQTUNoLZza/JaoTNkjrVv5OYTUffBnCy9wDqr9fNNGv3glqJZyOnz2buYNHZGAXHQBpnO/VpwDAs6u7gdByEADfFdb5tLhQXY+8GDvJJmhSr7o5lccbiunMGe73ewau9VdFCmyruy48GlmwnMzhw9TgfWLbflQ79tBodOG/PW4UJ5anKkw0h7qeXTNgS8BN8Y1scReNd22r08bNIhZFFr24C/GnUiIZjdeFBLA7D5/LG2KEpIKoMr tsadm@node0.tsadm.chroot');
+INSERT INTO `host` (`id`, `fqdn`) VALUES (101, 'tsadm-node0');
 
 
 -- sites
 INSERT INTO `site` (`id`, `name`, `repo_uri`)
-    VALUES (61001, 'regr', 'ssh://regr@tsadm.chroot:22/~/regr.git');
+    VALUES (61001, 'regr', 'ssh://regr@tsadm-master:22/~/regr.git');
 INSERT INTO `site` (`id`, `name`, `repo_uri`)
-    VALUES (61002, 's0', 'ssh://s0@tsadm.chroot:22/~/s0.git');
+    VALUES (61002, 's0', 'ssh://s0@tsadm-master:22/~/s0.git');
 
 
 -- sites envs
@@ -42,4 +42,4 @@ INSERT INTO `user_auth_keys` VALUES (2, 101, 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA
 
 
 -- tsadm internal
-INSERT INTO `tsadm` (`dbversion`) VALUES (10000006);
+INSERT INTO `tsadm` (`dbversion`) VALUES (10000007);

@@ -17,7 +17,7 @@ class TSAdmDBVersionError(Exception):
 
 
 class TSAdmDB:
-    DBVERSION = 10000006
+    DBVERSION = 10000007
     SITE_ID_MIN = 100
     SITEENV_ID_MIN = 5000
 
