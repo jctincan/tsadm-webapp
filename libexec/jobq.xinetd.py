@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# $Id: jobq.xinetd.py 12179 2014-11-29 05:55:57Z jrms $
 
 import sys
 import re
@@ -7,16 +6,17 @@ import os
 import os.path
 import subprocess
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = '/opt/tsadmdev'
+sys.path.insert(0, os.path.join(BASE_DIR, 'libexec'))
 sys.path.insert(0, BASE_DIR)
 
-from tsadm.settings import TSADM as tsadm_conf
+import tsadm.config as tsadm_conf
 import tsadm.log
 import runner
 
 
 at_cmd = '/usr/bin/at'
-runbg_cmd = BASE_DIR + '/libexec/jobq.runbg.py'
+runbg_cmd = os.path.join(BASE_DIR, 'libexec', 'jobq.runbg.py')
 re_job_id = re.compile(r'^[a-f0-9]+$')
 
 resp_headers = {
@@ -43,7 +43,7 @@ def _exit_badreq(req_line):
 
 
 # --- start log
-tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadm-dev.jobq'))
+tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadmdev-jobqd'))
 tsadm.log.dbg('START')
 tsadm.log.dbg('sys.path: ', sys.path)
 tsadm.log.dbg('os.environ: ', os.environ)

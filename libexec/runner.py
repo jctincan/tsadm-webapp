@@ -7,10 +7,10 @@ import re
 import os
 import os.path
 
-from tsadm.settings import TSADM as tsadm_conf
+import tsadm.config as tsadm_conf
 import tsadm.log
 
-sites_home_base = tsadm_conf.get('SITE_HOME_BASE', '/home/tsadm/sites')
+sites_home_base = tsadm_conf.get('SITE_HOME_BASE')
 re_cmd_name = re.compile(r'^[a-z0-9\.-]+$')
 
 
