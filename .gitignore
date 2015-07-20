@@ -4,4 +4,4 @@ dev-client-cert.key
 __pycache__
 *.py[co]
 
-etc/dev.config.json
+etc/config.json
