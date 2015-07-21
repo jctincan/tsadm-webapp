@@ -12,8 +12,8 @@ if __env_mode == 'dev':
 
 __PATH_PREFIX = '/opt'
 __BASE_DIR = os.path.join(__PATH_PREFIX, 'tsadm'+__RUN_MODE, 'webapp')
-__CONFIG_PATH = os.path.join(__PATH_PREFIX, 'tsadm'+__RUN_MODE, 'etc', 'config.json')
-__MASTER_FQDN = 'dev.tsadm.local'
+__CONFIG_PATH = os.path.join(__BASE_DIR, 'etc', 'config.json')
+__MASTER_FQDN = 'master.tsadm.local'
 
 __TSADM = {
     'RUN_MODE': __RUN_MODE,
