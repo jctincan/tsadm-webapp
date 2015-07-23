@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# $Id: jobq.runbg.py 12179 2014-11-29 05:55:57Z jrms $
 
 import os
 import os.path
@@ -16,7 +15,7 @@ from base64 import b64encode
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.insert(0, BASE_DIR)
 
-from tsadm.settings import TSADM as tsadm_conf
+import tsadm.config as tsadm_conf
 import tsadm.log
 import runner
 
@@ -96,7 +95,7 @@ def __jobupdate(job_id, status):
 
 start_tstamp = time.time()
 
-tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadm-dev.jobq'))
+tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadmdev-jobq'))
 tsadm.log.dbg('START')
 #~ tsadm.log.dbg(os.environ)
 
