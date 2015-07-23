@@ -1,5 +1,3 @@
-# $Id: log.py 12382 2015-01-15 02:30:00Z jrms $
-
 import os
 import sys
 import syslog as sl
@@ -15,7 +13,7 @@ if config.get('RUN_MODE', '') == 'dev':
     __G.devmode = True
 
 
-def log_open(iden='tsadm'):
+def log_open(iden='tsadmdev'):
     sl.openlog(iden, sl.LOG_PID, sl.LOG_LOCAL3)
 
 
