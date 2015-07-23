@@ -10,18 +10,17 @@ from . import config
 class __G:
     devmode = False
 
+
 if config.get('RUN_MODE', '') == 'dev':
     __G.devmode = True
 
 
 def log_open(iden='tsadm'):
-    if not __G.devmode:
-        sl.openlog(iden, sl.LOG_PID, sl.LOG_LOCAL3)
+    sl.openlog(iden, sl.LOG_PID, sl.LOG_LOCAL3)
 
 
 def log_close():
-    if not __G.devmode:
-        sl.closelog()
+    sl.closelog()
 
 
 def dbg(*msg):
@@ -49,5 +48,4 @@ def __log(prio, *msg):
             line += str(m)
     if __G.devmode:
         print(line, file=sys.stderr)
-    else:
-        sl.syslog(prio, line)
+    sl.syslog(prio, line)
