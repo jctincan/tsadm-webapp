@@ -24,7 +24,7 @@ __TSADM = {
     'LANG_CODE': 'en-gb',
     'TIME_ZONE': 'Europe/London',
     'DJANGO_SECRET_KEY': '0GQMw7F*Fy(G_+{(K)fop06CH*mR+!,*\Q]S&Mg4|y(l;?}4|~',
-    'DJANGO_CACHE_PATH': os.path.expanduser(os.path.join('~', 'django_cache', 'tsadm'+__RUN_MODE)),
+    'DJANGO_CACHE_PATH': os.path.expanduser(os.path.join('~', 'django_cache')),
     'DJANGO_CACHE_TIMEOUT': 3600,
     'DJANGO_CACHE_KEY_PREFIX': 'tsadm'+__RUN_MODE+':',
     'OPENSSL': '/usr/bin/openssl',
