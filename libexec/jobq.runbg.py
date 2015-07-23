@@ -95,7 +95,7 @@ def __jobupdate(job_id, status):
 
 start_tstamp = time.time()
 
-tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadmdev-jobq'))
+tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadmtest-jobq'))
 tsadm.log.dbg('START')
 #~ tsadm.log.dbg(os.environ)
 

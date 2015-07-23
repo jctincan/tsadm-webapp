@@ -106,8 +106,8 @@ STATICFILES_DIRS = ('/'.join([BASE_DIR, 'static']),)
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': tsadm.config.get('DJANGO_CACHE_PATH', '/var/tmp/tsadmdev_cache'),
+        'LOCATION': tsadm.config.get('DJANGO_CACHE_PATH', '/var/tmp/tsadmtest_cache'),
         'TIMEOUT': tsadm.config.get('DJANGO_CACHE_TIMEOUT', 15),
-        'KEY_PREFIX': tsadm.config.get('DJANGO_CACHE_KEY_PREFIX', 'tsadmdev:')
+        'KEY_PREFIX': tsadm.config.get('DJANGO_CACHE_KEY_PREFIX', 'tsadmtest:')
     }
 }

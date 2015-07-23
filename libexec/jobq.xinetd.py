@@ -6,7 +6,7 @@ import os
 import os.path
 import subprocess
 
-BASE_DIR = '/opt/tsadmdev'
+BASE_DIR = '/opt/tsadmtest'
 sys.path.insert(0, os.path.join(BASE_DIR, 'libexec'))
 sys.path.insert(0, BASE_DIR)
 
@@ -43,7 +43,7 @@ def _exit_badreq(req_line):
 
 
 # --- start log
-tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadmdev-jobqd'))
+tsadm.log.log_open(tsadm_conf.get('JOBQ_SYSLOG_TAG', 'tsadmtest-jobqd'))
 tsadm.log.dbg('START')
 tsadm.log.dbg('sys.path: ', sys.path)
 tsadm.log.dbg('os.environ: ', os.environ)

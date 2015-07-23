@@ -1,5 +1,5 @@
 set -e
-dbname='tsadmdevdb'
+dbname='tsadmtestdb'
 dbversion=$(echo 'SELECT `dbversion` FROM `tsadm`;' | mysql -BN ${dbname})
 echo "dbversion ${dbversion}"
 for upversion in $(ls upgrade/ | cut -d'.' -f1 | sort -u)

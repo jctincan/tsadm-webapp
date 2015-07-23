@@ -4,7 +4,7 @@ import syslog as sl
 from . import config
 
 
-def log_open(iden='tsadmdev'):
+def log_open(iden='tsadmtest'):
     sl.openlog(iden, sl.LOG_PID, sl.LOG_LOCAL3)
 
 
