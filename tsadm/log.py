@@ -1,16 +1,7 @@
 import os
-import sys
 import syslog as sl
 
 from . import config
-
-
-class __G:
-    devmode = False
-
-
-if config.get('RUN_MODE', '') == 'dev':
-    __G.devmode = True
 
 
 def log_open(iden='tsadmdev'):
@@ -44,6 +35,4 @@ def __log(prio, *msg):
             line += m
         else:
             line += str(m)
-    if __G.devmode:
-        print(line, file=sys.stderr)
     sl.syslog(prio, line)
