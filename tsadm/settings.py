@@ -23,7 +23,7 @@ SECRET_KEY = tsadm.config.get('DJANGO_SECRET_KEY', 'pUV1i7uH58cMQaQv')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = tsadm.config.get('DEBUG', False)
-ALLOWED_HOSTS = [tsadm.config.get('MASTER_SERVER', 'dev.tsadm.local')]
+ALLOWED_HOSTS = [tsadm.config.get('MASTER_SERVER', 'test.tsadm.local')]
 DEBUG_PROPAGATE_EXCEPTIONS = False
 
 TEMPLATE_DEBUG = DEBUG
