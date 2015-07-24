@@ -1,20 +1,12 @@
 #!/bin/bash
-# $Id: post-receive 12384 2015-01-15 02:32:01Z jrms $
 
 PATH=/usr/bin:/bin
 DEBUG_LOG=true
 DEVMODE=true
-CA_CERT=/opt/dev/tsadm/etc/certs/tsadmca.pem
-BOT_CERT=/opt/dev/tsadm/etc/certs/gitbot.pem
+CA_CERT=/opt/tsadmdev/webapp/etc/certs/tsadmca.pem
+BOT_CERT=/opt/tsadmdev/webapp/etc/certs/gitbot.pem
 SSL_ARGS="--cacert $CA_CERT --cert $BOT_CERT"
-MASTER_URI='https://tsadm.local/git/hook/post-receive/'
-
-if $DEVMODE
-then
-    MASTER_URI='http://127.0.0.1:8000/git/hook/post-receive/'
-    SSL_ARGS=''
-fi
-
+MASTER_URI='http://master.tsadm.local:8000/git/hook/post-receive/'
 
 log_dbg()
 {
