@@ -442,6 +442,10 @@ class TSAdmWApp:
         return JsonResponse(json_data)
 
 
+    def slug(self, *items):
+        return ''.join(items)+self.conf.get('RUN_MODE', '').upper()
+
+
 class TSAdmWAppMiddleWare:
     debug = None
     encoding = None
