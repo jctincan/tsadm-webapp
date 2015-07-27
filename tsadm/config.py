@@ -81,7 +81,6 @@ def __load_config():
     import json
     cfg = dict()
     try:
-        if __DEBUG: print("tsadm config load:", __CONFIG_PATH, file=sys.stderr)
         fh = open(__CONFIG_PATH, 'r')
         cfg = json.load(fh)
         fh.close()
