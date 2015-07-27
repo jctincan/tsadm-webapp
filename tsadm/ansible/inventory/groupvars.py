@@ -1,5 +1,3 @@
-# $Id: groupvars.py 12881 2015-05-20 23:07:37Z jrms $
-
 class G:
     all_siteenv = None
     all_user = None
@@ -48,7 +46,12 @@ def __all_host():
 
 
 def __all_siteenv():
-    return wapp.db.asbinv_siteenvs()
+    envs = wapp.db.asbinv_siteenvs()
+    for eid in envs.keys():
+        site_name = envs[eid]['site_name']
+        env_name = envs[eid]['name']
+        envs[eid]['slug'] = wapp.slug(site_name, env_name)
+    return envs
 
 
 def __all_user_siteenv_acl():
@@ -82,12 +85,18 @@ def __all_user_auth_keys():
 def __all_user():
     if G.all_user is None:
         G.all_user = wapp.db.asbinv_dump_table('user', limit=50, exclude_columns=['last_seen', 'acclvl'])
+        for uid in G.all_user.keys():
+            user_name = G.all_user[uid]['name']
+            G.all_user[uid]['slug'] = wapp.slug(user_name)
     return G.all_user
 
 
 def __all_site():
     if G.all_site is None:
         G.all_site = wapp.db.asbinv_dump_table('site', limit=200)
+    for site_id in G.all_site.keys():
+        site_name = G.all_site[site_id]['name']
+        G.all_site[site_id]['slug'] = wapp.slug(site_name)
     return G.all_site
 
 

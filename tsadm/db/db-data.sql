@@ -6,9 +6,9 @@ INSERT INTO `host` (`id`, `fqdn`) VALUES (101, 'tsadm-node0');
 
 -- sites
 INSERT INTO `site` (`id`, `name`, `repo_uri`)
-    VALUES (61001, 'regr', 'ssh://regr@tsadm-master:22/~/regr.git');
+    VALUES (61001, 'regr', 'ssh://regrDEV@tsadm-master:22/~/regr.git');
 INSERT INTO `site` (`id`, `name`, `repo_uri`)
-    VALUES (61002, 's0', 'ssh://s0@tsadm-master:22/~/s0.git');
+    VALUES (61002, 's0', 'ssh://s0DEV@tsadm-master:22/~/s0.git');
 
 
 -- sites envs
