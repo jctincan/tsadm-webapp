@@ -10,10 +10,10 @@ if __env_mode == 'test' or __env_mode == 'dev':
 if __env_mode == 'dev':
     __DEBUG = True
 
-__PATH_PREFIX = '/opt'
-__BASE_DIR = os.path.join(__PATH_PREFIX, 'tsadm'+__RUN_MODE, 'webapp')
-__CONFIG_PATH = os.path.join(__BASE_DIR, 'etc', 'config.json')
+__BASE_DIR = '/opt/tsadm'+__RUN_MODE+'/webapp'
+__CONFIG_PATH = '/etc/opt/tsadm'+__RUN_MODE+'/config.json'
 __MASTER_FQDN = 'master.tsadm.local'
+__HOME_DIR = '/home/tsadm'+__RUN_MODE
 
 __TSADM = {
     'RUN_MODE': __RUN_MODE,
@@ -23,8 +23,8 @@ __TSADM = {
     'CHARSET': 'utf-8',
     'LANG_CODE': 'en-gb',
     'TIME_ZONE': 'Europe/London',
-    'DJANGO_SECRET_KEY': '0GQMw7F*Fy(G_+{(K)fop06CH*mR+!,*\Q]S&Mg4|y(l;?}4|~',
-    'DJANGO_CACHE_PATH': os.path.expanduser(os.path.join('~', 'django_cache')),
+    'DJANGO_SECRET_KEY': '0GQMw7F*Fy(G_+{(K)fop06CH*mR',
+    'DJANGO_CACHE_PATH': __HOME_DIR+'/django_cache',
     'DJANGO_CACHE_TIMEOUT': 3600,
     'DJANGO_CACHE_KEY_PREFIX': 'tsadm'+__RUN_MODE+':',
     'OPENSSL': '/usr/bin/openssl',
@@ -35,7 +35,7 @@ __TSADM = {
     'MASTER_SERVER_PORT': 8000,
     'MASTER_SERVER_SSL': False,
     'SITE_ENV_DOMAIN': __MASTER_FQDN,
-    'SITE_HOME_BASE': os.path.expanduser(os.path.join('~', 'sites')),
+    'SITE_HOME_BASE': __HOME_DIR+'/sites',
     'LOG_DATE_FMT': '%b%d %H:%M:%S',
     'CUR_TIME_FMT': '%a %b %d %H:%M %Y %Z',
     'JOB_DATE_FMT': '%c %Z',
@@ -47,7 +47,7 @@ __TSADM = {
     'DB_USER': 'tsadm'+__RUN_MODE,
     'DB_PASS': '__NOT_SET__',
     'CSS_RELPATH': 'static/css/tsadm.css',
-    'OFFLINE_FILE': os.path.join(__BASE_DIR, 'OFFLINE'),
+    'OFFLINE_FILE': __BASE_DIR+'/OFFLINE',
 }
 
 def get(arg, default=None):
