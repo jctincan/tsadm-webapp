@@ -23,31 +23,40 @@ __TSADM = {
     'CHARSET': 'utf-8',
     'LANG_CODE': 'en-gb',
     'TIME_ZONE': 'Europe/London',
+    'OPENSSL': '/usr/bin/openssl',
+    'SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.wapp',
+    'OFFLINE_FILE': __BASE_DIR+'/OFFLINE',
+
+    'CSS_RELPATH': 'static/css/tsadm.css',
+    'SLAVE_GRAPHS_BASE_URL': 'http://'+__MASTER_FQDN+'/server-graphs',
+
+    'DB_NAME': 'tsadm'+__RUN_MODE+'db',
+    'DB_USER': 'tsadm'+__RUN_MODE,
+    'DB_PASS': '__NOT_SET__',
+
     'DJANGO_SECRET_KEY': '0GQMw7F*Fy(G_+{(K)fop06CH*mR',
     'DJANGO_CACHE_PATH': __HOME_DIR+'/django_cache',
     'DJANGO_CACHE_TIMEOUT': 3600,
     'DJANGO_CACHE_KEY_PREFIX': 'tsadm'+__RUN_MODE+':',
-    'OPENSSL': '/usr/bin/openssl',
+
     'JOBQ_SERVER_PORT': 6100,
     'JOBQ_SERVER_TIMEOUT': 15,
     'JOBQ_SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.jobq',
+
     'MASTER_SERVER': __MASTER_FQDN,
     'MASTER_SERVER_PORT': 8000,
     'MASTER_SERVER_SSL': False,
+
     'SITE_ENV_DOMAIN': __MASTER_FQDN,
     'SITE_HOME_BASE': __HOME_DIR+'/sites',
+    'SITE_REPO_URI_TMPL': 'ssh://{user}@'+__MASTER_FQDN+'/~/{repo}.git',
+
     'LOG_DATE_FMT': '%b%d %H:%M:%S',
     'CUR_TIME_FMT': '%a %b %d %H:%M %Y %Z',
     'JOB_DATE_FMT': '%c %Z',
-    'SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.wapp',
+
     'REGR_TESTS_ENABLE': False,
     'CLEAN_HTML_ENABLE': True,
-    'SLAVE_GRAPHS_BASE_URL': 'http://'+__MASTER_FQDN+'/server-graphs',
-    'DB_NAME': 'tsadm'+__RUN_MODE+'db',
-    'DB_USER': 'tsadm'+__RUN_MODE,
-    'DB_PASS': '__NOT_SET__',
-    'CSS_RELPATH': 'static/css/tsadm.css',
-    'OFFLINE_FILE': __BASE_DIR+'/OFFLINE',
 }
 
 def get(arg, default=None):

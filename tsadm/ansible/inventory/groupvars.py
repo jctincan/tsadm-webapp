@@ -51,6 +51,12 @@ def __all_siteenv():
         site_name = envs[eid]['site_name']
         env_name = envs[eid]['name']
         envs[eid]['slug'] = wapp.slug(site_name, env_name)
+        # site repo uri
+        repo_uri = envs[eid]['site_repo_uri']
+        if repo_uri == '' or repo_uri == '__REPO_URI__':
+            # if repo uri isn't saved in the database, use the config
+            # template to generate it
+            envs[eid]['site_repo_uri'] = wapp.conf.get('SITE_REPO_URI_TMPL').format(user=wapp.slug(site_name), repo=site_name)
     return envs
 
 
