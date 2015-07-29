@@ -1,4 +1,3 @@
--- $Id: siteenv.tbl.sql 12761 2015-04-07 22:24:44Z jrms $
 
 CREATE TABLE IF NOT EXISTS `siteenv` (
     `id` int(10) unsigned NOT NULL DEFAULT 0,

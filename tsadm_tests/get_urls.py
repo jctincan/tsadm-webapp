@@ -1,4 +1,3 @@
-# $Id: get_urls.py 12183 2014-11-30 17:57:00Z jrms $
 
 import http.client
 import re

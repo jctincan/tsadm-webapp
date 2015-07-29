@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: softinfo 12271 2014-12-09 19:54:54Z jrms $
 PATH=/usr/bin:/bin
 sinfo=/usr/local/admin/tools/reports/scripts/soft-info
 

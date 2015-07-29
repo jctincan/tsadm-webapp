@@ -1,4 +1,3 @@
-{# $Id: intcmd_confirm.html 12169 2014-11-28 23:20:44Z jrms $ #}
 {% include "inc/head.html" %}
 <!-- START: jobq/intcmd_confirm -->
 <p>Confirm running command against <b>{{site.name}}.{{site.env.name}}</b> environment: <a href="{% url 'jobq:intcmd_exec' site.name site.env.name cmd.name %}">{{cmd.name}}</a></p>

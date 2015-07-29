@@ -1,4 +1,3 @@
-# $Id: __init__.py 12979 2015-07-01 21:21:31Z jrms $
 
 import mysql.connector
 import tsadm.db.config

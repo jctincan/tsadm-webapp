@@ -1,4 +1,3 @@
-$Id: BUGS.txt 12876 2015-05-20 19:53:56Z jrms $
 
 * CRITICAL: el nombre de entorno no puede tener un - (guion medio) como parte del nombre. No sé porqué pero quise crear un entorno llamado import-test y tsadm tiraba un 500.
 

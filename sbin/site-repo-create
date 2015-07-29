@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: site-repo-create 12994 2015-07-02 21:17:49Z jrms $
 
 PATH=/usr/sbin:/sbin:/usr/bin:/bin
 

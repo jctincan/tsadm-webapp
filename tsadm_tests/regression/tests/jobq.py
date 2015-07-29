@@ -1,4 +1,3 @@
-# $Id: jobq.py 12244 2014-12-04 18:07:07Z jrms $
 
 from .. import RegressionTest
 

@@ -1,4 +1,3 @@
-# $Id: __init__.py 12179 2014-11-29 05:55:57Z jrms $
 
 import hashlib
 import time

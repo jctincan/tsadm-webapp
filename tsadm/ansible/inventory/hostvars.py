@@ -1,4 +1,3 @@
-# $Id: hostvars.py 12881 2015-05-20 23:07:37Z jrms $
 
 wapp = None
 

@@ -1,4 +1,3 @@
-# $Id: sites.py 12623 2015-02-11 19:36:53Z jrms $
 
 from .. import RegressionTest
 

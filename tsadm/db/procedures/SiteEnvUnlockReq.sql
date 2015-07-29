@@ -1,4 +1,3 @@
--- $Id: SiteEnvUnlockReq.sql 11585 2014-07-31 03:12:19Z jrms $
 
 DROP PROCEDURE IF EXISTS SiteEnvUnlockReq;
 

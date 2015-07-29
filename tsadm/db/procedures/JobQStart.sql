@@ -1,4 +1,3 @@
--- $Id: JobQStart.sql 11806 2014-09-18 00:48:32Z jrms $
 
 DROP PROCEDURE IF EXISTS JobQStart;
 

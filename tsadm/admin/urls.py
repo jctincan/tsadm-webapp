@@ -1,4 +1,3 @@
-# $Id: urls.py 12596 2015-02-11 04:59:00Z jrms $
 
 from django.conf.urls import patterns, include, url
 

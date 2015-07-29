@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: cleanup 11633 2014-08-22 20:01:53Z jrms $
 set -e
 /usr/bin/git checkout -- *
 exec /usr/bin/git status

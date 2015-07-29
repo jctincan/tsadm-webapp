@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: dirs 11773 2014-09-12 17:25:09Z jrms $
 
 dest_host=`echo $RSYNC_DEST_ENV | cut -d':' -f1`
 dest_sname=`echo $RSYNC_DEST_ENV | cut -d':' -f3`

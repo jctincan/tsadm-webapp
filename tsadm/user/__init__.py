@@ -1,4 +1,3 @@
-# $Id: __init__.py 12763 2015-04-08 01:43:06Z jrms $
 
 import re
 import time

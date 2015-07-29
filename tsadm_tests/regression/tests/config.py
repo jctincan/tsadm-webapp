@@ -1,4 +1,3 @@
-# $Id: config.py 12271 2014-12-09 19:54:54Z jrms $
 
 from . import user
 from . import sites

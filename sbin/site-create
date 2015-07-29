@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: site-create 11959 2014-10-23 19:23:02Z jrms $
 
 create_uid=${1:?'UID?'}
 create_uname=${2:?'user name?'}
