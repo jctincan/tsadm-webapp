@@ -1,4 +1,3 @@
-# $Id: __main__.py 12196 2014-12-01 05:33:10Z jrms $
 
 import sys
 from . import RegressionTestManager

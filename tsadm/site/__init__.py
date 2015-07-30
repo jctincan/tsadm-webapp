@@ -1,4 +1,3 @@
-# $Id: __init__.py 12569 2015-02-05 17:42:43Z jrms $
 
 class TSAdmSiteEnv:
     _log = None

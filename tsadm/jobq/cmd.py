@@ -1,4 +1,3 @@
-# $Id: cmd.py 12391 2015-01-15 04:52:43Z jrms $
 
 class _CmdMeta:
     desc = None

@@ -1,4 +1,3 @@
-# $Id: __init__.py 12879 2015-05-20 20:59:10Z jrms $
 
 from . import groupvars
 from . import hostvars
@@ -13,14 +12,17 @@ def __init():
 
 def getinv():
     __init()
+    master_server = wapp.conf.get('MASTER_SERVER')
     slave_all = wapp.db.slave_all()
+    hosts_all = [h['fqdn'] for h in slave_all]
+    hosts_all.append(master_server)
     inv = {
         'all': {
-            'hosts': [h['fqdn'] for h in slave_all],
+            'hosts': hosts_all,
             'vars': groupvars.hosts_all()
         },
         'master_server': {
-            'hosts': [wapp.conf.get('MASTER_SERVER')],
+            'hosts': [master_server],
             'vars': groupvars.master_server()
         },
         'slave_servers': {

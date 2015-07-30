@@ -1,4 +1,3 @@
-# $Id: git.py 12759 2015-04-07 20:28:23Z jrms $
 
 import time
 from .. import RegressionTest

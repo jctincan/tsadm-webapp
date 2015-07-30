@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: site-env-create 11607 2014-08-14 20:46:33Z jrms $
 
 create_uname=${1:?'user name?'}
 env_name=${2:?'env name?'}

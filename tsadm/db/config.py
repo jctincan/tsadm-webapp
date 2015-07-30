@@ -1,4 +1,3 @@
-# $Id: config.py 12300 2014-12-12 01:04:23Z jrms $
 
 import tsadm.config
 from mysql.connector.constants import ClientFlag

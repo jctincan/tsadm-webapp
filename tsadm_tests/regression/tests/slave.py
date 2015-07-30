@@ -1,4 +1,3 @@
-# $Id: slave.py 12258 2014-12-07 00:46:14Z jrms $
 
 from .. import RegressionTest
 

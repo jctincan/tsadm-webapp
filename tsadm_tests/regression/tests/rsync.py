@@ -1,4 +1,3 @@
-# $Id: rsync.py 12295 2014-12-11 14:47:05Z jrms $
 
 import time
 from .. import RegressionTest

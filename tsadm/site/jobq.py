@@ -1,4 +1,3 @@
-# $Id: jobq.py 12179 2014-11-29 05:55:57Z jrms $
 
 from tsadm.jobq.cmd import TSAdmJobQCmd
 

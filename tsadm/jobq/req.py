@@ -1,4 +1,3 @@
-# $Id: req.py 12223 2014-12-01 21:11:11Z jrms $
 
 from tsadm.jobq.cmd import TSAdmJobQCmdInvoke
 from tsadm.slave.jobq import SLAVE_REQ_MAP

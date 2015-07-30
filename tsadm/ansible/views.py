@@ -1,4 +1,3 @@
-# $Id: views.py 12879 2015-05-20 20:59:10Z jrms $
 
 from django.shortcuts import render
 

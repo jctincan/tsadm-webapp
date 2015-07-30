@@ -6,4 +6,4 @@ __pycache__
 
 *.patch
 
-etc/config.json
+etc/*.config.json

@@ -1,4 +1,3 @@
-# $Id: Makefile 12370 2015-01-14 23:59:02Z jrms $
 
 REGR_TESTS_OPTS := ''
 

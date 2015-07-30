@@ -1,4 +1,3 @@
-# $Id: gen_urls_digest.py 12186 2014-11-30 18:38:36Z jrms $
 
 import http.client
 import sys

@@ -1,4 +1,3 @@
-$Id: TODO.txt 12591 2015-02-10 16:51:23Z jrms $
 
 * Drupal multi-site installation support
 ** https://mantis.tincan.co.uk/view.php?id=33822

@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: slave-setup 12415 2015-01-16 17:58:33Z jrms $
 
 set -e
 

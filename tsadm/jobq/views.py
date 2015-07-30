@@ -1,4 +1,3 @@
-# $Id: views.py 12365 2015-01-13 04:17:17Z jrms $
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse

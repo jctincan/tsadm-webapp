@@ -1,4 +1,3 @@
--- $Id: jobq.tbl.sql 11812 2014-09-18 17:59:20Z jrms $
 
 CREATE TABLE IF NOT EXISTS `jobq` (
     `id` char(41) NOT NULL DEFAULT '',

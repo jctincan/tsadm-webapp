@@ -1,4 +1,3 @@
--- $Id: user.tbl.sql 12593 2015-02-11 00:59:26Z jrms $
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(10) unsigned NOT NULL DEFAULT 0,

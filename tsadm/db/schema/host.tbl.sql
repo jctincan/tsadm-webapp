@@ -1,4 +1,3 @@
--- $Id: host.tbl.sql 12828 2015-05-05 23:38:31Z jrms $
 
 CREATE TABLE IF NOT EXISTS `host` (
   `id` int(10) unsigned NOT NULL DEFAULT 0,

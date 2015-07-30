@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id: checkout-branch 12598 2015-02-11 05:09:23Z jrms $
 test -z "$GIT_BRANCH" &&
 {
   echo "no branch name"

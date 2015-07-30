@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# $Id: runner.py 12754 2015-04-07 03:55:08Z jrms $
 
 import subprocess
 import tempfile

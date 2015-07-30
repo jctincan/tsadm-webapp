@@ -1,4 +1,3 @@
-# $Id: views.py 12597 2015-02-11 05:02:41Z jrms $
 
 import time
 

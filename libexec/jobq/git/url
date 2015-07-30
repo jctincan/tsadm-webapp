@@ -1,3 +1,2 @@
 #!/bin/bash
-# $Id: url 11585 2014-07-31 03:12:19Z jrms $
 exec /usr/bin/git config remote.origin.url
