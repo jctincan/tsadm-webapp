@@ -1,0 +1,5 @@
+{
+    "master_fqdn": "dev.tsadm.local",
+    "master_port": 8000,
+    "master_ssl": false
+}

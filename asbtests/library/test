@@ -1,0 +1,129 @@
+#!/usr/bin/python
+
+import re
+from httplib import HTTPConnection
+
+REDIRECT_MAX = 10
+
+class Test:
+    cfg = None
+    asbmod = None
+    url = None
+    fail_abort = None
+    check_regex = None
+    redirect_loop_count = 0
+    reverse_check = None
+    regex_match_line = None
+
+    def __init__(self, cfg):
+        self.cfg = cfg
+        self.asbmod = AnsibleModule(
+            argument_spec=dict(
+                url=dict(required=False, default='/'),
+                fail_abort=dict(required=False, default=False),
+                check_regex=dict(required=False, default=None),
+                reverse_check=dict(required=False, default=False),
+            ),
+            supports_check_mode=False
+        )
+        self.run()
+
+    def paramsValidate(self):
+        if self.check_regex is None:
+            self.asbmod.fail_json(msg='check_regex is not set')
+
+    def paramsLoad(self):
+        self.url = self.asbmod.params['url']
+        self.fail_abort = self.asbmod.boolean(self.asbmod.params['fail_abort'])
+        self.check_regex = self.asbmod.params['check_regex']
+        self.reverse_check = self.asbmod.boolean(self.asbmod.params['reverse_check'])
+        self.paramsValidate()
+
+    def redirLocation(self, resp):
+        for hk, hv in resp.getheaders():
+            if hk == 'Location':
+                return "/%s/" % hv.strip().split('/', 3)[3]
+        self.fail("redir location not found")
+
+    def respRedirect(self, resp):
+        if self.redirect_loop_count >= REDIRECT_MAX:
+            self.asbmod.fail_json(msg="redirect max limit(%d) reached" % REDIRECT_MAX)
+        else:
+            self.redirect_loop_count += 1
+            return self.respGet(self.redirLocation(resp))
+
+    def respCheck(self, resp):
+        if resp.status == 301 or resp.status == 302:
+            return self.respRedirect(resp)
+        elif resp.status != 200:
+            self.fail("resp.status -> %d" % resp.status)
+        return resp
+
+    def respGet(self, url=None):
+        if url is None: url = self.url
+        conn = HTTPConnection(self.cfg['master_fqdn'], self.cfg['master_port'])
+        conn.request('GET', url)
+        resp = conn.getresponse()
+        conn.close()
+        return self.respCheck(resp)
+
+    def checkRegex(self, body):
+        try:
+            regex = re.compile(self.check_regex)
+        except Exception as e:
+            self.asbmod.fail_json(msg="check_regex: %s" % str(e))
+        line_nr = 0
+        for line in body:
+            line_nr += 1
+            match = regex.match(line)
+            if match:
+                self.regex_match_line = line_nr
+                return match
+        return None
+
+    def contentGet(self, resp):
+        return resp.read().splitlines()
+
+    def contentParse(self, resp):
+        body = self.contentGet(resp)
+        check_pass = None
+        # check regex
+        if self.check_regex:
+            check_pass = self.checkRegex(body)
+        if check_pass:
+            # check pass
+            return not self.reverse_check
+        else:
+            # check fail
+            return self.reverse_check
+
+    def fail(self, msg='FAIL'):
+        if self.fail_abort:
+            self.asbmod.fail_json(msg=msg)
+        else:
+            self.exit(msg=msg, changed=True)
+
+    def exit(self, msg='PASS', changed=False):
+        self.asbmod.exit_json(
+            changed=changed,
+            msg=msg,
+            reverse_check=self.reverse_check,
+            redirect=self.redirect_loop_count,
+            regex_match_line=self.regex_match_line,
+        )
+
+    def run(self):
+        self.paramsLoad()
+        resp = self.respGet()
+        if self.contentParse(resp):
+            self.exit()
+        else:
+            self.fail()
+
+from ansible.module_utils.basic import *
+if __name__ == '__main__':
+    import json
+    fh = open('/opt/tsadmdev/webapp/asbtests/config.json', 'r')
+    cfg = json.load(fh)
+    fh.close()
+    Test(cfg)
