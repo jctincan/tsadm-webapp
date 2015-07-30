@@ -12,7 +12,7 @@ if __env_mode == 'dev':
 
 __BASE_DIR = '/opt/tsadm'+__RUN_MODE+'/webapp'
 __CONFIG_PATH = '/etc/opt/tsadm'+__RUN_MODE+'/config.json'
-__MASTER_FQDN = 'master.tsadm.local'
+__MASTER_FQDN = 'dev.tsadm.local'
 __HOME_DIR = '/home/tsadm'+__RUN_MODE
 
 __TSADM = {
