@@ -14,6 +14,7 @@ class Test:
     redirect_loop_count = 0
     reverse_check = None
     regex_match_line = None
+    fail_msg = None
 
     def __init__(self, cfg):
         self.cfg = cfg
@@ -73,12 +74,15 @@ class Test:
         except Exception as e:
             self.asbmod.fail_json(msg="check_regex: %s" % str(e))
         line_nr = 0
+        body_size = 0
         for line in body:
             line_nr += 1
+            body_size += len(line)
             match = regex.match(line)
             if match:
                 self.regex_match_line = line_nr
                 return match
+        self.fail_msg = 'check_regex did not match, checked %d lines, %d bytes' % (line_nr, body_size)
         return None
 
     def contentGet(self, resp):
@@ -91,19 +95,25 @@ class Test:
         if self.check_regex:
             check_pass = self.checkRegex(body)
         if check_pass:
-            # check pass
+            # check passed
             return not self.reverse_check
         else:
-            # check fail
+            # check failed
             return self.reverse_check
 
-    def fail(self, msg='FAIL'):
+    def fail(self, msg=None):
+        if msg is None:
+            msg = 'FAIL: [fail_abort=%s] %s' % (self.fail_abort, self.fail_msg)
+        else:
+            msg = 'FAIL: %s' % msg
         if self.fail_abort:
             self.asbmod.fail_json(msg=msg)
         else:
             self.exit(msg=msg, changed=True)
 
-    def exit(self, msg='PASS', changed=False):
+    def exit(self, msg=None, changed=False):
+        if msg is None:
+            msg = 'PASS'
         self.asbmod.exit_json(
             changed=changed,
             msg=msg,
