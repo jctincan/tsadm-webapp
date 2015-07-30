@@ -47,7 +47,7 @@ __TSADM = {
     'MASTER_SERVER_PORT': 8000,
     'MASTER_SERVER_SSL': False,
 
-    'SITE_ENV_DOMAIN': __MASTER_FQDN,
+    'SITE_ENV_DOMAIN': 'tsadm'+__RUN_MODE+'.local',
     'SITE_HOME_BASE': __HOME_DIR+'/sites',
     'SITE_REPO_URI_TMPL': 'ssh://{user}@'+__MASTER_FQDN+'/~/{repo}.git',
 
