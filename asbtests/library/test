@@ -25,6 +25,9 @@ class Test:
     reload_count = 0
     reload_wait = None
     start_tstamp = None
+    regex_get = None
+    regex_get_group = None
+    regex_got = None
 
     def __init__(self, cfg):
         self.start_tstamp = time.time()
@@ -39,6 +42,8 @@ class Test:
                 post_data=dict(required=False, default=None),
                 fail_reload=dict(required=False, default=False),
                 reload_wait=dict(required=False, default=2),
+                regex_get=dict(required=False, default=None),
+                regex_get_group=dict(required=False, default=1),
             ),
             supports_check_mode=False
         )
@@ -49,8 +54,15 @@ class Test:
         self.run()
 
     def paramsValidate(self):
-        if self.check_regex is None:
-            self.asbmod.fail_json(msg='check_regex is not set')
+        actions_count = 0
+        if self.check_regex is not None:
+            actions_count += 1
+        if self.regex_get is not None:
+            actions_count += 1
+        if actions_count < 1:
+            self.asbmod.fail_json(msg='no test action')
+        elif actions_count > 1:
+            self.asbmod.fail_json(msg='more than one test action')
 
     def paramsLoad(self):
         self.url = self.asbmod.params['url']
@@ -65,6 +77,8 @@ class Test:
             self.req_method = 'get'
         self.fail_reload = int(self.asbmod.params['fail_reload'])
         self.reload_wait = int(self.asbmod.params['reload_wait'])
+        self.regex_get = self.asbmod.params['regex_get']
+        self.regex_get_group = int(self.asbmod.params['regex_get_group'])
         self.paramsValidate()
 
     def redirLocation(self, resp):
@@ -116,10 +130,7 @@ class Test:
         return self.respCheck(resp)
 
     def checkRegex(self, body):
-        try:
-            regex = re.compile(self.check_regex)
-        except Exception as e:
-            self.asbmod.fail_json(msg="check_regex: %s" % str(e))
+        regex = re.compile(self.check_regex)
         line_nr = 0
         body_size = 0
         for line in body:
@@ -134,6 +145,20 @@ class Test:
         self.fail_msg = 'check_regex did not match, checked %d lines, %d bytes' % (line_nr, body_size)
         return None
 
+    def regexGet(self, body):
+        regex = re.compile(self.regex_get)
+        line_nr = 0
+        body_size = 0
+        for line in body:
+            line_nr += 1
+            body_size += len(line)
+            match = regex.match(line)
+            if match:
+                self.regex_got = match.group(self.regex_get_group)
+                return True
+        self.fail_msg = 'regex_get did not match, checked %d lines, %d bytes' % (line_nr, body_size)
+        return False
+
     def contentGet(self, resp):
         return resp.read().splitlines()
 
@@ -142,7 +167,16 @@ class Test:
         check_pass = None
         # check regex
         if self.check_regex:
-            check_pass = self.checkRegex(body)
+            try:
+                check_pass = self.checkRegex(body)
+            except Exception as e:
+                self.asbmod.fail_json(msg="check_regex: %s" % str(e))
+        # regex get
+        elif self.regex_get:
+            try:
+                check_pass = self.regexGet(body)
+            except Exception as e:
+                self.asbmod.fail_json(msg="regex_get: %s" % str(e))
         if check_pass:
             # check passed
             return not self.reverse_check
@@ -176,6 +210,8 @@ class Test:
             req_method=self.req_method,
             reloaded=self.reload_count,
             fail_reload=self.fail_reload,
+            regex_got=self.regex_got,
+            url=self.url,
             took="%.3fs" % (time.time() - self.start_tstamp),
         )
 
