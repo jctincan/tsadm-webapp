@@ -81,6 +81,8 @@ class Test:
             match = regex.match(line)
             if match:
                 self.regex_match_line = line_nr
+                if self.reverse_check:
+                    self.fail_msg = 'check_regex matched line %d' % line_nr
                 return match
         self.fail_msg = 'check_regex did not match, checked %d lines, %d bytes' % (line_nr, body_size)
         return None
@@ -103,7 +105,10 @@ class Test:
 
     def fail(self, msg=None):
         if msg is None:
-            msg = 'FAIL: [fail_abort=%s] %s' % (self.fail_abort, self.fail_msg)
+            flags = list()
+            if self.fail_abort: flags.append('abort')
+            if self.reverse_check: flags.append('reverse')
+            msg = 'FAIL: [%s] %s' % (','.join(flags), self.fail_msg)
         else:
             msg = 'FAIL: %s' % msg
         if self.fail_abort:
