@@ -20,7 +20,7 @@ class Test:
         self.cfg = cfg
         self.asbmod = AnsibleModule(
             argument_spec=dict(
-                url=dict(required=False, default='/'),
+                url=dict(required=True),
                 fail_abort=dict(required=False, default=False),
                 check_regex=dict(required=False, default=None),
                 reverse_check=dict(required=False, default=False),
