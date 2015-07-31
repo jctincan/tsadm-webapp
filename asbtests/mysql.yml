@@ -1,0 +1,9 @@
+---
+- name: mysql sync
+  test: url=/jobq/ce/regr/test/
+    check_regex="^<!-- CMD_STATUS=mysql\.sync:(0|1) -->$"
+    post_data="tsadm_cmd=mysql.sync&tsadm_cmd_args_encode=LS1kc3RfZW52PXJlZ3IuZGV2IC0tc3JjX2Vudj1yZWdyLnRlc3Q="
+    fail_reload=3
+    reload_wait=2
+  tags:
+    - mysql

@@ -1,0 +1,254 @@
+#!/usr/bin/python
+
+import re
+import time
+from hashlib import sha1
+from httplib import HTTPConnection
+
+REDIRECT_MAX = 10
+RELOAD_MAX = 10
+
+class Test:
+    cfg = None
+    asbmod = None
+    url = None
+    fail_abort = None
+    check_regex = None
+    redirect_loop_count = 0
+    reverse_check = None
+    regex_match_line = None
+    fail_msg = None
+    check_enabled = None
+    redir_hist = list()
+    post_data = None
+    fail_reload = None
+    reload_count = 0
+    reload_wait = None
+    start_tstamp = None
+    regex_get = None
+    regex_get_group = None
+    regex_got = None
+    content_checksum = None
+    content_checksum_read = None
+
+    def __init__(self, cfg):
+        self.start_tstamp = time.time()
+        self.cfg = cfg
+        self.asbmod = AnsibleModule(
+            argument_spec=dict(
+                url=dict(required=True),
+                fail_abort=dict(required=False, default=False),
+                check_regex=dict(required=False, default=None),
+                reverse_check=dict(required=False, default=False),
+                check_enabled=dict(required=False, default=True),
+                post_data=dict(required=False, default=None),
+                fail_reload=dict(required=False, default=False),
+                reload_wait=dict(required=False, default=2),
+                regex_get=dict(required=False, default=None),
+                regex_get_group=dict(required=False, default=1),
+                content_checksum=dict(required=False, default=None),
+            ),
+            supports_check_mode=False
+        )
+        try:
+            self.paramsLoad()
+        except Exception as e:
+            self.fail(str(e), True)
+        self.run()
+
+    def paramsValidate(self):
+        actions_count = 0
+        if self.check_regex is not None:
+            actions_count += 1
+        if self.regex_get is not None:
+            actions_count += 1
+        if self.content_checksum is not None:
+            actions_count += 1
+        # check actions count
+        if actions_count < 1:
+            self.asbmod.fail_json(msg='no test action')
+        elif actions_count > 1:
+            self.asbmod.fail_json(msg='more than one test action')
+
+    def paramsLoad(self):
+        self.url = self.asbmod.params['url']
+        self.fail_abort = self.asbmod.boolean(self.asbmod.params['fail_abort'])
+        self.check_regex = self.asbmod.params['check_regex']
+        self.reverse_check = self.asbmod.boolean(self.asbmod.params['reverse_check'])
+        self.check_enabled = self.asbmod.boolean(self.asbmod.params['check_enabled'])
+        self.post_data = self.asbmod.params['post_data']
+        self.fail_reload = int(self.asbmod.params['fail_reload'])
+        self.reload_wait = int(self.asbmod.params['reload_wait'])
+        self.regex_get = self.asbmod.params['regex_get']
+        self.regex_get_group = int(self.asbmod.params['regex_get_group'])
+        self.content_checksum = self.asbmod.params['content_checksum']
+        self.paramsValidate()
+
+    def redirLocation(self, resp):
+        loc = None
+        for hk, hv in resp.getheaders():
+            if hk.lower() == 'location':
+                loc = "/%s" % hv.strip().split('/', 3)[3]
+                break
+        if loc is None:
+            self.fail("redir location not found", force=True)
+        else:
+            self.redir_hist.append(self.url)
+            self.url = loc
+
+    def respRedirect(self, resp):
+        if self.redirect_loop_count >= REDIRECT_MAX:
+            self.asbmod.fail_json(msg="redirect max limit(%d) reached" % REDIRECT_MAX)
+        else:
+            self.redirect_loop_count += 1
+            self.redirLocation(resp)
+            return self.respGet()
+
+    def respCheck(self, resp):
+        if resp.status == 301 or resp.status == 302:
+            return self.respRedirect(resp)
+        elif resp.status != 200:
+            self.fail("resp.status -> %d" % resp.status)
+        return resp
+
+    def reqGET(self, conn):
+        conn.request('GET', self.url)
+        return conn.getresponse()
+
+    def reqPOST(self, conn):
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'text/plain'
+        }
+        conn.request('POST', self.url, self.post_data, headers)
+        return conn.getresponse()
+
+    def respGet(self):
+        conn = HTTPConnection(self.cfg['master_fqdn'], self.cfg['master_port'])
+        if self.post_data:
+            resp = self.reqPOST(conn)
+        else:
+            resp = self.reqGET(conn)
+        conn.close()
+        return self.respCheck(resp)
+
+    def checkRegex(self, body):
+        regex = re.compile(self.check_regex)
+        line_nr = 0
+        body_size = 0
+        for line in body:
+            line_nr += 1
+            body_size += len(line)
+            match = regex.match(line)
+            if match:
+                self.regex_match_line = line_nr
+                if self.reverse_check:
+                    self.fail_msg = 'check_regex matched line %d' % line_nr
+                return match
+        self.fail_msg = 'check_regex did not match, checked %d lines, %d bytes' % (line_nr, body_size)
+        return None
+
+    def regexGet(self, body):
+        regex = re.compile(self.regex_get)
+        line_nr = 0
+        body_size = 0
+        for line in body:
+            line_nr += 1
+            body_size += len(line)
+            match = regex.match(line)
+            if match:
+                self.regex_got = match.group(self.regex_get_group)
+                return True
+        self.fail_msg = 'regex_get did not match, checked %d lines, %d bytes' % (line_nr, body_size)
+        return False
+
+    def contentChecksum(self, body):
+        h = sha1()
+        for line in body: h.update(line)
+        self.content_checksum_read = h.hexdigest()
+        return self.content_checksum_read == self.content_checksum
+
+    def contentGet(self, resp):
+        return resp.read().splitlines()
+
+    def contentParse(self, resp):
+        body = self.contentGet(resp)
+        check_pass = None
+        # check regex
+        if self.check_regex:
+            try:
+                check_pass = self.checkRegex(body)
+            except Exception as e:
+                self.asbmod.fail_json(msg="check_regex: %s" % str(e))
+        # regex get
+        elif self.regex_get:
+            try:
+                check_pass = self.regexGet(body)
+            except Exception as e:
+                self.asbmod.fail_json(msg="regex_get: %s" % str(e))
+        # content checksum
+        elif self.content_checksum:
+            try:
+                check_pass = self.contentChecksum(body)
+            except Exception as e:
+                self.asbmod.fail_json(msg="content_checksum: %s" % str(e))
+        if check_pass:
+            # check passed
+            return not self.reverse_check
+        else:
+            # check failed
+            return self.reverse_check
+
+    def fail(self, msg=None, force=False):
+        if msg is None:
+            flags = list()
+            if self.fail_abort: flags.append('abort')
+            if self.reverse_check: flags.append('reverse')
+            msg = 'FAIL: [%s] %s' % (','.join(flags), self.fail_msg)
+        else:
+            msg = 'FAIL: %s' % msg
+        if self.fail_abort or force:
+            self.asbmod.fail_json(msg=msg)
+        else:
+            self.exit(msg=msg, changed=True)
+
+    def exit(self, msg='PASS', changed=False):
+        d = dict(
+            changed=changed,
+            url=self.url,
+        )
+        if msg: d['msg'] = msg
+        if self.reverse_check: d['reverse_check'] = self.reverse_check
+        if self.redirect_loop_count: d['redirect'] = self.redirect_loop_count
+        if self.regex_match_line: d['regex_match_line'] = self.regex_match_line
+        if len(self.redir_hist) > 0: d['redir_hist'] = ':'.join(self.redir_hist)
+        if self.reload_count: d['reloaded'] = self.reload_count
+        if self.fail_reload: d['fail_reload'] = self.fail_reload
+        if self.regex_got: d['regex_got'] = self.regex_got
+        if self.post_data: d['req_method'] = 'POST'
+        if self.content_checksum: d['content_checksum'] = self.content_checksum
+        if self.content_checksum_read != self.content_checksum: d['content_checksum_read'] = self.content_checksum_read
+        d['took'] = "%.3fs" % (time.time() - self.start_tstamp)
+        self.asbmod.exit_json(**d)
+
+    def run(self):
+        if not self.check_enabled:
+            self.exit('DISABLED', True)
+        resp = self.respGet()
+        if self.contentParse(resp):
+            self.exit()
+        else:
+            if self.fail_reload and self.reload_count < RELOAD_MAX:
+                self.reload_count += 1
+                time.sleep(self.reload_wait)
+                self.run()
+            else:
+                self.fail()
+
+from ansible.module_utils.basic import *
+if __name__ == '__main__':
+    import json
+    fh = open('/opt/tsadmdev/webapp/asbtests/config.json', 'r')
+    cfg = json.load(fh)
+    fh.close()
+    Test(cfg)

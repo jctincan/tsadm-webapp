@@ -1,0 +1,6 @@
+---
+- name: ansible inventory
+  test: url=/asb/inv/lst/
+    content_checksum=22737425bae1b06ddf8826efe25680602c877a67
+  tags:
+    - asb

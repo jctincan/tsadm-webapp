@@ -1,0 +1,6 @@
+---
+- name: site log
+  test: url=/site/regr/test/log/
+    check_regex="^<h3>regr activity log</h3>$"
+  tags:
+    - site

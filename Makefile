@@ -8,7 +8,6 @@ default:
 	@echo 'No default task'
 
 
-include mk/test/Makefile
 include mk/compile/Makefile
 include mk/django/Makefile
 
@@ -88,4 +87,4 @@ install-deps:
 	apt-get install python3-mysql.connector
 	apt-get install python3-lxml
 
-.PHONY: default clean uwsgi-reload config-grep enc-check install-deps $(DJANGO_PHONY) $(COMPILE_PHONY) $(TEST_PHONY)
+.PHONY: default clean uwsgi-reload config-grep enc-check install-deps $(DJANGO_PHONY) $(COMPILE_PHONY)

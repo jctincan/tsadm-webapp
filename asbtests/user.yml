@@ -1,0 +1,8 @@
+---
+- name: user
+  test: url=/user/
+    fail_abort=yes
+    reverse_check=no
+    check_regex="^.*Fingerprint:[^\d]+44:30:B1:38:11:EE"
+  tags:
+    - user

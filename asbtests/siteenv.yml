@@ -1,0 +1,101 @@
+---
+- name: siteenv
+  test: url=/
+    check_regex=".*TSADM_REGR_TESTS.DIGEST.6b7964193bb2ab040961c26b2dbc4698dcbe6f7a.*"
+    fail_abort=yes
+  tags:
+    - siteenv
+
+
+- name: siteenv claim
+  test: url=/site/regr/test/claim/
+    regex_get='.*href="/site/regr/test/claim/([a-f0-9]+)/">claim\.confirm.*'
+    fail_abort=yes
+  register: result
+  tags:
+    - siteenv
+    - siteenv-claim
+
+
+- name: siteenv claim confirm
+  test: url="/site/regr/test/claim/{{result.regex_got}}"
+    check_regex='^.*\s<a href="/site/regr/test/release/">env\.release</a>'
+    fail_abort=yes
+  tags:
+    - siteenv
+    - siteenv-claim
+
+
+- name: siteenv release
+  test: url=/site/regr/test/release/
+    regex_get='.*href="/site/regr/test/release/([a-f0-9]+)/">release\.confirm.*'
+    fail_abort=yes
+  register: result
+  tags:
+    - siteenv
+    - siteenv-claim
+
+
+- name: siteenv release confirm
+  test: url="/site/regr/test/release/{{result.regex_got}}"
+    check_regex='^.*\s<a href="/site/regr/test/claim/"'
+    fail_abort=yes
+  tags:
+    - siteenv
+    - siteenv-claim
+
+
+- name: siteenv lock
+  test: url=/site/regr/test/lock/
+    regex_get='.*href="/site/regr/test/lock/([a-f0-9]+)/".*'
+    fail_abort=yes
+  register: result
+  tags:
+    - siteenv
+    - siteenv-lock
+
+
+- name: siteenv lock confirm
+  test: url="/site/regr/test/lock/{{result.regex_got}}"
+    check_regex='^.*<a href="/site/regr/test/unlock/"'
+    fail_abort=yes
+  tags:
+    - siteenv
+    - siteenv-lock
+
+
+- name: siteenv unlock
+  test: url=/site/regr/test/unlock/
+    regex_get='.*href="/site/regr/test/unlock/([a-f0-9]+)/".*'
+    fail_abort=yes
+  register: result
+  tags:
+    - siteenv
+    - siteenv-lock
+
+
+- name: siteenv unlock confirm
+  test: url="/site/regr/test/unlock/{{result.regex_got}}"
+    check_regex='^.*\s<a href="/site/regr/test/lock/"'
+    fail_abort=yes
+  tags:
+    - siteenv
+    - siteenv-lock
+
+
+- name: siteenv live set
+  test: url=/jobq/ice/regr/test/env.live-set/
+    check_regex='^env live set$'
+    fail_abort=yes
+  tags:
+    - siteenv
+    - siteenv-live
+
+
+- name: siteenv live unset
+  test: url=/jobq/ice/regr/test/env.live-unset/
+    check_regex='^env live unset$'
+    fail_abort=yes
+  tags:
+    - siteenv
+    - siteenv-live

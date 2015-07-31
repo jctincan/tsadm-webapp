@@ -1,0 +1,7 @@
+---
+- name: slave
+  test: url=/slave/1109544102/
+    check_regex='^IP address. 10\.0\.3\.'
+    fail_abort=yes
+  tags:
+    - slave
