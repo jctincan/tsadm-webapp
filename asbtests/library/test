@@ -16,6 +16,7 @@ class Test:
     regex_match_line = None
     fail_msg = None
     check_enabled = None
+    redir_hist = list()
 
     def __init__(self, cfg):
         self.cfg = cfg
@@ -45,9 +46,11 @@ class Test:
 
     def redirLocation(self, resp):
         for hk, hv in resp.getheaders():
-            if hk == 'Location':
-                return "/%s/" % hv.strip().split('/', 3)[3]
-        self.fail("redir location not found")
+            if hk.lower() == 'location':
+                loc = "/%s" % hv.strip().split('/', 3)[3]
+                self.redir_hist.append(loc)
+                return loc
+        self.fail("redir location not found", force=True)
 
     def respRedirect(self, resp):
         if self.redirect_loop_count >= REDIRECT_MAX:
@@ -106,7 +109,7 @@ class Test:
             # check failed
             return self.reverse_check
 
-    def fail(self, msg=None):
+    def fail(self, msg=None, force=False):
         if msg is None:
             flags = list()
             if self.fail_abort: flags.append('abort')
@@ -114,7 +117,7 @@ class Test:
             msg = 'FAIL: [%s] %s' % (','.join(flags), self.fail_msg)
         else:
             msg = 'FAIL: %s' % msg
-        if self.fail_abort:
+        if self.fail_abort or force:
             self.asbmod.fail_json(msg=msg)
         else:
             self.exit(msg=msg, changed=True)
@@ -128,6 +131,7 @@ class Test:
             reverse_check=self.reverse_check,
             redirect=self.redirect_loop_count,
             regex_match_line=self.regex_match_line,
+            redir_hist=':'.join(self.redir_hist),
         )
 
     def run(self):
