@@ -4,6 +4,7 @@
   tasks:
     - include: user.yml
     - include: jobq.yml
+    - include: slave.yml
     - include: site.yml
     - include: siteenv.yml
     - include: git.yml
