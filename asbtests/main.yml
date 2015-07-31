@@ -3,4 +3,5 @@
   gather_facts: false
   tasks:
     - include: user.yml
+    - include: jobq.yml
     - include: git.yml

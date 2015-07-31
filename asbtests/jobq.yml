@@ -1,0 +1,8 @@
+---
+- name: jobq command confirm
+  test: url=/jobq/cc/regr/test/
+    check_regex="^[\s]+Confirm running command against <b>regr\.test</b> environment\."
+    post_data="tsadm_cmd=git.pull"
+    fail_abort=yes
+  tags:
+    - jobq
