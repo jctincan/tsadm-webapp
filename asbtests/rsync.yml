@@ -1,0 +1,18 @@
+---
+- name: rsync
+  test: url=/files/regr/test/
+    check_regex=".*TSADM_REGR_TESTS.DIGEST.2e51f509b453c7956d7d15e6772c25cd58ff178c.*"
+    fail_abort=yes
+  tags:
+    - rsync
+
+
+- name: rsync dirs
+  test: url=/jobq/ce/regr/test/
+    check_regex="^<!-- CMD_STATUS=rsync\.dirs:(0|1) -->$"
+    post_data="tsadm_cmd=rsync.dirs&tsadm_cmd_args_encode=LS1yc3luY19zb3VyY2VzPWRvY3Jvb3Qvc2l0ZXMvZGVmYXVsdC9maWxlcyAtLWhvc3Rfb3JpZz1sb2NhbGhvc3QgLS1yc3luY19kZXN0X2Vudj1sb2NhbGhvc3Q6OnJlZ3I6OmRldg=="
+    fail_reload=3
+    reload_wait=3
+  tags:
+    - rsync
+    - rsync-dirs
