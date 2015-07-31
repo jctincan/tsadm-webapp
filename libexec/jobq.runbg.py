@@ -23,7 +23,7 @@ get_url_prefix = '/jobq/get'
 end_url_prefix = '/jobq/end'
 update_url_prefix = '/jobq/update'
 
-cafile = BASE_DIR + '/etc/certs/tsadmca.pem'
+cafile = BASE_DIR + '/etc/certs/ca.pem'
 cert_file = BASE_DIR + '/etc/certs/slave-auth.pem'
 key_file = cert_file
 

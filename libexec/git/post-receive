@@ -3,7 +3,7 @@
 PATH=/usr/bin:/bin
 DEBUG_LOG=true
 DEVMODE=false
-CA_CERT=/opt/tsadmtest/webapp/etc/certs/tsadmca.pem
+CA_CERT=/opt/tsadmtest/webapp/etc/certs/ca.pem
 BOT_CERT=/opt/tsadmtest/webapp/etc/certs/gitbot.pem
 SSL_ARGS="--cacert $CA_CERT --cert $BOT_CERT"
 MASTER_URI='https://test.tsadm.local/git/hook/post-receive/'
