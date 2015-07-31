@@ -15,6 +15,7 @@ class Test:
     reverse_check = None
     regex_match_line = None
     fail_msg = None
+    check_enabled = None
 
     def __init__(self, cfg):
         self.cfg = cfg
@@ -24,6 +25,7 @@ class Test:
                 fail_abort=dict(required=False, default=False),
                 check_regex=dict(required=False, default=None),
                 reverse_check=dict(required=False, default=False),
+                check_enabled=dict(required=False, default=True),
             ),
             supports_check_mode=False
         )
@@ -38,6 +40,7 @@ class Test:
         self.fail_abort = self.asbmod.boolean(self.asbmod.params['fail_abort'])
         self.check_regex = self.asbmod.params['check_regex']
         self.reverse_check = self.asbmod.boolean(self.asbmod.params['reverse_check'])
+        self.check_enabled = self.asbmod.boolean(self.asbmod.params['check_enabled'])
         self.paramsValidate()
 
     def redirLocation(self, resp):
@@ -129,6 +132,8 @@ class Test:
 
     def run(self):
         self.paramsLoad()
+        if not self.check_enabled:
+            self.exit('DISABLED', True)
         resp = self.respGet()
         if self.contentParse(resp):
             self.exit()
