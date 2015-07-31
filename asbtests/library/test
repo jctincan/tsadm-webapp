@@ -24,8 +24,10 @@ class Test:
     fail_reload = None
     reload_count = 0
     reload_wait = None
+    start_tstamp = None
 
     def __init__(self, cfg):
+        self.start_tstamp = time.time()
         self.cfg = cfg
         self.asbmod = AnsibleModule(
             argument_spec=dict(
@@ -174,6 +176,7 @@ class Test:
             req_method=self.req_method,
             reloaded=self.reload_count,
             fail_reload=self.fail_reload,
+            took="%.3fs" % (time.time() - self.start_tstamp),
         )
 
     def run(self):
