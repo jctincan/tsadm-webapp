@@ -19,7 +19,6 @@ class Test:
     fail_msg = None
     check_enabled = None
     redir_hist = list()
-    req_method = None
     post_data = None
     fail_reload = None
     reload_count = 0
@@ -71,10 +70,6 @@ class Test:
         self.reverse_check = self.asbmod.boolean(self.asbmod.params['reverse_check'])
         self.check_enabled = self.asbmod.boolean(self.asbmod.params['check_enabled'])
         self.post_data = self.asbmod.params['post_data']
-        if self.post_data:
-            self.req_method = 'post'
-        else:
-            self.req_method = 'get'
         self.fail_reload = int(self.asbmod.params['fail_reload'])
         self.reload_wait = int(self.asbmod.params['reload_wait'])
         self.regex_get = self.asbmod.params['regex_get']
@@ -90,7 +85,7 @@ class Test:
         if loc is None:
             self.fail("redir location not found", force=True)
         else:
-            self.redir_hist.append(loc)
+            self.redir_hist.append(self.url)
             self.url = loc
 
     def respRedirect(self, resp):
@@ -200,7 +195,6 @@ class Test:
     def exit(self, msg='PASS', changed=False):
         d = dict(
             changed=changed,
-            req_method=self.req_method,
             url=self.url,
         )
         if msg: d['msg'] = msg
@@ -211,6 +205,7 @@ class Test:
         if self.reload_count: d['reloaded'] = self.reload_count
         if self.fail_reload: d['fail_reload'] = self.fail_reload
         if self.regex_got: d['regex_got'] = self.regex_got
+        if self.post_data: d['req_method'] = 'POST'
         d['took'] = "%.3fs" % (time.time() - self.start_tstamp)
         self.asbmod.exit_json(**d)
 
