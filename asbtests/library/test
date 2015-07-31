@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
 import re
+import time
 from httplib import HTTPConnection
 
 REDIRECT_MAX = 10
+RELOAD_MAX = 10
 
 class Test:
     cfg = None
@@ -19,6 +21,9 @@ class Test:
     redir_hist = list()
     req_method = None
     post_data = None
+    fail_reload = None
+    reload_count = 0
+    reload_wait = None
 
     def __init__(self, cfg):
         self.cfg = cfg
@@ -30,9 +35,15 @@ class Test:
                 reverse_check=dict(required=False, default=False),
                 check_enabled=dict(required=False, default=True),
                 post_data=dict(required=False, default=None),
+                fail_reload=dict(required=False, default=False),
+                reload_wait=dict(required=False, default=2),
             ),
             supports_check_mode=False
         )
+        try:
+            self.paramsLoad()
+        except Exception as e:
+            self.fail(str(e), True)
         self.run()
 
     def paramsValidate(self):
@@ -50,22 +61,29 @@ class Test:
             self.req_method = 'post'
         else:
             self.req_method = 'get'
+        self.fail_reload = int(self.asbmod.params['fail_reload'])
+        self.reload_wait = int(self.asbmod.params['reload_wait'])
         self.paramsValidate()
 
     def redirLocation(self, resp):
+        loc = None
         for hk, hv in resp.getheaders():
             if hk.lower() == 'location':
                 loc = "/%s" % hv.strip().split('/', 3)[3]
-                self.redir_hist.append(loc)
-                return loc
-        self.fail("redir location not found", force=True)
+                break
+        if loc is None:
+            self.fail("redir location not found", force=True)
+        else:
+            self.redir_hist.append(loc)
+            self.url = loc
 
     def respRedirect(self, resp):
         if self.redirect_loop_count >= REDIRECT_MAX:
             self.asbmod.fail_json(msg="redirect max limit(%d) reached" % REDIRECT_MAX)
         else:
             self.redirect_loop_count += 1
-            return self.respGet(self.redirLocation(resp))
+            self.redirLocation(resp)
+            return self.respGet()
 
     def respCheck(self, resp):
         if resp.status == 301 or resp.status == 302:
@@ -74,25 +92,24 @@ class Test:
             self.fail("resp.status -> %d" % resp.status)
         return resp
 
-    def reqGET(self, conn, url):
-        conn.request('GET', url)
+    def reqGET(self, conn):
+        conn.request('GET', self.url)
         return conn.getresponse()
 
-    def reqPOST(self, conn, url):
+    def reqPOST(self, conn):
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': 'text/plain'
         }
-        conn.request('POST', url, self.post_data, headers)
+        conn.request('POST', self.url, self.post_data, headers)
         return conn.getresponse()
 
-    def respGet(self, url=None):
-        if url is None: url = self.url
+    def respGet(self):
         conn = HTTPConnection(self.cfg['master_fqdn'], self.cfg['master_port'])
         if self.post_data:
-            resp = self.reqPOST(conn, url)
+            resp = self.reqPOST(conn)
         else:
-            resp = self.reqGET(conn, url)
+            resp = self.reqGET(conn)
         conn.close()
         return self.respCheck(resp)
 
@@ -155,17 +172,23 @@ class Test:
             regex_match_line=self.regex_match_line,
             redir_hist=':'.join(self.redir_hist),
             req_method=self.req_method,
+            reloaded=self.reload_count,
+            fail_reload=self.fail_reload,
         )
 
     def run(self):
-        self.paramsLoad()
         if not self.check_enabled:
             self.exit('DISABLED', True)
         resp = self.respGet()
         if self.contentParse(resp):
             self.exit()
         else:
-            self.fail()
+            if self.fail_reload and self.reload_count < RELOAD_MAX:
+                self.reload_count += 1
+                time.sleep(self.reload_wait)
+                self.run()
+            else:
+                self.fail()
 
 from ansible.module_utils.basic import *
 if __name__ == '__main__':
