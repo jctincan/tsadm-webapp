@@ -17,6 +17,8 @@ class Test:
     fail_msg = None
     check_enabled = None
     redir_hist = list()
+    req_method = None
+    post_data = None
 
     def __init__(self, cfg):
         self.cfg = cfg
@@ -27,6 +29,7 @@ class Test:
                 check_regex=dict(required=False, default=None),
                 reverse_check=dict(required=False, default=False),
                 check_enabled=dict(required=False, default=True),
+                post_data=dict(required=False, default=None),
             ),
             supports_check_mode=False
         )
@@ -42,6 +45,11 @@ class Test:
         self.check_regex = self.asbmod.params['check_regex']
         self.reverse_check = self.asbmod.boolean(self.asbmod.params['reverse_check'])
         self.check_enabled = self.asbmod.boolean(self.asbmod.params['check_enabled'])
+        self.post_data = self.asbmod.params['post_data']
+        if self.post_data:
+            self.req_method = 'post'
+        else:
+            self.req_method = 'get'
         self.paramsValidate()
 
     def redirLocation(self, resp):
@@ -66,11 +74,25 @@ class Test:
             self.fail("resp.status -> %d" % resp.status)
         return resp
 
+    def reqGET(self, conn, url):
+        conn.request('GET', url)
+        return conn.getresponse()
+
+    def reqPOST(self, conn, url):
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'text/plain'
+        }
+        conn.request('POST', url, self.post_data, headers)
+        return conn.getresponse()
+
     def respGet(self, url=None):
         if url is None: url = self.url
         conn = HTTPConnection(self.cfg['master_fqdn'], self.cfg['master_port'])
-        conn.request('GET', url)
-        resp = conn.getresponse()
+        if self.post_data:
+            resp = self.reqPOST(conn, url)
+        else:
+            resp = self.reqGET(conn, url)
         conn.close()
         return self.respCheck(resp)
 
@@ -132,6 +154,7 @@ class Test:
             redirect=self.redirect_loop_count,
             regex_match_line=self.regex_match_line,
             redir_hist=':'.join(self.redir_hist),
+            req_method=self.req_method,
         )
 
     def run(self):
