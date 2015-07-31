@@ -2,6 +2,7 @@
 
 import re
 import time
+from hashlib import sha1
 from httplib import HTTPConnection
 
 REDIRECT_MAX = 10
@@ -27,6 +28,8 @@ class Test:
     regex_get = None
     regex_get_group = None
     regex_got = None
+    content_checksum = None
+    content_checksum_read = None
 
     def __init__(self, cfg):
         self.start_tstamp = time.time()
@@ -43,6 +46,7 @@ class Test:
                 reload_wait=dict(required=False, default=2),
                 regex_get=dict(required=False, default=None),
                 regex_get_group=dict(required=False, default=1),
+                content_checksum=dict(required=False, default=None),
             ),
             supports_check_mode=False
         )
@@ -58,6 +62,9 @@ class Test:
             actions_count += 1
         if self.regex_get is not None:
             actions_count += 1
+        if self.content_checksum is not None:
+            actions_count += 1
+        # check actions count
         if actions_count < 1:
             self.asbmod.fail_json(msg='no test action')
         elif actions_count > 1:
@@ -74,6 +81,7 @@ class Test:
         self.reload_wait = int(self.asbmod.params['reload_wait'])
         self.regex_get = self.asbmod.params['regex_get']
         self.regex_get_group = int(self.asbmod.params['regex_get_group'])
+        self.content_checksum = self.asbmod.params['content_checksum']
         self.paramsValidate()
 
     def redirLocation(self, resp):
@@ -154,6 +162,12 @@ class Test:
         self.fail_msg = 'regex_get did not match, checked %d lines, %d bytes' % (line_nr, body_size)
         return False
 
+    def contentChecksum(self, body):
+        h = sha1()
+        for line in body: h.update(line)
+        self.content_checksum_read = h.hexdigest()
+        return self.content_checksum_read == self.content_checksum
+
     def contentGet(self, resp):
         return resp.read().splitlines()
 
@@ -172,6 +186,12 @@ class Test:
                 check_pass = self.regexGet(body)
             except Exception as e:
                 self.asbmod.fail_json(msg="regex_get: %s" % str(e))
+        # content checksum
+        elif self.content_checksum:
+            try:
+                check_pass = self.contentChecksum(body)
+            except Exception as e:
+                self.asbmod.fail_json(msg="content_checksum: %s" % str(e))
         if check_pass:
             # check passed
             return not self.reverse_check
@@ -206,6 +226,8 @@ class Test:
         if self.fail_reload: d['fail_reload'] = self.fail_reload
         if self.regex_got: d['regex_got'] = self.regex_got
         if self.post_data: d['req_method'] = 'POST'
+        if self.content_checksum: d['content_checksum'] = self.content_checksum
+        if self.content_checksum_read != self.content_checksum: d['content_checksum_read'] = self.content_checksum_read
         d['took'] = "%.3fs" % (time.time() - self.start_tstamp)
         self.asbmod.exit_json(**d)
 
