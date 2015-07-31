@@ -12,7 +12,7 @@ include mk/compile/Makefile
 include mk/django/Makefile
 
 
-clean: test-clean
+clean:
 	@find . -type d -name __pycache__ | xargs rm -vrf
 	@find . -type f -name '*.py[co]' | xargs rm -vrf
 
