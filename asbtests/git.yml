@@ -1,0 +1,88 @@
+---
+- name: git url
+  test: url=/git/regr/test/
+    fail_abort=yes
+    check_regex=".*ssh://regrDEV@tsadm-master:22/~/regr\.git</span>.*"
+  tags:
+    - git
+    - git-url
+
+
+- name: git branch
+  test: url=/git/regr/test/
+    fail_abort=yes
+    check_regex="^[\s]+Server running"
+  tags:
+    - git
+    - git-branch
+
+
+- name: git log
+  test: url=/jobq/ce/regr/test/
+    check_regex="^commit "
+    post_data="tsadm_cmd=git.log"
+  tags:
+    - git
+    - git-log
+
+
+- name: git status
+  test: url=/jobq/ce/regr/test/
+    check_regex="^nothing to commit, "
+    post_data="tsadm_cmd=git.status"
+  tags:
+    - git
+    - git-status
+
+
+- name: git pull
+  test: url=/jobq/ce/regr/test/
+    check_regex="^<!-- CMD_STATUS=git\.pull:0 -->$"
+    post_data="tsadm_cmd=git.pull"
+    fail_reload=3
+    reload_wait=2
+  tags:
+    - git
+    - git-pull
+
+
+- name: git checkout tag
+  test: url=/jobq/ce/regr/test/
+    check_regex="^<!-- CMD_STATUS=git\.checkout-tag:0 -->$"
+    post_data="tsadm_cmd=git.checkout-tag&tsadm_cmd_args_encode=LS1naXRfdGFnPXRhZzE="
+    fail_reload=3
+    reload_wait=2
+  tags:
+    - git
+    - git-checkout-tag
+
+
+- name: git checkout branch
+  test: url=/jobq/ce/regr/test/
+    check_regex="^<!-- CMD_STATUS=git\.checkout-branch:0 -->$"
+    post_data="tsadm_cmd=git.checkout-branch&tsadm_cmd_args_encode=LS1naXRfYnJhbmNoPXJlZ3J0ZXN0"
+    fail_reload=3
+    reload_wait=2
+  tags:
+    - git
+    - git-checkout-branch
+
+
+- name: git cleanup
+  test: url=/jobq/ce/regr/test/
+    check_regex="^<!-- CMD_STATUS=git\.cleanup:0 -->$"
+    post_data="tsadm_cmd=git.cleanup"
+    fail_reload=3
+    reload_wait=2
+  tags:
+    - git
+    - git-cleanup
+
+
+- name: git hook post-receive
+  test: url=/git/hook/post-receive/
+    check_regex="^branch "
+    post_data="tsadm_post_data=NjkxYmYyNDgzNjk4OGUyNWYzYTJjODg1YTUxY2FjNWY3M2Q1Y2NlYQpyZWdyCnJlZ3J0ZXN0Cg=="
+  tags:
+    - git
+    - git-hook-post-receive
