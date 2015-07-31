@@ -248,7 +248,7 @@ class Test:
 from ansible.module_utils.basic import *
 if __name__ == '__main__':
     import json
-    fh = open('/opt/tsadmdev/webapp/asbtests/config.json', 'r')
+    fh = open('/opt/tsadmtest/webapp/asbtests/config.json', 'r')
     cfg = json.load(fh)
     fh.close()
     Test(cfg)
