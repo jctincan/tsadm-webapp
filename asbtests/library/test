@@ -197,23 +197,22 @@ class Test:
         else:
             self.exit(msg=msg, changed=True)
 
-    def exit(self, msg=None, changed=False):
-        if msg is None:
-            msg = 'PASS'
-        self.asbmod.exit_json(
+    def exit(self, msg='PASS', changed=False):
+        d = dict(
             changed=changed,
-            msg=msg,
-            reverse_check=self.reverse_check,
-            redirect=self.redirect_loop_count,
-            regex_match_line=self.regex_match_line,
-            redir_hist=':'.join(self.redir_hist),
             req_method=self.req_method,
-            reloaded=self.reload_count,
-            fail_reload=self.fail_reload,
-            regex_got=self.regex_got,
             url=self.url,
-            took="%.3fs" % (time.time() - self.start_tstamp),
         )
+        if msg: d['msg'] = msg
+        if self.reverse_check: d['reverse_check'] = self.reverse_check
+        if self.redirect_loop_count: d['redirect'] = self.redirect_loop_count
+        if self.regex_match_line: d['regex_match_line'] = self.regex_match_line
+        if len(self.redir_hist) > 0: d['redir_hist'] = ':'.join(self.redir_hist)
+        if self.reload_count: d['reloaded'] = self.reload_count
+        if self.fail_reload: d['fail_reload'] = self.fail_reload
+        if self.regex_got: d['regex_got'] = self.regex_got
+        d['took'] = "%.3fs" % (time.time() - self.start_tstamp)
+        self.asbmod.exit_json(**d)
 
     def run(self):
         if not self.check_enabled:
