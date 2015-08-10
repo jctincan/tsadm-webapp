@@ -1,3 +1,9 @@
+* Agregarle un "botón" a la interfaz para que un siteenv se puede "deshabilitar"
+  O sea, que se cree un index.html o algo por el estilo, tipo una holding page.
+  Esto lo hacemos principalmente cuando se pasa un sitio a live, para que no
+  haya confuciones por un tiempo entre los ambientes, asi deshabilitamos dev,
+  por ejemplo.
+
 
 * Drupal multi-site installation support
 ** https://mantis.tincan.co.uk/view.php?id=33822
