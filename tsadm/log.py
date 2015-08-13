@@ -17,15 +17,15 @@ def dbg(*msg):
 
 
 def inf(*msg):
-    __log(sl.LOG_NOTICE, 'INF: ', *msg)
+    __log(sl.LOG_DEBUG, 'INF: ', *msg)
 
 
 def err(*msg):
-    __log(sl.LOG_ERR, 'ERR: ', *msg)
+    __log(sl.LOG_DEBUG, 'ERR: ', *msg)
 
 
 def wrn(*msg):
-    __log(sl.LOG_WARNING, 'WRN: ', *msg)
+    __log(sl.LOG_DEBUG, 'WRN: ', *msg)
 
 
 def __log(prio, *msg):
