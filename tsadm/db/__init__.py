@@ -57,11 +57,15 @@ class TSAdmDB:
 
 
     def __callsp(self, spcode, args):
-        r = self.__cursor.callproc(spcode, args)
+        self.__callsp_no += 1
+        try:
+            r = self.__cursor.callproc(spcode, args)
+        except Exception as e:
+            tsadm.log.err('db_callsp: ', e)
+            return None
         w = self.__cursor.fetchwarnings()
         if w is not None:
             tsadm.log.dbg('db_callsp warning: ', w)
-        self.__callsp_no += 1
         return r
 
 
