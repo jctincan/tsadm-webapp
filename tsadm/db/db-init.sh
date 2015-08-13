@@ -1,11 +1,13 @@
 set -e
 
-mysqladmin drop tsadmdevdb
-mysqladmin create tsadmdevdb
+RUN_MODE=dev
 
-for fpath in schema/*.tbl.sql procedures/*.sql db-data.sql
+mysqladmin drop tsadm${RUN_MODE}db
+mysqladmin create tsadm${RUN_MODE}db
+
+for fpath in schema/*.tbl.sql procedures/*.sql db-${RUN_MODE}data.sql
 do
     echo -n "  ${fpath} ... "
-    mysql tsadmdevdb <$fpath
+    mysql tsadm${RUN_MODE}db <$fpath
     echo "done"
 done
