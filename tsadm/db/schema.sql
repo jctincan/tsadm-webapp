@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.43, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: tsadmtestdb
+-- Host: localhost    Database: tsadmdevdb
 -- ------------------------------------------------------
 -- Server version	5.5.43-0+deb8u1
 
