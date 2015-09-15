@@ -16,7 +16,7 @@ class TSAdmDBVersionError(Exception):
 
 
 class TSAdmDB:
-    DBVERSION = 10000007
+    DBVERSION = 10000008
     SITE_ID_MIN = 100
     SITEENV_ID_MIN = 5000
 
@@ -547,13 +547,13 @@ class TSAdmDB:
     def asbinv_developers(self):
         rows = self.__exec(SQL.ASBINV_DEVELOPERS)
         return rows
-        rtrn = dict()
-        for r in rows:
-            site_id = r[0]
-            rtrn[site_id] = {
-                'name': r[1],
-            }
-        return rtrn
+        #~ rtrn = dict()
+        #~ for r in rows:
+            #~ site_id = r[0]
+            #~ rtrn[site_id] = {
+                #~ 'name': r[1],
+            #~ }
+        #~ return rtrn
 
 
     def asbinv_sites(self):

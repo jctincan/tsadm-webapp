@@ -438,10 +438,11 @@ class SQL:
     ASBINV_DEVELOPERS = """
     SELECT `user`.`id`,
         `user`.`name`,
-        `user_auth_keys`.`ssh_key`
+        `user_auth_keys`.`ssh_key`,
+        `user`.`setenv_devel`
     FROM (`user`, `user_auth_keys`)
-    WHERE `user`.`id` > 99 AND
-        `user`.`id` = `user_auth_keys`.`user_id`
+    WHERE `user`.`id` > 99
+        AND `user`.`id` = `user_auth_keys`.`user_id`
     ORDER BY `user`.`id` ASC
     LIMIT 50
     """

@@ -16,14 +16,14 @@ INSERT INTO `siteenv`
     (`id`, `site_id`, `name`, `host_id`) VALUES (5004, 61002, 'dev', 101);
 
 
--- internal users (uid < 90)
-INSERT INTO `user` VALUES (90, 'gitbot', 'BOT', 0.0);
-INSERT INTO `user` VALUES (99, 'slavehost', 'HOST', 0.0);
+-- internal users (uid <= 90)
+INSERT INTO `user` VALUES (90, 'gitbot', 'BOT', 0.0, 0);
+INSERT INTO `user` VALUES (99, 'slavehost', 'HOST', 0.0, 0);
 
 
 -- users / developers (uid > 99)
-INSERT INTO `user` VALUES (100, 'jeremias', 'ADMIN', 0.0);
-INSERT INTO `user` VALUES (101, 'ibonelli', 'USER', 0.0);
+INSERT INTO `user` VALUES (100, 'jeremias', 'ADMIN', 0.0, 1);
+INSERT INTO `user` VALUES (101, 'ibonelli', 'USER', 0.0, 1);
 
 
 -- users access control for envs
@@ -38,4 +38,4 @@ INSERT INTO `user_auth_keys` VALUES (2, 101, 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA
 
 
 -- tsadm internal
-INSERT INTO `tsadm` (`dbversion`) VALUES (10000007);
+INSERT INTO `tsadm` (`dbversion`) VALUES (10000008);
