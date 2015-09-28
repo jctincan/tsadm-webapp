@@ -3,7 +3,7 @@
 create_uid=${1:?'UID?'}
 create_uname=${2:?'user name?'}
 
-site_home=/home/tsadm/sites/${create_uname}
+site_home=/home/tsadmdev/sites/${create_uname}
 
 set -e
 
@@ -19,7 +19,7 @@ old_umask=`umask`
 umask 0027
 
 mkdir ${site_home}/.ssh
-cp /opt/dev/tsadm/etc/ssh/authorized_keys ${site_home}/.ssh/
+cp /opt/tsadmdev/etc/ssh/authorized_keys ${site_home}/.ssh/
 chown -R ${create_uname}:nobody ${site_home}/.ssh
 
 `dirname $0`/site-env-create ${create_uname} dev

@@ -4,27 +4,27 @@ set -e
 
 www_gid=`getent group nobody | cut -d ':' -f 3`
 
-adduser --home /home/tsadm --shell /bin/bash --uid 61000 --gid $www_gid --disabled-password --disabled-login --gecos 'TSAdm' tsadm
+adduser --home /home/tsadmdev --shell /bin/bash --uid 61000 --gid $www_gid --disabled-password --disabled-login --gecos 'TSAdm' tsadmdev
 
-adduser tsadm authcmds
+adduser tsadmdev authcmds
 
 old_umask=`umask`
 umask 0027
 
-chmod 0751 /home/tsadm
+chmod 0751 /home/tsadmdev
 
-mkdir /home/tsadm/.ssh
-cp /opt/dev/tsadm/etc/ssh/git-server-known_hosts /home/tsadm/.ssh/known_hosts
+mkdir /home/tsadmdev/.ssh
+cp /opt/tsadmdev/etc/ssh/git-server-known_hosts /home/tsadmdev/.ssh/known_hosts
 
-mkdir /home/tsadm/sites
-chmod 0751 /home/tsadm/sites
+mkdir /home/tsadmdev/sites
+chmod 0751 /home/tsadmdev/sites
 
-echo 'umask 0027' >>/home/tsadm/.bashrc
+echo 'umask 0027' >>/home/tsadmdev/.bashrc
 
-ssh-keygen -C "tsadm@$(hostname -s)" -f /home/tsadm/.ssh/id_rsa
-cat /home/tsadm/.ssh/id_rsa.pub
+ssh-keygen -C "tsadmdev@$(hostname -s)" -f /home/tsadmdev/.ssh/id_rsa
+cat /home/tsadmdev/.ssh/id_rsa.pub
 
-chown -R tsadm:nobody /home/tsadm
+chown -R tsadmdev:nobody /home/tsadmdev
 
 umask ${old_umask}
 exit 0

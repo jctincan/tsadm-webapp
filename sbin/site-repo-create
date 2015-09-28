@@ -12,7 +12,7 @@ fi
 
 set -e
 
-repo_home=/srv/git/tsadm/sites/${create_uname}
+repo_home=/srv/git/tsadmdev/sites/${create_uname}
 repo_path=${repo_home}/${create_uname}.git
 
 last_uid=`grep -F 'x:61' /etc/passwd | sort -t ':' -k 3 -nr | head -n 1 | cut -d ':' -f 3`
@@ -39,18 +39,18 @@ adduser ${create_uname} authcmds
 
 chmod 0750 ${repo_home}
 
-rsync -ax /srv/git/tsadm/users/tsadmgit/init-tmpl.git/ ${repo_path}/
+rsync -ax /srv/git/tsadmdev/users/tsadmgit/init-tmpl.git/ ${repo_path}/
 
 echo "${create_uname} site" >${repo_path}/description
 
 # --- SSH
 mkdir ${repo_home}/.ssh
 chmod 0750 ${repo_home}/.ssh
-cat /opt/dev/tsadm/etc/ssh/authorized_keys >${repo_home}/.ssh/authorized_keys
+cat /opt/tsadmdev/etc/ssh/authorized_keys >${repo_home}/.ssh/authorized_keys
 chmod 0640 ${repo_home}/.ssh/authorized_keys
 
 # --- Git
-ln -s /opt/dev/tsadm/libexec/git/post-receive ${repo_path}/hooks/
+ln -s /opt/tsadmdev/libexec/git/post-receive ${repo_path}/hooks/
 
 chown -R ${create_uname}:nobody ${repo_home}
 umask ${old_umask}
