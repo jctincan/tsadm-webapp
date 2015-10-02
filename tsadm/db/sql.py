@@ -464,7 +464,8 @@ class SQL:
         `site`.`repo_uri`,
         `site`.`id`,
         `siteenv`.`id`,
-        `siteenv`.`live`
+        `siteenv`.`live`,
+        `site`.`parent_id`
     FROM (`siteenv`, `site`, `host`)
     WHERE `siteenv`.`site_id` = `site`.`id`
     ORDER BY `site`.`id`

@@ -5,6 +5,7 @@ INSERT INTO `host` (`id`, `fqdn`) VALUES (101, 'tsadm-node0');
 -- sites
 INSERT INTO `site` (`id`, `name`) VALUES (61001, 'regr');
 INSERT INTO `site` (`id`, `name`) VALUES (61002, 's0');
+INSERT INTO `site` (`id`, `name`, `parent_id`) VALUES (61003, 's10', 61002);
 
 
 -- sites envs
@@ -14,6 +15,8 @@ INSERT INTO `siteenv`
     (`id`, `site_id`, `name`, `host_id`) VALUES (5002, 61001, 'test', 101);
 INSERT INTO `siteenv`
     (`id`, `site_id`, `name`, `host_id`) VALUES (5004, 61002, 'dev', 101);
+INSERT INTO `siteenv`
+    (`id`, `site_id`, `name`, `host_id`) VALUES (5005, 61003, 'dev', 101);
 
 
 -- internal users (uid <= 90)
@@ -38,4 +41,4 @@ INSERT INTO `user_auth_keys` VALUES (2, 101, 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA
 
 
 -- tsadm internal
-INSERT INTO `tsadm` (`dbversion`) VALUES (10000008);
+INSERT INTO `tsadm` (`dbversion`) VALUES (10000009);

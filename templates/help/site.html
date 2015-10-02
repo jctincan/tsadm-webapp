@@ -20,6 +20,10 @@
     <pre class="code">if (is_readable('/home/tsadm/drupal.settings.php'))
 {
     $tsadm_referrer = __FILE__;
+    # If this is a Drupal multisite installation and if it's NOT the
+    # default site, we need to hardcode the site's name here, so
+    # comment out the next line (remove the # character) if that's the case.
+    #$tsadm_site_name = "{{site.name}}";
     require('/home/tsadm/drupal.settings.php');
 }</pre>
     <br />

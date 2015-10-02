@@ -16,7 +16,7 @@ class TSAdmDBVersionError(Exception):
 
 
 class TSAdmDB:
-    DBVERSION = 10000008
+    DBVERSION = 10000009
     SITE_ID_MIN = 100
     SITEENV_ID_MIN = 5000
 
@@ -581,6 +581,7 @@ class TSAdmDB:
                 'site_id': str(r[5]),
                 'id': str(r[6]),
                 'live': r[7].decode(),
+                'site_parent_id': str(r[8]),
             }
         return rtrn
 
