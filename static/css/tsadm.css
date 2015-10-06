@@ -14,6 +14,29 @@ body
     line-height:105%;
 }
 
+input.button, .buttons a, a.button
+{
+    border:solid 1px black;
+    padding:0.2em 1.7em;
+    margin-right:0.2em;
+    margin-bottom:0;
+    text-decoration:none;
+    color:black;
+    background-color:white;
+}
+
+select.button
+{
+    padding:0.1em 1em;
+}
+
+textarea, input {
+    border:solid 1px black;
+    padding:0.2em;
+    color:black;
+    background-color:white;
+}
+
 #container
 {
     margin:18px auto;
@@ -81,22 +104,6 @@ body
 #navbar div.site-buttons
 {
     text-align:left;
-}
-
-.button, .buttons a
-{
-    border:solid 1px black;
-    padding:0.2em 1.7em;
-    margin-right:0.2em;
-    margin-bottom:0;
-    text-decoration:none;
-    color:black;
-    background-color:white;
-}
-
-select.button
-{
-    padding:0.1em 1em;
 }
 
 #navbar div.site-info

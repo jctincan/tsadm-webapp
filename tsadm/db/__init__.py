@@ -16,7 +16,7 @@ class TSAdmDBVersionError(Exception):
 
 
 class TSAdmDB:
-    DBVERSION = 10000009
+    DBVERSION = 10000010
     SITE_ID_MIN = 100
     SITEENV_ID_MIN = 5000
 
@@ -70,7 +70,10 @@ class TSAdmDB:
 
 
     def __exec(self, sql, fetch_result=True):
-        #~ tsadm.log.dbg('db.exec: ', sql)
+        sql_dbg = ''
+        for l in sql.split('\n'):
+            sql_dbg += l.strip() + ' '
+        tsadm.log.dbg('db.exec: ', sql_dbg)
         self.__cursor.execute(sql)
         w = self.__cursor.fetchwarnings()
         if w is not None:
@@ -96,7 +99,7 @@ class TSAdmDB:
                 if cname not in exclude_columns:
                     if decode and type(row[field_idx]) is bytes:
                         d[cname] = row[field_idx].decode()
-                    # this is too ugly...
+                    # FIXME: this is too ugly...
                     elif decode and repr(row[field_idx]).startswith('Decimal('):
                         d[cname] = float(row[field_idx])
                     else:
@@ -238,10 +241,8 @@ class TSAdmDB:
 
 
     def user_info(self, user_id):
-        r = self.__exec(SQL.USER_INFO.format(user_id))
-        return {
-            'last_seen': float(r[0][0]),
-        }
+        r = self.__exec2(SQL.USER_INFO.format(user_id), exclude_columns=['id', 'name', 'acclvl'])
+        return r[0]
 
 
     def user_last_seen(self, user_id, tstamp):
@@ -264,9 +265,36 @@ class TSAdmDB:
         return [r[0].decode() for r in self.__exec(SQL.USER_AUTH_KEYS.format(user_id))]
 
 
+    def user_auth_key_import(self, user_id, kname, kblob, kbits, kfprint, kprot):
+        return self.__exec(SQL.USER_AUTH_KEY_IMPORT.format(
+            user_id=user_id,
+            ssh_key=kblob,
+            key_bits=kbits,
+            fingerprint=kfprint,
+            key_name=kname,
+            key_protocol=kprot,
+        ), fetch_result=False)
+
+
+    def user_auth_keys_full(self, user_id):
+        return self.__exec2(SQL.USER_AUTH_KEYS_FULL.format(user_id))
+
+
     def user_auth_sites(self, user_id):
         rows = self.__exec(SQL.USER_AUTH_SITES.format(user_id))
         return [{'name': r[0], 'id': r[1]} for r in rows]
+
+
+    def user_auth_getkey(self, user_id, kfprint):
+        r = self.__exec2(SQL.USER_AUTH_GETKEY.format(user_id, kfprint))
+        try:
+            return r[0]
+        except IndexError:
+            return None
+
+
+    def user_auth_delkey(self, user_id, kfprint):
+        self.__exec(SQL.USER_AUTH_DELKEY.format(user_id, kfprint), fetch_result=False)
 
 
     def user_auth_siteenvs(self, user_id, site_id):

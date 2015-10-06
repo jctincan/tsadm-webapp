@@ -57,6 +57,8 @@ __TSADM = {
 
     'REGR_TESTS_ENABLE': False,
     'CLEAN_HTML_ENABLE': True,
+
+    'SSH_KEYGEN': '/usr/bin/ssh-keygen',
 }
 
 def get(arg, default=None):

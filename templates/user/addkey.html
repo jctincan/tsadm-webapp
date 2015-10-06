@@ -1,0 +1,19 @@
+{% include "inc/head.html" %}
+<p>
+    <form action="{% url 'user:addkey' %}" method="post">
+        <label for="key-name">key name:</label>
+        <input type="text" value="" id="key-name" name="tsadm_user_key_name" required="required">
+        <br>
+
+        public key (one line):<br>
+        <textarea id="key-text" name="tsadm_user_key_text" style="width:40%; height:20em;" required="required"></textarea>
+        <br>
+        <br>
+
+        <input type="hidden" name="tsadm_cmd" value="userAddKey">
+        <input class="button" type="submit" value="save">
+
+        <a class="button" href="{% url 'user:home' %}">cancel</a>
+    </form>
+</p>
+{% include "inc/tail.html" %}

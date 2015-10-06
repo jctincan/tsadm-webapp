@@ -1,0 +1,10 @@
+TRUNCATE TABLE `user_auth_keys`;
+ALTER TABLE `user_auth_keys` DROP PRIMARY KEY;
+ALTER TABLE `user_auth_keys` DROP COLUMN `id`;
+ALTER TABLE `user_auth_keys` ADD COLUMN `key_bits` int(4) unsigned NOT NULL;
+ALTER TABLE `user_auth_keys` ADD COLUMN `fingerprint` blob NOT NULL;
+ALTER TABLE `user_auth_keys` ADD COLUMN `key_name` char(64) NOT NULL;
+ALTER TABLE `user_auth_keys` ADD COLUMN `key_protocol` char(16) NOT NULL;
+ALTER TABLE `user_auth_keys` ADD UNIQUE(fingerprint(128));
+ALTER TABLE `user_auth_keys` ADD UNIQUE(ssh_key(128));
+UPDATE `tsadm` SET `dbversion` = 10000010;

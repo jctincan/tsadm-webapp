@@ -41,4 +41,4 @@ INSERT INTO `user_auth_keys` VALUES (2, 101, 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA
 
 
 -- tsadm internal
-INSERT INTO `tsadm` (`dbversion`) VALUES (10000009);
+INSERT INTO `tsadm` (`dbversion`) VALUES (10000010);

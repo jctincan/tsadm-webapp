@@ -1,7 +1,10 @@
-
 import re
 import time
+import tempfile
+import subprocess
 
+re_cert_email = re.compile(r'^([\w.]+)@tsadm\.tincan\.co\.uk$')
+re_auth_key_name = re.compile(r'^[a-zA-Z0-9@\.-]+$')
 
 USER_ACCLVL = {
     'DISABLE':    999,
@@ -41,7 +44,7 @@ class TSAdmUser:
         self._cert_data = cert_data
         self._log.dbg('cert_data: ', cert_data)
         self._cert_email = cert_data[0].strip()
-        if not re.match(r'^([\w.]+)@tsadm\.tincan\.co\.uk$', self._cert_email):
+        if not re_cert_email.match(self._cert_email):
             self._log.err('user bad cert email: ' + repr(self._cert_email))
             return False
         self.name = self._cert_email.replace('@tsadm.tincan.co.uk', '')
@@ -101,6 +104,7 @@ class TSAdmUser:
             'is_admin': False,
             'acclvl': self.acclvl.lower(),
             'is_site_admin': False,
+            'auth_keys': self._db.user_auth_keys_full(self.id),
         }
         if USER_ACCLVL.get(self.acclvl) == USER_ACCLVL.get('ADMIN'):
             d['is_admin'] = True
@@ -110,3 +114,42 @@ class TSAdmUser:
             d.update(self._db.user_info(self.id))
             d['last_seen'] = time.strftime(self._conf.get('CUR_TIME_FMT'), time.localtime(d['last_seen']))
         return d
+
+
+    def _ssh_key_info(self, kname, key_text):
+        # FIXME
+        kblob = ' '.join(key_text.split()[:-1])
+        kblob += ' '+kname
+        kbits = None
+        kfprint = None
+        ktype = None
+
+        self._log.dbg('import key blob: ', kblob)
+
+        with tempfile.NamedTemporaryFile(mode='w+') as fh:
+            fh.write(kblob)
+            fh.flush()
+            fh.seek(0, 0)
+
+            try:
+                ssh_info = subprocess.check_output([self._conf.get('SSH_KEYGEN'), '-l', '-f', fh.name])
+            except Exception as e:
+                self._log.dbg(repr(e))
+                raise RuntimeError(e.output.decode())
+
+            fh.close()
+
+        ssh_info_items = ssh_info.strip().split()
+        kbits = ssh_info_items[0].decode()
+        kfprint = ssh_info_items[1].decode()
+        ktype = ssh_info_items[3].decode().replace('(', '').replace(')', '')
+
+        self._log.dbg('user auth kname: ', kname, ' - kbits: ', kbits, ' - kfprint: ', kfprint, ' - ktype: ', ktype)
+        return (kname, kblob, kbits, kfprint, ktype)
+
+
+    def auth_key_import(self, key_name, key_text):
+        if not re_auth_key_name.match(key_name):
+            return (False, 'invalid key name')
+        self._db.user_auth_key_import(self.id, *self._ssh_key_info(key_name, key_text))
+        return (True, '')

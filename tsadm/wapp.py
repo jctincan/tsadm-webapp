@@ -266,6 +266,9 @@ class TSAdmWApp:
         if not os.access(self.conf.get('OPENSSL', None), os.F_OK | os.X_OK):
             self._err_msg = 'openssl command not found'
             return False
+        if not os.access(self.conf.get('SSH_KEYGEN', None), os.F_OK | os.X_OK):
+            self._err_msg = 'openssl command not found'
+            return False
         return True
 
 

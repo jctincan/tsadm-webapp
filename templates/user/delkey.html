@@ -1,0 +1,15 @@
+{% include "inc/head.html" %}
+{% if userAuthKey != '__removed__' %}
+<p>
+    <b>Are you sure you want to remove the following SSH key?</b>
+    <a href="{% url 'user:delkey' userAuthKey.fingerprint %}?tsadmConfirmRemove">remove</a>
+    - <a href="{% url 'user:home' %}">cancel</a>
+</p>
+<p>
+    {{userAuthKey.key_name}}
+    {{userAuthKey.fingerprint}}
+    {{userAuthKey.key_bits}}
+    {{userAuthKey.key_protocol}}
+</p>
+{% endif %}
+{% include "inc/tail.html" %}

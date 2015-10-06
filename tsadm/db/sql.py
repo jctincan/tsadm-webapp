@@ -1,4 +1,3 @@
-
 class SP:
     SITEENV_ID = 'SiteEnvGetId'
     SITEENV_LOCK = 'SiteEnvLock'
@@ -210,7 +209,7 @@ class SQL:
     """
 
     USER_INFO = """
-    SELECT `last_seen`
+    SELECT *
         FROM `user`
         WHERE `id` = {}
         LIMIT 1
@@ -251,11 +250,42 @@ class SQL:
         LIMIT 600
     """
 
+    USER_AUTH_GETKEY = """
+    SELECT *
+        FROM `user_auth_keys`
+        WHERE `user_id` = {}
+        AND `fingerprint` = '{}'
+        LIMIT 1
+    """
+
+    USER_AUTH_DELKEY = """
+    DELETE FROM `user_auth_keys`
+    WHERE `user_id` = {}
+    AND `fingerprint` = '{}'
+    """
+
     USER_AUTH_KEYS = """
     SELECT `ssh_key`
         FROM `user_auth_keys`
         WHERE `user_id` = {}
         LIMIT 20
+    """
+
+    USER_AUTH_KEY_IMPORT = """
+    INSERT INTO `user_auth_keys`
+    VALUES ({user_id},
+        '{ssh_key}',
+        {key_bits},
+        '{fingerprint}',
+        '{key_name}',
+        '{key_protocol}')
+    """
+
+    USER_AUTH_KEYS_FULL = """
+    SELECT *
+    FROM `user_auth_keys`
+    WHERE `user_id` = {}
+    LIMIT 20
     """
 
     JOBQ_SENV_ALL = """

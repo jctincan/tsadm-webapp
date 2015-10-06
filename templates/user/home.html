@@ -4,7 +4,24 @@
     <b>Valid until:</b> {{user.cert.until}}
     <br><b>Access level:</b> {{user.acclvl}}
     <br><b>Fingerprint:</b> {{user.cert.fingerprint}}
-    {# <br><b>Last seen:</b> {{user.last_seen}} #}
+    <br><b>Devel environment:</b> {% if user.setenv_devel == "1" %}enabled{% else %}disabled{% endif %}
 </p>
+
+<!-- SSH keys -->
+<p>
+    <b>SSH keys</b> - <a href="{% url 'user:addkey' %}">add new</a>
+    <br>
+
+{% for authKey in user.auth_keys %}
+    <a href="{% url 'user:showkey' authKey.fingerprint %}">{{authKey.key_name}}</a>
+    {{authKey.fingerprint}}
+    {{authKey.key_protocol}}
+    {{authKey.key_bits}}
+    - <a href="{% url 'user:delkey' authKey.fingerprint %}">remove</a>
+    <br>
+{% endfor %}
+
+</p>
+
 <!-- END: user/home -->
 {% include "inc/tail.html" %}

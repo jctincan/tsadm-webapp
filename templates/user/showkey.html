@@ -1,0 +1,11 @@
+{% include "inc/head.html" %}
+<p>
+    {{userAuthKey.key_name}}
+    {{userAuthKey.fingerprint}}
+    {{userAuthKey.key_bits}}
+    {{userAuthKey.key_protocol}}
+    <br>
+    <br>
+    {{userAuthKey.ssh_key}}
+</p>
+{% include "inc/tail.html" %}
