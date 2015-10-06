@@ -138,7 +138,7 @@ class TSAdmWApp:
             self.log.err(self._err_msg)
             return False
         # -- user auth
-        self.user = TSAdmUser(self.log, self.db, self.conf)
+        self.user = TSAdmUser(self.log, self.db, self.conf, self.umesg)
         if not self._auth_check():
             self.log.err('auth_check: ', self._err_code)
             self.log.err(self._err_msg)

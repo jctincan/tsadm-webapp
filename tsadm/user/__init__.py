@@ -3,6 +3,9 @@ import time
 import tempfile
 import subprocess
 
+from datetime import datetime
+
+
 re_cert_email = re.compile(r'^([\w.]+)@tsadm\.tincan\.co\.uk$')
 re_auth_key_name = re.compile(r'^[a-zA-Z0-9@\.-]+$')
 
@@ -27,17 +30,19 @@ class TSAdmUser:
     _cert_since = None
     _cert_until = None
     _conf = None
+    _umesg = None
     id = None
     name = None
     siteenv_acl = None
     acclvl = None
 
 
-    def __init__(self, log, db, conf):
+    def __init__(self, log, db, conf, umesg):
         self._log = log
         self._db = db
         self.acclvl = 'NOACCESS'
         self._conf = conf
+        self._umesg = umesg
 
 
     def auth_check(self, cert_data):
@@ -63,10 +68,16 @@ class TSAdmUser:
         self.siteenv_acl = self._db.user_siteenv_acl(self.id)
         self.acclvl = self._db.user_acclvl(self.id)
 
+        cert_until_tstamp = datetime.strptime(self._cert_until, self._conf.get('USER_CERT_DATE_FMT')).timestamp()
+        cert_valid_for = cert_until_tstamp - time.time()
+        if cert_valid_for <= (3600*24*15):
+            self._umesg.warn('your personal certificate is about to expire!')
+
         self._log.inf('user loaded: ', self.name)
         self._log.dbg('user id: ', self.id)
         self._log.dbg('siteenv acl: ', self.siteenv_acl)
         self._log.dbg('user acclvl: ', self.acclvl)
+        self._log.dbg('user cert valid for: ', cert_valid_for)
         return True
 
 

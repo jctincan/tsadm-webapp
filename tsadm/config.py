@@ -54,6 +54,7 @@ __TSADM = {
     'LOG_DATE_FMT': '%b%d %H:%M:%S',
     'CUR_TIME_FMT': '%a %b %d %H:%M %Y %Z',
     'JOB_DATE_FMT': '%c %Z',
+    'USER_CERT_DATE_FMT': '%b %d %H:%M:%S %Y %Z',
 
     'REGR_TESTS_ENABLE': False,
     'CLEAN_HTML_ENABLE': True,
