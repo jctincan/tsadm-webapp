@@ -3,7 +3,7 @@
 <p>{{sites_no}} sites - {{envs_no}} environments</p>
 
 <form action="{% url 'site:envRedir' %}" method="post">
-Choose environment: <input name="tsadmEnvRedir" list="site-envs-list">
+Choose environment: <input name="tsadmEnvRedir" list="site-envs-list" required="required">
 <datalist id="site-envs-list">
 {% for s in se_all %}{% for e in s.envs %}
     <option value="{{s.name}}.{{e.name}}">{{s.name}}.{{e.name}}</option>
