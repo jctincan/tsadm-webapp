@@ -1,0 +1,33 @@
+#!/bin/bash
+source `dirname $0`/../etc/setenv.bash
+username=${1:?'user name?'}
+authfile=${2:?'authorized_keys file?'}
+
+cat ${authfile} | while read sshKey
+do
+    tmpfile=/tmp/$$.tsadm.user-auth-keys
+    echo ${sshKey} >${tmpfile}
+    keyName=`echo ${sshKey} | cut -d' ' -f3`
+    keyInfo=`ssh-keygen -l -f ${tmpfile}`
+    keyBits=`echo ${keyInfo} | cut -d' ' -f1`
+    keyFPrint=`echo ${keyInfo} | cut -d' ' -f2`
+    keyProt=`echo ${keyInfo} | cut -d' ' -f4`
+    keyProt=`echo ${keyProt} | sed 's/(//' | sed 's/)//'`
+    echo ${keyBits} ${keyFPrint} ${keyProt} ${keyName}
+    rm -f ${tmpfile}
+
+    cat <<EOSQL | mysql -B ${TSADM_DBNAME}
+INSERT INTO \`user_auth_keys\`
+VALUES (
+    (SELECT \`id\` FROM \`user\` WHERE \`name\` = '${username}'),
+    '${sshKey}',
+    ${keyBits},
+    '${keyFPrint}',
+    '${keyName}',
+    '${keyProt}'
+);
+EOSQL
+
+done
+
+exit 0
