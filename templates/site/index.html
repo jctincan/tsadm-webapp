@@ -1,6 +1,19 @@
 {% include "inc/head.html" %}
 <!-- START: index -->
 <p>{{sites_no}} sites - {{envs_no}} environments</p>
+
+<p>
+<form action="{% url 'site:envRedir' %}" method="post">
+Choose environment: <input name="tsadmEnvRedir" list="site-envs-list">
+<datalist id="site-envs-list">
+{% for s in se_all %}{% for e in s.envs %}
+    <option value="{{s.name}}.{{e.name}}">
+{% endfor %}{% endfor %}
+</datalist>
+<input type="submit" value="Go!">
+</form>
+</p>
+
 <ul class="site-index">
 {% for s in se_all %}
     <li><span class="site-name">{{ s.name }}</span>

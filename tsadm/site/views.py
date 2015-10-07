@@ -206,3 +206,14 @@ def admin(req):
         'cmds': ['site.checks', 'lalala'],
     }
     return render(req, 'site/admin.html', wapp.end(tmpl_data))
+
+
+def env_redir(req):
+    if not wapp.start(req, '__site/envRedir'):
+        return wapp.error_page()
+    envRedir = req.POST.get('tsadmEnvRedir', None)
+    if envRedir is None:
+        return wapp.error_page(400, 'invalid request')
+    sName = envRedir.split('.')[0]
+    eName = envRedir.split('.')[1]
+    return redirect('site:dashboard', sName, eName)

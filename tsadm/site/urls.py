@@ -20,4 +20,6 @@ urlpatterns = patterns('',
 
     url(r'^(\w+)/(\w+)/release/$', 'tsadm.site.views.release_confirm', name='release_confirm'),
     url(r'^(\w+)/(\w+)/release/([a-f0-9]+)/$', 'tsadm.site.views.release', name='release'),
+
+    url(r'^envRedir/$', 'tsadm.site.views.env_redir', name='envRedir'),
 )
