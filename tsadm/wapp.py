@@ -346,6 +346,7 @@ class TSAdmWApp:
 
     def tmpl_data(self):
         d = dict()
+        d['appname'] = self.conf.get('APPNAME')
         d['version'] = self.version
         d['date_time'] = time.strftime(self.conf.get('CUR_TIME_FMT'), time.localtime())
         d['page'] = {

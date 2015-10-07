@@ -26,6 +26,7 @@ __TSADM = {
     'OPENSSL': '/usr/bin/openssl',
     'SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.wapp',
     'OFFLINE_FILE': __BASE_DIR+'/OFFLINE',
+    'APPNAME': 'tsadm'+__RUN_MODE,
 
     'CSS_RELPATH': 'static/css/tsadm.css',
     'SLAVE_GRAPHS_BASE_URL': 'http://'+__MASTER_FQDN+'/server-graphs',
