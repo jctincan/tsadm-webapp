@@ -86,10 +86,12 @@ class TSAdmWApp:
             self.conf.update({
                 'DEV_CLIENT_CERT': self.conf.get('BASE_DIR')+'/dev-client-cert.crt'
             })
-        # clean HTML conf
+        # MiddleWare conf
         TSAdmWAppMiddleWare.debug = self.debug
         TSAdmWAppMiddleWare.encoding = self.encoding
         TSAdmWAppMiddleWare.clean_enable = self.conf.get('CLEAN_HTML_ENABLE', False)
+        TSAdmWAppMiddleWare.version = self.version
+        TSAdmWAppMiddleWare.conf = self.conf
 
 
     def __start_log(self, req):
@@ -454,6 +456,8 @@ class TSAdmWAppMiddleWare:
     debug = None
     encoding = None
     clean_enable = None
+    version = None
+    conf = None
 
 
 class TSAdmWAppCleanHTML(TSAdmWAppMiddleWare):
@@ -488,3 +492,10 @@ class TSAdmWAppCleanHTML(TSAdmWAppMiddleWare):
                 except Exception as e:
                     tsadm.log.err('TSAdmWAppCleanHTML: ', e)
         return self.__html_validate(resp)
+
+
+class TSAdmWAppResponseHeaders(TSAdmWAppMiddleWare):
+    def process_response(self, req, resp):
+        appname = self.conf.get('APPNAME')
+        resp['X-'+appname.capitalize()+'-Version'] = self.version
+        return resp
