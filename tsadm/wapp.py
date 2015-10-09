@@ -501,4 +501,7 @@ class TSAdmWAppResponseHeaders(TSAdmWAppMiddleWare):
         sts = self.conf.get('HTTP_HEADER_STS')
         if sts is not None and sts != '':
             resp['Strict-Transport-Security'] = sts
+        ccontrol = self.conf.get('HTTP_HEADER_CACHE_CONTROL')
+        if ccontrol is not None and ccontrol != '':
+            resp['Cache-Control'] = ccontrol
         return resp

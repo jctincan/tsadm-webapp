@@ -62,7 +62,8 @@ __TSADM = {
 
     'SSH_KEYGEN': '/usr/bin/ssh-keygen',
 
-    'HTTP_HEADER_STS': 'max-age='+str(60*60*24*7),
+    'HTTP_HEADER_STS': 'max-age='+str(60*60*24*30),
+    'HTTP_HEADER_CACHE_CONTROL': 'private, max-age='+str(60*60*24*3)
 }
 
 def get(arg, default=None):
