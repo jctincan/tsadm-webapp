@@ -496,6 +496,9 @@ class TSAdmWAppCleanHTML(TSAdmWAppMiddleWare):
 
 class TSAdmWAppResponseHeaders(TSAdmWAppMiddleWare):
     def process_response(self, req, resp):
-        appname = self.conf.get('APPNAME')
-        resp['X-'+appname.capitalize()+'-Version'] = self.version
+        appname = self.conf.get('APPNAME').capitalize()
+        resp['X-'+appname+'-Version'] = self.version
+        sts = self.conf.get('HTTP_HEADER_STS')
+        if sts is not None and sts != '':
+            resp['Strict-Transport-Security'] = sts
         return resp
