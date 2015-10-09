@@ -70,10 +70,10 @@ class TSAdmDB:
 
 
     def __exec(self, sql, fetch_result=True):
-        sql_dbg = ''
-        for l in sql.split('\n'):
-            sql_dbg += l.strip() + ' '
-        tsadm.log.dbg('db.exec: ', sql_dbg)
+        #~ sql_dbg = ''
+        #~ for l in sql.split('\n'):
+            #~ sql_dbg += l.strip() + ' '
+        #~ tsadm.log.dbg('db.exec: ', sql_dbg)
         self.__cursor.execute(sql)
         w = self.__cursor.fetchwarnings()
         if w is not None:
