@@ -250,15 +250,7 @@ class TSAdmDB:
 
 
     def user_all(self):
-        l = list()
-        for row in self.__exec(SQL.USER_ALL):
-            l.append({
-                'id': row[0],
-                'name': row[1],
-                'acclvl': row[2],
-                'last_seen': float(row[3]),
-            })
-        return l
+        return self.__exec2(SQL.USER_ALL)
 
 
     def user_auth_keys(self, user_id):

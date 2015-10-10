@@ -4,6 +4,8 @@
     <p>
     {% for user in users_all %}
         <b>Name:</b> {{user.name}}<br>
+        <b>Access level:</b> {{user.acclvl}}<br>
+        <b>Devel environment:</b> {{user.setenv_devel}}<br>
         <b>Last seen:</b> {{user.last_seen}}
         <hr>
     {% endfor %}
