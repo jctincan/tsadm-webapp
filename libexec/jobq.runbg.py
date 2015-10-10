@@ -117,6 +117,8 @@ if job_id is None:
 
 tsadm.log.inf('job id: ', job_id)
 tsadm.log.dbg('master server: ', master_server)
+tsadm.log.dbg('master server port: ', master_server_port)
+tsadm.log.dbg('master server ssl: ', master_server_ssl)
 
 # The server that did the request needs some time to finish before we
 # can ask for the job info... Yes, I know, ugly...
@@ -128,6 +130,10 @@ tsadm.log.dbg('req_url: ', req_url)
 conn = None
 if master_server_ssl:
     try:
+        tsadm.log.dbg('SSL connection')
+        tsadm.log.dbg('CA file: ', cafile)
+        tsadm.log.dbg('cert file: ', cert_file)
+        tsadm.log.dbg('cert key file: ', key_file)
         cntxt = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
         cntxt.load_verify_locations(cafile=cafile)
         conn = http.client.HTTPSConnection(master_server, master_server_port, key_file=key_file, cert_file=cert_file, context=cntxt)
