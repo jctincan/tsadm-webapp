@@ -40,7 +40,7 @@ __TSADM = {
     'DJANGO_CACHE_TIMEOUT': 3600,
     'DJANGO_CACHE_KEY_PREFIX': 'tsadm'+__RUN_MODE+':',
 
-    'JOBQ_SERVER_PORT': 6100,
+    'JOBQ_SERVER_PORT': 6300,
     'JOBQ_SERVER_TIMEOUT': 15,
     'JOBQ_SYSLOG_TAG': 'tsadm'+__RUN_MODE+'.jobq',
 
