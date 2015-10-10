@@ -11,10 +11,11 @@ if __env_mode == 'test' or __env_mode == 'dev':
 if __env_mode == 'dev':
     __DEBUG = True
 
-__BASE_DIR = '/opt/tsadm'+__RUN_MODE+'/webapp'
-__CONFIG_PATH = '/etc/opt/tsadm'+__RUN_MODE+'/config.json'
+__BASE_DIR = os.path.join('/opt', 'tsadm'+__RUN_MODE, 'webapp')
+__ETC_DIR = os.path.join('/etc', 'opt', 'tsadm'+__RUN_MODE)
+__CONFIG_PATH = os.path.join(__ETC_DIR, __RUN_MODE, 'config.json')
 __MASTER_FQDN = 'dev.tsadm.local'
-__HOME_DIR = '/home/tsadm'+__RUN_MODE
+__HOME_DIR = os.path.join('/home', 'tsadm'+__RUN_MODE)
 
 __TSADM = {
     'RUN_MODE': __RUN_MODE,
@@ -37,7 +38,7 @@ __TSADM = {
     'DB_PASS': '__NOT_SET__',
 
     'DJANGO_SECRET_KEY': '0GQMw7F*Fy(G_+{(K)fop06CH*mR',
-    'DJANGO_CACHE_PATH': __HOME_DIR+'/django_cache',
+    'DJANGO_CACHE_PATH': os.path.join(__HOME_DIR, 'django_cache'),
     'DJANGO_CACHE_TIMEOUT': 3600,
     'DJANGO_CACHE_KEY_PREFIX': 'tsadm'+__RUN_MODE+':',
 
@@ -64,7 +65,10 @@ __TSADM = {
     'SSH_KEYGEN': '/usr/bin/ssh-keygen',
 
     'HTTP_HEADER_STS': 'max-age='+str(60*60*24*30),
-    'HTTP_HEADER_CACHE_CONTROL': 'private, max-age='+str(60*60*24*3)
+    'HTTP_HEADER_CACHE_CONTROL': 'private, max-age='+str(60*60*24*3),
+
+    'CA_FILE': os.path.join(__ETC_DIR, 'certs', 'ca.pem'),
+    'SLAVE_AUTH_FILE': os.path.join(__ETC_DIR, 'certs', 'slave-auth.pem'),
 }
 
 def get(arg, default=None):
