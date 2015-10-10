@@ -1,0 +1,5 @@
+#!/bin/bash
+source `dirname $0`/../etc/setenv.bash
+export TSADM_MODE=$RUN_MODE
+cd ${CODEDIR}/webapp
+exec python3 -m tsadm.config

@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import os.path
 
 __DEBUG = False
@@ -94,7 +95,6 @@ if __DEBUG:
     }
 
 def __load_config():
-    import json
     cfg = dict()
     try:
         fh = open(__CONFIG_PATH, 'r')
@@ -110,3 +110,6 @@ def __load_config():
 
 if os.path.exists(__CONFIG_PATH):
     __load_config()
+
+if __name__ == '__main__':
+    print(json.dumps(__TSADM, sort_keys=True, indent=3))
