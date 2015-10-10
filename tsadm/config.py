@@ -13,7 +13,7 @@ if __env_mode == 'dev':
 
 __BASE_DIR = os.path.join('/opt', 'tsadm'+__RUN_MODE, 'webapp')
 __ETC_DIR = os.path.join('/etc', 'opt', 'tsadm'+__RUN_MODE)
-__CONFIG_PATH = os.path.join(__ETC_DIR, __RUN_MODE, 'config.json')
+__CONFIG_PATH = os.path.join(__ETC_DIR, 'config.json')
 __MASTER_FQDN = 'dev.tsadm.local'
 __HOME_DIR = os.path.join('/home', 'tsadm'+__RUN_MODE)
 
