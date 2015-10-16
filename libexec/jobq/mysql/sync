@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-export HOME=/home/tsadm
+source /etc/opt/tsadmdev/setenv.bash
+
+export HOME=${TSADM_HOMEDIR}
 
 test -z "$SRC_ENV" &&
 {

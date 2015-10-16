@@ -6,10 +6,12 @@ dest_senv=`echo $RSYNC_DEST_ENV | cut -d':' -f5`
 
 set -e
 
+source /etc/opt/tsadmdev/setenv.bash
+
 dest_uri_prefix=''
 if test "$dest_host" == "$HOST_ORIG"
 then
-    dest_uri_prefix=/home/tsadm/sites
+    dest_uri_prefix=${SITES_BASEDIR}
 else
     dest_uri_prefix="${dest_host}::tsadm.sites"
 fi
