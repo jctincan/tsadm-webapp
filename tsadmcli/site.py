@@ -12,9 +12,5 @@ def new():
     if sid != 0:
         print("ERROR: a site called '{}' already exists: {}".format(args.name, sid))
         return 1
-    try:
-        db.site_add(args.name)
-    except Exception as e:
-        print("ERROR:", e)
-        return 2
+    db.site_add(args.name)
     return 0
