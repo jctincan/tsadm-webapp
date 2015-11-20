@@ -11,6 +11,12 @@ class SP:
 
 
 class SQL:
+    SITE_ADD = """
+    INSERT INTO `site` (`id`, `name`)
+        SELECT MAX(`id`)+1, '{}'
+            FROM `site`
+    """
+
     SITE_ALL = """
     SELECT `id`, `name`
         FROM `site`

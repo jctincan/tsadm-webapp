@@ -133,6 +133,10 @@ class TSAdmDB:
         return self.__db.charset
 
 
+    def site_add(self, site_name):
+        self.__exec(SQL.SITE_ADD.format(site_name), fetch_result=False)
+
+
     def site_all(self):
         return self.__exec(SQL.SITE_ALL)
 
