@@ -1,2 +1,2 @@
 #!/bin/bash
-exec /usr/bin/git fetch --all
+exec /usr/bin/git fetch --all --tags
