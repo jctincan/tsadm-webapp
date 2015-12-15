@@ -42,3 +42,16 @@ def siteList():
     else:
         _logClose(r)
         return r
+
+
+def siteRemove():
+    _logOpen("siteRemove")
+    try:
+        r = site.remove()
+    except Exception as e:
+        print("Exception:", e)
+        _logClose(128)
+        return 128
+    else:
+        _logClose(r)
+        return r

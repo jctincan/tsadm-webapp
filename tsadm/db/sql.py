@@ -17,6 +17,12 @@ class SQL:
             FROM `site`
     """
 
+    SITE_REMOVE = """
+    DELETE FROM `site`
+        WHERE `id` = {}
+        LIMIT 1
+    """
+
     SITE_ALL = """
     SELECT `id`, `name`
         FROM `site`

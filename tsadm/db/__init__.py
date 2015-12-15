@@ -137,6 +137,10 @@ class TSAdmDB:
         self.__exec(SQL.SITE_ADD.format(site_name), fetch_result=False)
 
 
+    def site_remove(self, site_id):
+        self.__exec(SQL.SITE_REMOVE.format(site_id), fetch_result=False)
+
+
     def site_all(self):
         return self.__exec(SQL.SITE_ALL)
 
