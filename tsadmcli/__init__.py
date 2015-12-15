@@ -29,3 +29,16 @@ def newSite():
     else:
         _logClose(r)
         return r
+
+
+def siteList():
+    _logOpen("siteList")
+    try:
+        r = site.list()
+    except Exception as e:
+        print("Exception:", e)
+        _logClose(128)
+        return 128
+    else:
+        _logClose(r)
+        return r
