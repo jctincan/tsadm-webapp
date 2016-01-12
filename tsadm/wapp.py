@@ -438,8 +438,8 @@ class TSAdmWApp:
         return os.path.exists(self.conf.get('OFFLINE_FILE'))
 
 
-    def json_response(self, json_data={}):
-        if self.debug:
+    def json_response(self, json_data={}, pretty_print=False):
+        if self.debug or pretty_print:
             import json
             from django.http import HttpResponse
             self.end(tmpl_data={})
