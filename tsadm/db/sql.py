@@ -510,6 +510,7 @@ class SQL:
         `site`.`parent_id`
     FROM (`siteenv`, `site`, `host`)
     WHERE `siteenv`.`site_id` = `site`.`id`
+        AND `siteenv`.`host_id` = `host`.`id`
     ORDER BY `site`.`id`
     LIMIT 600
     """
