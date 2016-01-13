@@ -24,16 +24,14 @@ def index(req):
         show_site = False
         sd = dict()
         sd['name'] = s[1]
+        sd['parent_site'] = dict()
+        if s[2] != 0:
+            sd['parent_site'] = wapp.db.site_info(s[2])
         envs = wapp.db.siteenv_all(s[0])
         sd['envs'] = list()
         for e in envs:
             envs_no += 1
             if e['id'] in wapp.user.siteenv_acl or 0 in wapp.user.siteenv_acl:
-                #~ ed = {
-                    #~ 'name': e['name'],
-                    #~ 'locked': e['locked'],
-                    #~ 'claimed': e['claimed']
-                #~ }
                 if sd['name'] == 'regr':
                     if e['name'] == 'dev' or e['name'] == 'test':
                         regrt_data.append(sd['name'] + e['name'])
@@ -84,6 +82,9 @@ def dashboard(req, sname, senv, wapp_start=True):
         dbe['date'] = time.strftime(wapp.conf.get('LOG_DATE_FMT'), time.localtime(dbe['tstamp_start']))
         tmpl_data['jobq']['log'].append(dbe)
     del db_log
+    # child site?
+    if wapp.site.parent_id > 0:
+        wapp.umesg.inf('child installation of site: {}'.format(wapp.site.parent_site['name']))
     return render(req, 'site/dashboard.html', wapp.end(tmpl_data))
 
 

@@ -1,4 +1,3 @@
-
 class TSAdmSiteEnv:
     _log = None
     _db = None
@@ -122,6 +121,8 @@ class TSAdmSite:
     name = None
     env = None
     envs_other = None
+    parent_id = None
+    parent_site = None
 
 
     def __init__(self, log, db, user, conf):
@@ -129,15 +130,21 @@ class TSAdmSite:
         self._db = db
         self._user = user
         self.env = TSAdmSiteEnv(log, db, user, conf)
+        self.envs_other = list()
 
 
     def load(self, site_name, env_name):
         self.name = site_name
         self.id = self._db.site_id(self.name)
+        self._log.dbg('site.id: ', self.id)
         if not self.env.load(site_name, env_name):
             return False
         self._log.dbg('site.env.id: ', self.env.id)
-        self.envs_other = self._db.site_envs_other(self.id, self.env.name, self._user.id)
+        if self.id > 0:
+            self.envs_other = self._db.site_envs_other(self.id, self.env.name, self._user.id)
+            self.parent_id = int(self._db.site_info(self.id).get('parent_id', 0))
+            if self.parent_id > 0:
+                self.parent_site = self._db.site_info(self.parent_id)
         self._log.dbg('envs_other: ', self.envs_other)
         self._log.inf('{}.{} loaded'.format(self.name, self.env.name))
         return True
@@ -145,7 +152,7 @@ class TSAdmSite:
 
     def tmpl_data(self):
         d = {
-            'load_navbar': False
+            'load_navbar': False,
         }
         if not self.name.startswith('__'):
             d = {
@@ -153,7 +160,10 @@ class TSAdmSite:
                 'name': self.name,
                 'envs_other': self.envs_other,
                 'env': self.env.tmpl_data(),
+                'parent_site': dict(),
             }
+            if self.parent_id > 0:
+                d['parent_site'] = self.parent_site
         if not self.env.claim_ok:
             d['load_navbar'] = False
         if self.env.locked:

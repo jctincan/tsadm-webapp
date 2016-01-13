@@ -16,6 +16,9 @@ Choose environment: <input name="tsadmEnvRedir" list="site-envs-list" required="
 {% for s in se_all %}
     <li><span class="site-name">{{ s.name }}</span>
         <ul>
+        {% if s.parent_site %}
+            <li>child installation of: <span class="site-name">{{s.parent_site.name}}</span></li>
+        {% endif %}
         {% for e in s.envs %}
             <li>
                 <span class="env-name">{{e.name}}:</span> <a href="{% url 'site:dashboard' s.name e.name %}">{{s.name}}.{{e.name}}</a>

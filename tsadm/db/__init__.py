@@ -167,6 +167,10 @@ class TSAdmDB:
             return 0
 
 
+    def site_info(self, site_id):
+        return self.__exec2(SQL.SITE_INFO.format(site_id))[0]
+
+
     def site_log(self, site_id):
         l = list()
         for r in self.__exec(SQL.SITE_LOG.format(site_id)):

@@ -24,10 +24,12 @@ class SQL:
     """
 
     SITE_ALL = """
-    SELECT `id`, `name`
-        FROM `site`
-        ORDER BY `name`
-        LIMIT 500
+    SELECT `id`,
+        `name`,
+        `parent_id`
+    FROM `site`
+    ORDER BY `name`
+    LIMIT 500
     """
 
     SITE_ID = """
@@ -35,6 +37,15 @@ class SQL:
         FROM `site`
         WHERE `name` = '{}'
         LIMIT 1
+    """
+
+    SITE_INFO = """
+    SELECT `id`,
+        `name`,
+        `parent_id`
+    FROM `site`
+    WHERE `id` = {}
+    LIMIT 1
     """
 
     SITE_LOG = """
