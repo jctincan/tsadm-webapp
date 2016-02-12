@@ -2,56 +2,35 @@ import os
 __RUN_MODE = 'dev'
 os.environ.setdefault('TSADM_MODE', __RUN_MODE)
 
-
 from tsadm import log
 from . import site
 
+_CMDMAP = {
+    'newSite': site.new,
+    'siteList': site.list,
+    'siteRemove': site.remove,
+}
 
 def _logOpen(cmd_name):
     log.log_open("tsadm"+__RUN_MODE+"cli")
     log.inf("start: ", cmd_name)
     log.inf("user: ", os.getresuid(), os.getresgid())
 
-
 def _logClose(status):
     log.inf("end: ", status)
     log.log_close()
 
-
-def newSite():
-    _logOpen("newSite")
+def run(command):
+    func = _CMDMAP.get(command, None)
+    if func is None:
+        raise RuntimeError('invalid command')
+    _logOpen(command)
     try:
-        r = site.new()
+        rtrn = func()
     except Exception as e:
         print("Exception:", e)
         _logClose(128)
         return 128
     else:
-        _logClose(r)
-        return r
-
-
-def siteList():
-    _logOpen("siteList")
-    try:
-        r = site.list()
-    except Exception as e:
-        print("Exception:", e)
-        _logClose(128)
-        return 128
-    else:
-        _logClose(r)
-        return r
-
-
-def siteRemove():
-    _logOpen("siteRemove")
-    try:
-        r = site.remove()
-    except Exception as e:
-        print("Exception:", e)
-        _logClose(128)
-        return 128
-    else:
-        _logClose(r)
-        return r
+        _logClose(rtrn)
+        return rtrn
