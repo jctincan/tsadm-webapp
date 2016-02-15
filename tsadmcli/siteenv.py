@@ -34,3 +34,14 @@ def new():
         return 3
     db.siteenv_add(args.site, args.env, args.host)
     return 0
+
+def remove():
+    parser.add_argument('site', help="site name")
+    parser.add_argument('env', help="env name")
+    args = parser.parse_args()
+    env_id = db.siteenv_id(args.site, args.env)
+    if env_id == 0:
+        print("ERROR: site env not found:", args.site, args.env)
+        return 1
+    db.siteenv_remove(env_id)
+    return 0

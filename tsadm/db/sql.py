@@ -203,6 +203,11 @@ class SQL:
             AND `claim` = 1
     """
 
+    SITEENV_REMOVE = """
+    DELETE FROM `siteenv`
+        WHERE `id` = {}
+    """
+
     SITEENV_SITE_NAME = """
     SELECT `site`.`name`
         FROM `siteenv`

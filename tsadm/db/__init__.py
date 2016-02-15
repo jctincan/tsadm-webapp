@@ -354,6 +354,10 @@ class TSAdmDB:
         return self.__exec(SQL.SITEENV_RELEASE.format(siteenv_id, jobr_id, user_id), fetch_result=False)
 
 
+    def siteenv_remove(self, senv_id):
+        self.__exec(SQL.SITEENV_REMOVE.format(senv_id), fetch_result=False)
+
+
     def siteenv_live(self, env_id):
         r = self.__exec(SQL.SITEENV_LIVE.format(env_id))
         try:
