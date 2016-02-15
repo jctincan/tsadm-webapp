@@ -33,6 +33,7 @@ def new():
         print("ERROR: host not found:", args.host)
         return 3
     db.siteenv_add(args.site, args.env, args.host)
+    log.inf("site env created: {} {} {}".format(args.site, args.env, args.host))
     return 0
 
 def remove():
@@ -44,4 +45,5 @@ def remove():
         print("ERROR: site env not found:", args.site, args.env)
         return 1
     db.siteenv_remove(env_id)
+    log.inf("site env removed: {} {} {}".format(env_id, args.site, args.env))
     return 0

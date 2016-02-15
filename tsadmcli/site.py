@@ -37,5 +37,5 @@ def remove():
         print("ERROR: remove associated environments first!")
         return 2
     db.site_remove(site_id)
-    print("site removed: {} {}".format(site_id, args.name))
+    log.inf("site removed: {} {}".format(site_id, args.name))
     return 0
