@@ -123,6 +123,15 @@ class SQL:
         LIMIT 1000
     """
 
+    SITEENV_ADD = """
+    INSERT INTO `siteenv` (`id`, `site_id`, `name`, `host_id`)
+        SELECT MAX(`id`)+1,
+        (SELECT `id` FROM `site` WHERE `name` = '{}'),
+        '{}',
+        (SELECT `id` FROM `host` WHERE `fqdn` = '{}')
+        FROM `siteenv`
+    """
+
     SITEENV_ALL = """
     SELECT `siteenv`.`id`,
             `siteenv`.`name`,

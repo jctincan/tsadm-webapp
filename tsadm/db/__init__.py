@@ -204,6 +204,10 @@ class TSAdmDB:
         return [{'name': n[0], 'host': n[1]} for n in self.__exec(SQL.SITE_ENVS_OTHER.format(site_id, site_env, user_id, user_id))]
 
 
+    def siteenv_add(self, site_name, env_name, host_fqdn):
+        self.__exec(SQL.SITEENV_ADD.format(site_name, env_name, host_fqdn), fetch_result=False)
+
+
     def siteenv_all(self, site_id):
         rtrn = list()
         for r in self.__exec(SQL.SITEENV_ALL.format(site_id)):
