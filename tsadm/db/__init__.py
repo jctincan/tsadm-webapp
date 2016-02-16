@@ -517,6 +517,10 @@ class TSAdmDB:
         return l
 
 
+    def slave_add(self, fqdn):
+        self.__exec(SQL.SLAVE_ADD.format(fqdn), fetch_result=False)
+
+
     def slave_all(self):
         r = self.__exec(SQL.SLAVE_ALL)
         sall = list()

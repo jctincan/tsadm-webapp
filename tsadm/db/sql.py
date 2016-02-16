@@ -445,6 +445,11 @@ class SQL:
         WHERE `id` = {}
     """
 
+    SLAVE_ADD = """
+    INSERT INTO `host` (`id`, `fqdn`)
+        SELECT MAX(`id`)+1, '{}' FROM `host`
+    """
+
     SLAVE_ALL = """
     SELECT `id`,
             `fqdn`
