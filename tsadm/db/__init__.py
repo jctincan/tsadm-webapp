@@ -535,6 +535,10 @@ class TSAdmDB:
         return sall
 
 
+    def slave_envs(self, host_id):
+        return self.__exec(SQL.SLAVE_ENVS.format(host_id))
+
+
     def slave_id(self, slave_slug):
         r = self.__exec(SQL.SLAVE_ID.format(slave_slug))
         try:
@@ -557,6 +561,9 @@ class TSAdmDB:
     def slave_sites(self, slave_id):
         return self.__exec(SQL.SLAVE_SITES.format(slave_id))
 
+
+    def slave_remove(self, fqdn):
+        self.__exec(SQL.SLAVE_REMOVE.format(fqdn), fetch_result=False)
 
     def env_live_set(self, env_id):
         return self.__exec(SQL.ENV_LIVE_SET.format(env_id), fetch_result=False)

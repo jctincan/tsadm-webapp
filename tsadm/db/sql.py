@@ -458,6 +458,13 @@ class SQL:
         LIMIT 200
     """
 
+    SLAVE_ENVS = """
+    SELECT `id`
+        FROM `siteenv`
+        WHERE `host_id` = {}
+        LIMIT 10
+    """
+
     SLAVE_SITES = """
     SELECT DISTINCT
             `site`.`id`,
@@ -470,6 +477,11 @@ class SQL:
             )
         WHERE `host`.`id` = '{}'
         LIMIT 200
+    """
+
+    SLAVE_REMOVE = """
+    DELETE FROM `host`
+        WHERE `fqdn` = '{}'
     """
 
     ENV_LIVE_SET = """

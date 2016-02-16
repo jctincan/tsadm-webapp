@@ -16,6 +16,7 @@ _CMDMAP = {
     'siteEnvRemove': siteenv.remove,
     'slaveList': slave.list,
     'newSlave': slave.new,
+    'slaveRemove': slave.remove,
 }
 
 def _logOpen(cmd_name):
