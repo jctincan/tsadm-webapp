@@ -5,6 +5,7 @@ os.environ.setdefault('TSADM_MODE', __RUN_MODE)
 from tsadm import log
 from . import site
 from . import siteenv
+from . import slave
 
 _CMDMAP = {
     'newSite': site.new,
@@ -13,6 +14,7 @@ _CMDMAP = {
     'siteEnvList': siteenv.list,
     'newSiteEnv': siteenv.new,
     'siteEnvRemove': siteenv.remove,
+    'slaveList': slave.list,
 }
 
 def _logOpen(cmd_name):
