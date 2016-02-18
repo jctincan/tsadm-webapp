@@ -3,10 +3,13 @@
 PATH=/usr/bin:/bin
 DEBUG_LOG=true
 DEVMODE=true
-CA_CERT=/opt/tsadmdev/webapp/etc/certs/ca.pem
-BOT_CERT=/opt/tsadmdev/webapp/etc/certs/gitbot.pem
+
+source `dirname $BASH_SOURCE`/../../etc/setenv.bash
+
+CA_CERT=${ETCDIR}/ssl/ca.pem
+BOT_CERT=${ETCDIR}/ssl/gitbot.pem
 SSL_ARGS="--cacert $CA_CERT --cert $BOT_CERT"
-MASTER_URI='http://dev.tsadm.local:8000/git/hook/post-receive/'
+MASTER_URI="http://${MASTER_FQDN}:8000/git/hook/post-receive/"
 
 log_dbg()
 {

@@ -67,8 +67,8 @@ __TSADM = {
     'HTTP_HEADER_STS': 'max-age='+str(60*60*24*30),
     'HTTP_HEADER_CACHE_CONTROL': 'no-cache',
 
-    'CA_FILE': os.path.join(__ETC_DIR, 'certs', 'ca.pem'),
-    'SLAVE_AUTH_FILE': os.path.join(__ETC_DIR, 'certs', 'slave-auth.pem'),
+    'CA_FILE': os.path.join(__ETC_DIR, 'ssl', 'ca.pem'),
+    'SLAVE_AUTH_FILE': os.path.join(__ETC_DIR, 'ssl', 'slave-auth.pem'),
 }
 
 def get(arg, default=None):
