@@ -4,7 +4,7 @@ PATH=/usr/bin:/bin
 DEBUG_LOG=true
 DEVMODE=true
 
-source `dirname $BASH_SOURCE`/../../etc/setenv.bash
+source `dirname $BASH_SOURCE`/tsadm.setenv.bash
 
 CA_CERT=${ETCDIR}/ssl/ca.pem
 BOT_CERT=${ETCDIR}/ssl/gitbot.pem
