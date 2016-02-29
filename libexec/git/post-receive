@@ -8,7 +8,7 @@ source `dirname $BASH_SOURCE`/../../etc/setenv.bash
 
 CA_CERT=${ETCDIR}/ssl/ca.pem
 BOT_CERT=${ETCDIR}/ssl/gitbot.pem
-SSL_ARGS="--cacert $CA_CERT --cert $BOT_CERT"
+SSL_ARGS="--insecure --cacert $CA_CERT --cert $BOT_CERT"
 MASTER_URI="http://${MASTER_FQDN}:8000/git/hook/post-receive/"
 
 log_dbg()
