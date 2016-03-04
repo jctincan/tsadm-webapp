@@ -68,6 +68,13 @@ do
     curl ${SSL_ARGS} -s -d "tsadm_post_data=${post_data}" ${MASTER_URI}
 
     $DEBUG_LOG && set +x
+
+    local_script=`dirname $BASH_SOURCE`/post-receive.local
+    log_dbg "LOCAL SCRIPT: $local_script"
+    test -x $local_script &&
+    {
+        $local_script $repo_name $branch
+    }
 done
 
 exit 0
