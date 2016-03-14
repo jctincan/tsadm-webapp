@@ -15,8 +15,14 @@ test -z "$DST_ENV" &&
     exit 2
 }
 
+test -x $DRUSH_CMD ||
+{
+    echo "${DRUSH_CMD}: command not found"
+    exit 3
+}
+
 drush_out=/tmp/$$.tsadm-drush-sql-sync.out
-drush sql-sync -y @${SRC_ENV} @${DST_ENV} 2>$drush_out >$drush_out
+${DRUSH_CMD} sql-sync -y @${SRC_ENV} @${DST_ENV} 2>$drush_out >$drush_out
 drush_rtrn=$?
 
 if fgrep '[error]' $drush_out >/dev/null 2>/dev/null || test $drush_rtrn -ne 0

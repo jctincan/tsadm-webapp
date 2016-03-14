@@ -9,3 +9,4 @@ TSADM_USER=tsadm${RUN_MODE}
 USERS_REPO_BASEDIR=/srv/git/tsadm${RUN_MODE}/users
 WWW_GROUP=nobody
 MASTER_FQDN=tsadmdev.local
+DRUSH_CMD=/usr/bin/drush
