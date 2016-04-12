@@ -271,6 +271,18 @@ class SQL:
             FROM `user`
     """
 
+    USER_REMOVE = """
+    DELETE FROM `user`
+        WHERE `id` = {}
+        LIMIT 1
+    """
+
+    USER_ID = """
+    SELECT `id` FROM `user`
+        WHERE `name` = '{}'
+        LIMIT 1
+    """
+
     USER_AUTH_SITES = """
     SELECT DISTINCT `site`.`name`,
                     `site`.`id`

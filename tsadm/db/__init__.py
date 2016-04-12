@@ -248,6 +248,14 @@ class TSAdmDB:
             return 'NONE'
 
 
+    def user_id(self, user_name):
+        r = self.__exec(SQL.USER_ID.format(user_name))
+        try:
+            return int(r[0][0])
+        except:
+            return 0
+
+
     def user_acclvl(self, user_id):
         r = self.__exec(SQL.USER_ACCLVL.format(user_id))
         try:
@@ -271,6 +279,10 @@ class TSAdmDB:
 
     def user_add(self, name):
         return self.__exec(SQL.USER_ADD.format(name), fetch_result=False)
+
+
+    def user_remove(self, uid):
+        return self.__exec(SQL.USER_REMOVE.format(int(uid)), fetch_result=False)
 
 
     def user_auth_keys(self, user_id):
