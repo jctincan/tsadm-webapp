@@ -30,6 +30,7 @@ def _logOpen(cmd_name):
 def _logClose(status):
     log.inf("end: ", status)
     log.log_close()
+    return status
 
 def run(command):
     func = _CMDMAP.get(command, None)
@@ -40,8 +41,6 @@ def run(command):
         rtrn = func()
     except Exception as e:
         print("Exception:", e)
-        _logClose(128)
-        return 128
+        return _logClose(128)
     else:
-        _logClose(rtrn)
-        return rtrn
+        return _logClose(rtrn)
