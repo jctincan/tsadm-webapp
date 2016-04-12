@@ -269,6 +269,10 @@ class TSAdmDB:
         return self.__exec2(SQL.USER_ALL)
 
 
+    def user_add(self, name):
+        return self.__exec(SQL.USER_ADD.format(name), fetch_result=False)
+
+
     def user_auth_keys(self, user_id):
         return [r[0].decode() for r in self.__exec(SQL.USER_AUTH_KEYS.format(user_id))]
 

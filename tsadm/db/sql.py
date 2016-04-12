@@ -265,6 +265,12 @@ class SQL:
         LIMIT 100
     """
 
+    USER_ADD = """
+    INSERT INTO `user` (`id`, `name`)
+        SELECT MAX(`id`)+1, '{}'
+            FROM `user`
+    """
+
     USER_AUTH_SITES = """
     SELECT DISTINCT `site`.`name`,
                     `site`.`id`

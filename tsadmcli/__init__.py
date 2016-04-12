@@ -19,6 +19,7 @@ _CMDMAP = {
     'newSlave': slave.new,
     'slaveRemove': slave.remove,
     'userList': user.list,
+    'newUser': user.new,
 }
 
 def _logOpen(cmd_name):
