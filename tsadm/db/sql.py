@@ -283,6 +283,20 @@ class SQL:
         LIMIT 1
     """
 
+    USER_ACCLVL_SET = """
+    UPDATE `user`
+        SET `acclvl` = '{}'
+        WHERE `id` = {}
+        LIMIT 1
+    """
+
+    USER_DEVEL_SET = """
+    UPDATE `user`
+        SET `setenv_devel` = '{}'
+        WHERE `id` = {}
+        LIMIT 1
+    """
+
     USER_AUTH_SITES = """
     SELECT DISTINCT `site`.`name`,
                     `site`.`id`

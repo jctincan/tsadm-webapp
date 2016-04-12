@@ -21,6 +21,7 @@ _CMDMAP = {
     'userList': user.list,
     'newUser': user.new,
     'userRemove': user.remove,
+    'userMod': user.modify,
 }
 
 def _logOpen(cmd_name):

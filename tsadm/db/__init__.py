@@ -281,8 +281,16 @@ class TSAdmDB:
         return self.__exec(SQL.USER_ADD.format(name), fetch_result=False)
 
 
-    def user_remove(self, uid):
-        return self.__exec(SQL.USER_REMOVE.format(int(uid)), fetch_result=False)
+    def user_acclvl_set(self, uid, lvl):
+        return self.__exec(SQL.USER_ACCLVL_SET.format(lvl, int(uid)), fetch_result=False)
+
+
+    def user_devel_set(self, uid, devel):
+        return self.__exec(SQL.USER_DEVEL_SET.format(int(devel), int(uid)), fetch_result=False)
+
+
+    def user_disable(self, uid):
+        return self.__exec(SQL.USER_DISABLE.format(int(uid)), fetch_result=False)
 
 
     def user_auth_keys(self, user_id):
