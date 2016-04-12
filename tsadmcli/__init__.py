@@ -6,6 +6,7 @@ from tsadm import log
 from . import site
 from . import siteenv
 from . import slave
+from . import user
 
 _CMDMAP = {
     'newSite': site.new,
@@ -17,6 +18,7 @@ _CMDMAP = {
     'slaveList': slave.list,
     'newSlave': slave.new,
     'slaveRemove': slave.remove,
+    'userList': user.list,
 }
 
 def _logOpen(cmd_name):
