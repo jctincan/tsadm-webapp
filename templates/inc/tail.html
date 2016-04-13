@@ -3,11 +3,11 @@
         <div id="footer">
             <p>
                 v{{version}}:{{took}}<br />
-                {% if user.is_admin %}
-                <a class="soft-info" href="{% url 'soft-info' %}"><img src="/static/favicon.png" alt="-_-" style="width:16px;height:16px"></a>
-                {% else %}
-                <img src="/static/favicon.png" alt="-_-" style="width:16px;height:16px">
-                {% endif %}
+            {% if user.is_admin %}
+                <a class="soft-info" title="software info" href="{% url 'soft-info' %}"><img src="/static/favicon.png" alt="-_-" style="width:16px;height:16px"></a>
+            {% else %}
+                <a class="soft-info" title="tsadm project" target="_blank" href="https://github.com/jctincan/tsadm-webapp"><img src="/static/favicon.png" alt="-_-" style="width:16px;height:16px"></a>
+            {% endif %}
                 {% include "inc/validator.html" %}
             </p>
         </div>
