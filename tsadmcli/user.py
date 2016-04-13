@@ -80,3 +80,57 @@ def modify():
         parser.print_help()
         return 2
     return 0
+
+
+def __acl_list(acl):
+    if 0 in acl:
+        print('ALL')
+    else:
+        for env_id in acl:
+            env = db.siteenv_info(env_id)
+            print('{} {}.{}'.format(env['id'], env['site_name'], env['env_name']))
+    return 0
+
+
+def __acl_allow(user_id, user_name, env_id):
+    if env_id == 'ALL':
+        env_id = 0
+    else:
+        env_name = db.siteenv_name(env_id)
+        if env_name == 'ERROR':
+            print('ERROR: invalid env_id:', env_id)
+            return 2
+    db.user_siteenv_acl_set(user_id, env_id)
+    log.inf('user allow access to env_id:', user_name, '->', env_id)
+    return 0
+
+
+def __acl_disallow(user_id, user_name, env_id):
+    if env_id == 'ALL':
+        env_id = 0
+    else:
+        env_name = db.siteenv_name(env_id)
+        if env_name == 'ERROR':
+            print('ERROR: invalid env_id:', env_id)
+            return 2
+    db.user_siteenv_acl_unset(user_id, env_id)
+    log.inf('user disallow access to env_id:', user_name, '->', env_id)
+    return 0
+
+
+def siteenv_acl():
+    parser.add_argument('name', help="user name")
+    parser.add_argument('--allow', metavar='env_id', help="allow access to env_id")
+    parser.add_argument('--disallow', metavar='env_id', help="allow access to env_id")
+    args = parser.parse_args()
+    uid = db.user_id(args.name)
+    if uid == 0:
+        print('ERROR: invalid user:', args.name)
+        return 1
+    acl = db.user_siteenv_acl(uid)
+    if args.allow:
+        return __acl_allow(uid, args.name, args.allow)
+    elif args.disallow:
+        return __acl_disallow(uid, args.name, args.disallow)
+    else:
+        return __acl_list(acl)

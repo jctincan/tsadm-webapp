@@ -155,6 +155,17 @@ class SQL:
         LIMIT 1
     """
 
+    SITEENV_INFO = """
+    SELECT `siteenv`.`id`,
+            `site`.`name` AS `site_name`,
+            `siteenv`.`name` AS `env_name`
+        FROM `siteenv`
+        LEFT JOIN `site`
+            ON `site`.`id` = `siteenv`.`site_id`
+        WHERE `siteenv`.`id` = {}
+        LIMIT 1
+    """
+
     SITEENV_CLAIM_REQ = """
     UPDATE `siteenv`
         SET `jobr_id` = '{}',
@@ -225,10 +236,21 @@ class SQL:
     """
 
     USER_SITEENV_ACL = """
-    SELECT `siteenv_id`
+    SELECT DISTINCT `siteenv_id`
         FROM `user_siteenv_acl`
         WHERE `user_id` = {}
         LIMIT 500
+    """
+
+    USER_SITEENV_ACL_SET = """
+    INSERT INTO `user_siteenv_acl` (`user_id`, `siteenv_id`)
+        VALUES ({}, {})
+    """
+
+    USER_SITEENV_ACL_UNSET = """
+    DELETE FROM `user_siteenv_acl`
+        WHERE `user_id` = {}
+            AND `siteenv_id` = {}
     """
 
     USER_ACCLVL = """

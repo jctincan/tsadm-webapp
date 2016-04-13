@@ -22,6 +22,7 @@ _CMDMAP = {
     'newUser': user.new,
     'userRemove': user.remove,
     'userMod': user.modify,
+    'userSiteEnvACL': user.siteenv_acl,
 }
 
 def _logOpen(cmd_name):

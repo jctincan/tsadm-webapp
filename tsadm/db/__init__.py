@@ -240,6 +240,14 @@ class TSAdmDB:
         return [a[0] for a in self.__exec(SQL.USER_SITEENV_ACL.format(user_id))]
 
 
+    def user_siteenv_acl_set(self, user_id, env_id):
+        return self.__exec(SQL.USER_SITEENV_ACL_SET.format(int(user_id), int(env_id)), fetch_result=False)
+
+
+    def user_siteenv_acl_unset(self, user_id, env_id):
+        return self.__exec(SQL.USER_SITEENV_ACL_UNSET.format(int(user_id), int(env_id)), fetch_result=False)
+
+
     def user_name(self, user_id):
         r = self.__exec(SQL.USER_NAME.format(user_id))
         try:
@@ -336,6 +344,10 @@ class TSAdmDB:
     def siteenv_id(self, sname, senv):
         r = self.__callsp(SP.SITEENV_ID, (sname, senv, 0))
         return r[2] or 0
+
+
+    def siteenv_info(self, env_id):
+        return self.__exec2(SQL.SITEENV_INFO.format(int(env_id)))[0]
 
 
     def siteenv_host(self, senv_id):
