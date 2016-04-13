@@ -46,7 +46,7 @@ def _pr_update_branch(git_hash, senv_id):
 
 
 def _pr_fetch_tags(senv_id):
-    job_id, cmd_rtrn, cmd_out = wapp.jobq.run('git.fetch-tags', [], runbg=True, senv_id=senv_id)
+    job_id, cmd_rtrn, cmd_out = wapp.jobq.run('git.fetch', [], runbg=True, senv_id=senv_id)
     wapp.log.dbg('pr fetch tags: ', job_id, ' ', cmd_rtrn)
     if cmd_rtrn == 0:
         return True
@@ -82,7 +82,7 @@ def _pr_check_update(git_hash, site_name, branch_name):
             env_live = env.get('live', 0)
             if not env_locked and not env_claimed and not env_live:
                 if branch_name.startswith('refs/tags/'):
-                    wapp.log.dbg('git.fetch-tags ', site_name, ' ', env_id, ' ', env.get('name'))
+                    wapp.log.dbg('git.fetch ', site_name, ' ', env_id, ' ', env.get('name'))
                     # fetch tags if a tag was pushed
                     if _pr_fetch_tags(env_id):
                         resp_body += ':-) '
