@@ -28,6 +28,7 @@ def remove():
     if uid == 0:
         print('ERROR: invalid user:', args.name)
         return 1
+    db.user_siteenv_acl_remove(uid)
     db.user_remove(uid)
     log.inf('user removed:', uid, args.name)
     return 0

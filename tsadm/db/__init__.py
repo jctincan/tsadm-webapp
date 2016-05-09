@@ -236,6 +236,14 @@ class TSAdmDB:
         return r[1]
 
 
+    def user_siteenv_acl_remove(self, user_id):
+        return self.__exec(SQL.USER_SITEENV_ACL_REMOVE.format(user_id), fetch_result=False)
+
+
+    def user_remove(self, user_id):
+        return self.__exec(SQL.USER_REMOVE.format(user_id), fetch_result=False)
+
+
     def user_siteenv_acl(self, user_id):
         return [a[0] for a in self.__exec(SQL.USER_SITEENV_ACL.format(user_id))]
 

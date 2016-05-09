@@ -304,6 +304,11 @@ class SQL:
         LIMIT 1
     """
 
+    USER_SITEENV_ACL_REMOVE = """
+    DELETE FROM `user_siteenv_acl`
+        WHERE `user_id` = {}
+    """
+
     USER_ID = """
     SELECT `id` FROM `user`
         WHERE `name` = '{}'
