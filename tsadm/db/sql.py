@@ -219,6 +219,11 @@ class SQL:
         WHERE `id` = {}
     """
 
+    SITEENV_ACL_REMOVE = """
+    DELETE FROM `user_siteenv_acl`
+        WHERE `siteenv_id` = {}
+    """
+
     SITEENV_SITE_NAME = """
     SELECT `site`.`name`
         FROM `siteenv`

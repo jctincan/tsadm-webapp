@@ -44,6 +44,7 @@ def remove():
     if env_id == 0:
         print("ERROR: site env not found:", args.site, args.env)
         return 1
+    db.siteenv_acl_remove(env_id)
     db.siteenv_remove(env_id)
     log.inf("site env removed: {} {} {}".format(env_id, args.site, args.env))
     return 0
