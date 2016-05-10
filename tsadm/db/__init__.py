@@ -133,8 +133,8 @@ class TSAdmDB:
         return self.__db.charset
 
 
-    def site_add(self, site_name):
-        self.__exec(SQL.SITE_ADD.format(site_name), fetch_result=False)
+    def site_add(self, site_name, child_of):
+        self.__exec(SQL.SITE_ADD.format(site_name, int(child_of)), fetch_result=False)
 
 
     def site_remove(self, site_id):

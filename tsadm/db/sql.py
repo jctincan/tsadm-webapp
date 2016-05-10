@@ -12,8 +12,8 @@ class SP:
 
 class SQL:
     SITE_ADD = """
-    INSERT INTO `site` (`id`, `name`)
-        SELECT MAX(`id`)+1, '{}'
+    INSERT INTO `site` (`id`, `name`, `parent_id`)
+        SELECT MAX(`id`)+1, '{}', {}
             FROM `site`
     """
 
