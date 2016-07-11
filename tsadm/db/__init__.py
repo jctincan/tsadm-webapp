@@ -168,7 +168,10 @@ class TSAdmDB:
 
 
     def site_info(self, site_id):
-        return self.__exec2(SQL.SITE_INFO.format(site_id))[0]
+        try:
+            return self.__exec2(SQL.SITE_INFO.format(site_id))[0]
+        except IndexError:
+            return {}
 
 
     def site_log(self, site_id):
