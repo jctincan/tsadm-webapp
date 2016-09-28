@@ -7,6 +7,7 @@ from . import site
 from . import siteenv
 from . import slave
 from . import user
+from . import db
 
 _CMDMAP = {
     'newSite': site.new,
@@ -23,6 +24,7 @@ _CMDMAP = {
     'userRemove': user.remove,
     'userMod': user.modify,
     'userSiteEnvACL': user.siteenv_acl,
+    'dbMaint': db.maint,
 }
 
 def _logOpen(cmd_name):
